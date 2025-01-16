@@ -1,0 +1,101 @@
+% !TeX document-id = {1c0b4298-276a-4038-8e08-c4a1f4846da7}
+% !TeX TXS-program:bibliography = txs:///biber
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{xcolor}
+\usepackage{nameref}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{float}
+
+\usepackage[
+backend=biber,
+style=authoryear,
+natbib=true
+]{biblatex}
+\addbibresource{../bibliography.bib}
+
+
+\title{\large Proabilidade e Estatística}
+\author{\normalsize Exercícios sobre Probabilidade e Medida}
+\date{}
+\begin{document}
+	\maketitle
+	\paragraph{Construindo medidas} Os próximos dois exercícios versarão sobre a construção de probabilidades em diferentes espaços.
+	
+	\paragraph{Exercício 1 (Probabilidade Elementar)} Nesse exercício, veremos como construir probabilidades em espaços elementares. Seja $\Omega$ um conjunto \textbf{finito}. Considere um conjunto de números não-negativos $\{p_\omega: \omega \in \Omega\}$ tal que $\sum_{\omega \in \Omega} p_\omega = 1$. Cada $p_\omega$ pode ser visto como a probabilidade de que cada um dos $\omega \in \Omega$ seja sorteado pela incerteza do problema em questão.
+	
+	\begin{enumerate}
+		\item[a] Considere o espaço mensurável $(\Omega, 2^\Omega)$. Mostre que a função $S: 2^\Omega \mapsto \mathbb{R}$ dada por:
+		
+		$$S(A) \coloneqq \sum_{a \in A} p_a\, , \quad A \in 2^\Omega\, ,$$
+		define uma medida deprobabilidade sobre $2^\Omega$.
+				\item[b] Mostre que a medida $S$ é a única extensão possível de $\{\{a\}:a \in \mathcal{A}\}$ para $2^\Omega$ que preserva as probabilidades $\{p_a\}_a$, no seguinte sentido: qualquer outra medida $H$ sobre $2^\Omega$ que satisfaz
+				$H[\{a\}] = p_a,\, , \forall a \in \Omega\,,$
+				é tal que $H=S$.
+				
+		\item[c] Mostre que, tomando como base o espaço mensurável $(\Omega, 2^\Omega)$, qualquer função $f: \Omega \mapsto \mathbb{R}$ constitui uma variável aleatória.
+	\end{enumerate}
+	
+	\paragraph{Exercício 2 (Construindo a medida uniforme na reta)} O obejtivo destes exercícios consite em construir o espaço $((0,1],\mathcal{B}(0,1], \widetilde{\operatorname{Leb}})$.
+	\begin{itemize}
+		\item[a] Considere o conjunto $\mathcal{A}$ de subconjuntos de $(0,1]$ da forma:
+		
+		$$\cup_{i=1}^n (a_i,b_i]\, ,$$
+		com $n \in \mathbb{N}$ e $0\leq a_1\leq b_1 \leq a_2\leq b_2 \leq \cdot \leq a_n \leq b_n \leq 1$. Mostre que esse conjunto $\mathcal{A}$ forma uma \textbf{álgebra}, no seguinte sentido: (1) $(0,1], \emptyset \in \mathcal{A}$; (2) se $A\in \mathcal{A}$, então $A^\complement \in \mathcal{A}$; e (3) sejam $A_1, A_2, \ldots A_k$ elementos de $\mathcal{A}$, com $k <\infty$, então $\cup_{l=1}^k A_l \in \mathcal{A}$.
+		\item[b] Defina a função ${\widetilde{\operatorname{Leb}}}: \mathcal{A}\mapsto [0,1]$, da seguinte forma. Se $A = \cup_{i=1}^n (a_i,b_i]$, então
+		$${\widetilde{\operatorname{Leb}}}(A) = \sum_{l=1}^k (b_i - a_i)\, .$$
+		Mostre que $\widetilde{\operatorname{Leb}}$ está bem definida, isto é, que o valor de ${\widetilde{\operatorname{Leb}}}(A)$ é o mesmo para duas representações distintas de um mesmo conjunto $A$ em termos de união de intervalos disjuntos; e que ${\widetilde{\operatorname{Leb}}}(\emptyset) = 0$ e ${\widetilde{\operatorname{Leb}}}(0,1]=1$.
+		
+		\item[c] Mostre que ${\widetilde{\operatorname{Leb}}}$ é \textbf{aditiva} em $\mathcal{A}$, isto é, para $A_1, A_2, \ldots A_k$, $k <\infty$, elementos \textbf{disjuntos} de $\mathcal{A}$:
+		
+		$$\widetilde{\operatorname{Leb}}(\cup_{l=1}^k A_l) = \sum_{l=1}^k \widetilde{\operatorname{Leb}}(A_l)$$
+		\item[d] Usando o resultado anterior, mostre que   $\widetilde{\operatorname{Leb}}$ é enumeravelmente \textbf{aditiva} em $\mathcal{A}$, isto é, para  $(A_n)_{n \in \mathbb{N}} \in \mathcal{A}^\infty$, $A_j \cap A_i = \emptyset$ se $i \neq j$:
+		
+		$$\widetilde{\operatorname{Leb}}(\cup_{l=1}^\infty A_l) = \sum_{l=1}^\infty \widetilde{\operatorname{Leb}}(A_l)$$
+		
+		\textit{Dica:} para os itens (c) e (d), veja o Teorema 1.3 em Billingsley (1995), ``Probability and Measure''.
+		
+		\item[d] Recorra ao Teorema 1.7 de Williams (1991), ``Probability with Martingales'' para concluir que que existe uma única medida de probabilidade que estende $\widetilde{\operatorname{Leb}}$  a  $\mathcal{B}(0,1]$.
+		
+		
+		\paragraph{Exercício 3 (Conjuntos não mensuráveis)} O objetivo deste exercício consiste em mostrar que existem conjuntos que não estão em $\mathcal{B}(0,1]$.
+	Para começar, definamos a seguinte operação entre dois números $x,y \in (0,1]$.
+			
+			$$x\oplus y = \begin{cases}
+				x+y \, , & \text{se } x+ y \leq 1\\
+				x+y -1\, , & \text{se } x+y > 1
+			\end{cases}$$
+					É possível mostrar (não faremos isso) que, para todo $x \in (0,1]$ e $A\in \mathcal{B}[0,1)$, o conjunto $A\oplus x \coloneqq \{a \oplus x: x \in A\}$ é mensurável (i.e. $A\oplus x \in \mathcal{B}[0,1)$) e que $\operatorname{Leb}(A\oplus x) = \operatorname{Leb}(A)$ (a medida de Lebesgue é invariante a translações).
+			
+			\item[a] Defina a relação $\sim$ sobre $[0,1)$ da forma:
+			$x\sim y \iff \exists r \in \mathbb{Q}\cap (0,1], x \oplus r  = y$. Mostre que $\sim$ é uma relação de equivalência, i.e. reflexiva, simétrica e transitiva.
+			\item[b] Para $x \in [0,1)$, defina a classe de equivalência $[x]_{\sim} = \{a \in [0,1]: a \sim x\}$. Mostre que, se $[x]_{\sim} \neq [y]_{\sim}$, então $[x]_{\sim} \cap [y]_{\sim} = \emptyset$, e que $\cup_{a \in (0,1]} [a]_{\sim} = (0,1]$. Conclua que a coleção $\mathcal{S} = \{[a]_{\sim}: a \in (0,1]\}$ forma uma partição de $(0,1]$.
+			\item[c] Considere o conjunto $H = \{h \in s: s \in \mathcal{S}\}$ que consiste em coletar um elemento de cada uma das classes de equivalência distintas de $\sim$. Considere os conjuntos $H_n = H \oplus r_n$, $n \in \mathbb{N}$, onde $(r_n)_{n \in \mathbb{N}}$ é uma enumeração dos números racionais em $(0,1]$. Mostre que os $H_n$ são disjuntos, e que $\cup_{n \in \mathbb{N}} H_n = (0,1]$.
+			\item[d] Conclua que $H \notin \mathcal{B}(0,1]$. \textit{Dica:} suponha, por contradição, que $H \in \mathcal{B}(0,1]$, e use a igualdade do item anterior.
+		\end{itemize}
+		\paragraph{Exercício 4 (extensão do lema do $\pi$-sistema)} prove a seguinte extensão do lema do $\pi$-sistema. Seja $(\Omega, \Sigma)$ um espaço mensurável, e $\mu_1$ e $\mu_2$ duas medidas sobre $\Sigma$ que são $\sigma$-finitas num conjunto $\mathcal{I}$, i.e. tais que existem $E_1, E_2 , E_3 \ldots \in \mathcal{I}$ disjuntos com  $\Omega = \cup_{i=1}^\infty E_i$ com $\mu_1(E_i)<\infty$ e $\mu_2(E_i)<\infty$ para todo $i \in \mathcal{N}$. Prove que, se $\mu_1(I)  = \mu_2(I)$ para todo $I \in \mathcal{I}$, e $\mathcal{I}$ é um $\pi$-sistema que gera $\Sigma$, então $\mu_1 =  \mu_2$.
+		
+		\paragraph{Exercício 5 (um contraexemplo)} Considere o espaço de medida $(\mathbb{R}, \mathcal{B}(\mathbb{R}), \operatorname{Leb})$, onde  $\operatorname{Leb}$ é a medida de Lebesgue sobre a reta, que satisfaz:
+		$$\operatorname{Leb}(a,b] = b-a, \quad \forall -\infty<a\leq b < \infty\, .$$ 
+		\begin{itemize}
+			\item[a] Use o resultado da questão anterior para concluir que as medidas dos intervalos $(a,b]$ caracterizam a medida de Lebesgue na reta.
+			\item[b] Considere a sequência de conjuntos mensuráveis $E_n = (n, \infty)$, $n \in \mathbb{N}$. Mostre que $\mu(E_n) = \infty$ para todo $n \in \mathbb{N}$, e que $\mu(\cap_{n \in \mathbb{N}} E_n) = 0$. Por que o teorema de convergência visto em aula não vale nesse caso?
+		\end{itemize}
+		
+		\paragraph{Exercício 6 (um macaco e uma máquina de escrever)} Seja $\mathcal{V}$ o conjunto de teclas de uma máquina de escrever. Considere um experimento em que um macaco digita sequencialmente em uma máquina de escrever, infinitamente no tempo. O espaço amostral é dado por $\mathcal{V}^{\mathbb{N}}$, o espaço de sequências com valores em $\mathcal{V}$. Considere a $\sigma$-álgebra $\mathcal{F}$ gerada pelos eventos $\{\omega \in \mathcal{V}^{\mathbb{N}}: \omega_k = v\}$, para todo $k \in \mathbb{N}$ $v \in \mathcal{V}$. Esses são os eventos em que o macaco digita um caractere $v$ na $k$-ésima posição do texto.
+		\begin{itemize}
+			\item[a] Considere o subconjunto $\mathcal{I}$ de eventos da forma $\{\omega \in \mathcal{V}^{\mathbb{N}} : \omega_{i_1} = v_1 , \omega_{i_2} = v_2,\ldots, \omega_{i_k} = v_k\}$, para todo $k<\infty$, $i_1 < i_2 < \ldots < i_k$ e $v_1,v_2\ldots, v_k \in \mathcal{V}$. Inclua também o conjunto vazio em $\emptyset$ em $\mathcal{I}$. Mostre que $\mathcal{I}$ é um $\pi$-sistema e $\mathcal{I}\subseteq \mathcal{F}$.
+			\item[b] Suponha agora que o macaco digita as teclas de forma uniforme e independente no tempo, isto é, considere a probabilidade $\mathbb{P}$ sobre $(\mathcal{V}^{\mathbb{N}}, \mathcal{F})$ da forma:
+			
+			$$\mathbb{P}[\{\omega \in \mathcal{V}^{\mathbb{N}} : \omega_{i_1} = v_1 , \omega_{i_2} = v_2,\ldots, \omega_{i_k} = v_k\}] = \frac{1}{|\mathcal{V}|^k}$$
+			para todo evento em $\mathcal{I}$ não vazio, e $\mathbb{P}[\emptyset] = 0$. Use o lema do $\pi$-sistema para concluir que as probabilidades sobre $\mathcal{I}$ caracterizam $\mathbb{P}$.
+			\item[c] Seja $S_n$ o evento em que, a partir da enésima posição do texto, o macaco digita as obras completas de Shakespeare. Use o segundo lema de Borell-Cantelli para concluir que a probabilidade de que o macaco digita as obras completas de Shakespeare infinitas vezes é 1.
+		\end{itemize}
+		
+\end{document}

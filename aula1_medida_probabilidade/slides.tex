@@ -1,0 +1,444 @@
+% !TeX document-id = {0be8c18c-9430-4e9a-bdd9-12beadebfebc}
+% !TeX TXS-program:bibliography = txs:///biber
+\documentclass[11pt]{beamer}
+\uselanguage{portuguese}
+\languagepath{portuguese}
+\deftranslation[to=portuguese]{Theorem}{Teorema}
+\deftranslation[to=portuguese]{Definition}{Definição}
+\deftranslation[to=portuguese]{theorem}{teorema}
+\deftranslation[to=portuguese]{Example}{Exemplo}
+\deftranslation[to=portuguese]{example}{exemplo}
+\deftranslation[to=portuguese]{Lemma}{Lema}
+\deftranslation[to=portuguese]{lemma}{Lema}
+\deftranslation[to=portuguese]{Corollary}{Corolário}
+\deftranslation[to=portuguese]{corollary}{corolário}
+%\deftranslation[to=portuguese]{and}{e}
+
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{color}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{subcaption}
+%\usepackage{appendixnumberbeamer}
+
+\newenvironment{transitionframe}{
+	\setbeamercolor{background canvas}{bg=yellow}
+	\begin{frame}}{
+	\end{frame}
+}
+\usetheme{default}
+\usefonttheme{structuresmallcapsserif}
+
+%% I use a beige off white for my background
+\definecolor{MyBackground}{RGB}{255,253,218}
+\useinnertheme[shadow]{rounded}
+\setbeamercolor{block title}{bg=MyBackground}
+\setbeamercolor{block body}{bg=MyBackground}
+\setbeamercolor{example title}{bg=MyBackground}
+\setbeamercolor{example body}{bg=MyBackground}
+
+
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\purple}[1]{\textcolor{purple}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{page number in head/foot}[appendixframenumber]
+
+%\usepackage{graphics}
+\usepackage{graphicx}
+
+\definecolor{blue_emph}{RGB}{0,114,178}
+\definecolor{red}{RGB}{213,94,0}
+\definecolor{yellow}{RGB}{240,228,66}
+\definecolor{green}{RGB}{0,158,115}
+\definecolor{purple}{RGB}{204,121,167}
+\definecolor{orange}{RGB}{230,159,0}
+\definecolor{lightblue}{RGB}{86,180,233}
+
+%\setbeamercolor{frametitle}{fg=blue}
+%\setbeamercolor{title}{fg=blue}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{itemize items}{-}
+%\setbeamercolor{itemize item}{fg=blue}
+%\setbeamercolor{itemize subitem}{fg=blue}
+\setbeamertemplate{enumerate items}[default]
+%\setbeamercolor{enumerate subitem}{fg=blue}
+\setbeamercolor{button}{bg=MyBackground,fg=blue}
+\usefonttheme{structuresmallcapsserif}
+
+%\setbeamercolor{section in toc}{fg=blue}
+%\setbeamercolor{subsection in toc}{fg=red}
+\setbeamersize{text margin left=1em,text margin right=1em} 
+
+
+\usepackage{appendixnumberbeamer}
+
+\usepackage[
+backend=biber,
+style=authoryear,
+natbib=true
+]{biblatex}
+\addbibresource{../bibliography.bib}
+
+\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{10pt}}{\enditemize}
+\newenvironment{wideenumerate}{\enumerate\addtolength{\itemsep}{10pt}}{\endenumerate}
+\newenvironment{halfwideitemize}{\itemize\addtolength{\itemsep}{0.5em}}{\enditemize}
+\newenvironment{halfwideenumerate}{\enumerate\addtolength{\itemsep}{0.5em}}{\endenumerate}
+
+\def\signed #1{{\leavevmode\unskip\nobreak\hfil\penalty50\hskip2em
+		\hbox{}\nobreak\hfil(#1)%
+		\parfillskip=0pt \finalhyphendemerits=0 \endgraf}}
+
+\newsavebox\mybox
+\newenvironment{aquote}[1]
+{\savebox\mybox{#1}\begin{quote}}
+	{\signed{\usebox\mybox}\end{quote}}
+
+\newtheorem{proposition}{Proposição}
+
+
+
+\author{Luis A. F. Alvarez}
+\title{Probabilidade e Estatística}
+\subtitle{Aula 1 -- Medida e Probabilidade}
+%\logo{}
+%\institute{}
+\date{\today}
+%\subject{}
+%\setbeamercovered{transparent}
+
+\begin{document}
+	
+	\maketitle
+
+\begin{frame}{Formalizando a noção de incerteza}
+	\begin{itemize}
+		\item A Estatística está fundamentalmente associada à tomada de decisão sob incerteza.
+		\begin{itemize}
+			\item Qual a ``melhor'' estimativa para o salário médio de uma população, com base em uma amostra dessa população?
+			\item Como quantificar minha incerteza acerca de uma projeção da taxa de inflação futura?
+		\end{itemize}
+		\item A linguagem formal para se expressar a incerteza é aquela das probabilidades.
+		\begin{itemize}
+			\item Probabilidades são funções matemáticas que quantificam a ``confiança'' que possuímos sobre diferentes {\color{blue}eventos} e que respeitam certos axiomas.
+		\end{itemize}
+		\item A definição rigorosa das probabilidades e o estudo de suas propriedades são um pré-requisito operacional para a Estatística.
+		\begin{itemize}
+			\item Ocuparemo-nos com o estudo formal da teoria das probabilidades na primeira parte do curso.
+		\end{itemize}
+		
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{$\sigma$-álgebra e espaço mensurável}
+	No que segue, seja $\Omega$ um espaço genérico.
+\begin{definition}
+	Uma $\sigma$-álgebra em $\Omega$ é uma família $\Sigma$ de subconjuntos de  $\Omega$, i.e. $\Sigma \subseteq 2^\Omega$, que satisfaz as seguintes propriedades:
+	\begin{enumerate}
+		\item $\emptyset, \Omega \in \Sigma$.
+		\item Se $A \in \Sigma$, então $A^\complement \in \Sigma$.
+		\item Se $(A_n)_{n \in \mathbb{N} }\in \Sigma^\mathbb{N}$, então $\cup_{n \in \mathbb{N}}A_n \in \Sigma$. 
+	\end{enumerate}
+
+\end{definition}
+\vspace{1em}
+\begin{itemize}
+	\item 	Uma $\sigma$-álgebra é uma família de conjuntos de  $\Sigma$ fechada sob complementação e uniões enumeráveis de elementos de $\Sigma$.
+	\begin{itemize}
+		\item Também fechada por intersecções enumeráveis.
+	\end{itemize}
+	\item Exemplos de $\sigma$-álgebras: $\{\emptyset, \Omega\}$ e $2^\Omega$.
+	\item O par $(\Omega, \Sigma)$ é conhecido como {\color{blue}espaço mensurável}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{$\sigma$-álgebra gerada e $\sigma$-álgebra de Borel}
+	\begin{itemize}
+		\item De modo geral, $\sigma$-álgebras são objetos difíceis de serem manipulados.
+		\item Por esse motivo, dado um subconjunto ``tratável'' $\mathcal{I}\subseteq \Omega$, definimos como $\sigma(\mathcal{I})$ a menor (no sentido da relação de inclusão $\subseteq$) $\sigma$-álgebra em $\Omega$ que contém $\mathcal{I}$.
+			\begin{itemize}
+				\item Isto, é, se $\mathcal{A}$ é qualquer outra $\sigma$-álgebra que contém $\mathcal{I}$, então $\sigma(\mathcal{I}) \subseteq \mathcal{}$
+				\item Objeto está sempre bem-definido, visto que:
+				$$\sigma(\mathcal{I}) = \cap_{\mathcal{A}\subseteq 2^\Sigma: \mathcal{A} \text{ é $\sigma$-álgebra} } \mathcal{A} \neq \emptyset\, .$$
+			\end{itemize}
+			\item Se $\Omega$ é um espaço topológico (i.e. espaço munido da noção de aberto ou fechado), denotamos por $\mathcal{B}(\Omega)$, a menor $\sigma$-álgebra que contém os conjuntos abertos de $\Omega$, também conhecida como $\sigma$-álgebra de Borel.
+			\begin{itemize}
+				\item $\mathcal{B}(\mathbb{R}^d)$ é a menor $\sigma$-álgebra  que contém os abertos em $\mathbb{R}^d$ (abertos induzidos pela distância Euclidiana).
+			\end{itemize}
+	\end{itemize}
+	\begin{lemma}
+		Seja $\mathcal{I} = \{ \prod_{j=1}^d(\infty, c_j] : c \in \mathbb{R}^d\}$, então:
+		$\sigma(\mathcal{I}) = \mathcal{B}(\mathbb{R}^d)$.
+	\end{lemma}
+\end{frame}
+
+\begin{frame}{Medida e espaço de medida}
+\begin{definition}
+Seja $(\Omega, \Sigma)$ um espaço mensurável. Uma função $\mu: \Sigma \mapsto [0,\infty]$ é uma medida sobre $(\Omega, \Sigma)$ se:
+\begin{itemize}
+	\item $\mu(\emptyset) = 0$.
+	\item Seja $(A_n)_{n \in \mathbb{N} }\in \Sigma^\mathbb{N}$ tal que $A_i \cap A_j = \emptyset$ para todo $i \neq j$, então:
+	$$\mu\left(\cup_{n \in \mathbb{N}} A_n\right) = \sum_{n=1}^\infty \mu(A_n)$$.
+\end{itemize}
+\end{definition}
+\vspace{1em}
+\begin{itemize}
+	\item Tripla $(\Omega, \Sigma, \mu)$ é conhecida como espaço de medida.
+	\item Medida é dita \textbf{finita} se $\mu(\Omega) < \infty$.
+	\item Medida é dita \textbf{$\boldsymbol{\sigma}$-finita} se $\Omega = \cup_{n=1}^\infty A_n$, com $\{A_n \in \Sigma: n \in \mathbb{N}\}$ disjuntos e $\mu(A_n) < \infty$ para todo $n \in \mathbb{N}$. 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Probabilidade e espaço de probabilidade}
+\begin{definition}
+	Seja $(\Omega, \Sigma)$ um espaço mensurável. Uma função $\mathbb{P}: \Sigma \mapsto [0,1]$ é uma {medida de \color{red} probabilidade} sobre $(\Omega, \Sigma)$ se:
+	\begin{itemize}
+		\item $\mathbb{P}(\emptyset) = 0$ e {\color{red}$\mathbb{P}(\Omega)=1$}.
+		\item Seja $(A_n)_{n \in \mathbb{N} }\in \Sigma^\mathbb{N}$ tal que $A_i \cap A_j = \emptyset$ para todo $i \neq j$, então:
+		$$\mathbb{P}\left(\cup_{n \in \mathbb{N}} A_n\right) = \sum_{n=1}^\infty \mathbb{P}(A_n)$$.
+	\end{itemize}
+\end{definition}
+\vspace{1em}
+\begin{itemize}
+	\item Uma probabilidade nada mais é do que uma medida finita com a normalização $\mathbb{P}[\Omega]=1$.
+	\item Tripla $(\Omega, \Sigma, \mathbb{P})$ é conhecida como espaço de probabilidade. 
+\end{itemize}
+\end{frame}
+\begin{frame}{Interpretação e o porquê da construção}
+\begin{itemize}
+	\item Em Probabilidade, o espaço $\Sigma$ é usualmente conhecido como {\color{blue}espaço amostral}.
+	\begin{itemize}
+		\item Espaço onde mora a incerteza do problema em questão.
+	\end{itemize}
+	\item Natureza ou acaso sorteia um ponto $\omega \in \Omega$ de acordo com a lei de probabilidade $\mathbb{P}$.
+	\begin{itemize}
+		\item Elementos $E\in \Sigma$ são os {\color{blue}eventos}, aos quais prescrevemos uma probabilidade $\mathbb{P}[E]$ de que o sorteio resulte em $\omega \in \Omega$.
+	\end{itemize}
+	\item Uma dúvida que pode restar é por que não definimos a probabilidade sobre $2^\Omega$. Em outras palavras, por que temos de fazer recurso ao conceito de $\sigma$-álgebra?
+	\begin{itemize}
+		\item Embora, em espaços simples (por exemplo, quando $\Omega$ é finito), possamos definir uma probabilidade sobre a $\sigma$-álgebra $2^\Omega$, este não é o caso para espaços mais complexos, como $(0,1]$.
+		\item Nesses casos, \textbf{não} é possível definir uma probabilidade de forma consistente sobre todos os subconjuntos de $(0,1]$.
+
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Propriedades básicas de medidas}
+\begin{proposition}
+	Seja $(\Omega, \Sigma, \mu)$ um espaço de medida. Então:
+	\begin{wideenumerate}
+		\item Se $A, B \in \Sigma$, com $A \subseteq B$, então, $\mu(A)\leq \mu(B)$.
+		\begin{halfwideitemize}
+			\item Além disso, se $\mu(A)<\infty$, $\mu(B\setminus A) = \mu(B) - \mu(A)$.
+		\end{halfwideitemize}
+		\item Seja $A_1, \ldots, A_n \in \Sigma$, então $\mu(\cup_{i=1}^n A_i)\leq \sum_{i=1}^n \mu(A_i) $.
+		\item Seja $(F_n)_{n\in \mathbb{N}} \in \Sigma^{\mathbb{N}}$, com $F_i \subseteq F_{i+1}$ para todo $i\in \mathbb{N}$, então $\mu(F_n) \uparrow \mu(\cup_{i \in \mathbb{N}} F_i)$.
+				\item Seja $(F_n)_{n\in \mathbb{N}} \in \Sigma^{\mathbb{N}}$, com $F_i \supseteq F_{i+1}$ para todo $i\in \mathbb{N}$ e {\color{blue}$\mu(F_1)<\infty$}, então $\mu(F_n) \downarrow \mu(\cap_{i \in \mathbb{N}} F_i)$.
+		\item Seja $(A_n)_{n\in \mathbb{N}} \in \Sigma^{\mathbb{N}}$, então $\mathbb{P}[\cup_{n \in \mathbb{N}}A_n] \leq \sum_{n=1}^\infty  \mathbb{P}[A_n]$.
+	\end{wideenumerate}
+	\end{proposition}
+\end{frame}
+
+\begin{frame}{$\pi$-sistema}
+\begin{itemize}
+	\item Seja $(\Omega, \Sigma)$ um espaço mensurável, e $\mu_1$ e $\mu_2$ duas medidas sobre $\Sigma$.
+	\item Em alguns casos, estamos interessados em verificar se $\mu_1 = \mu_2$.
+	\begin{itemize}
+		\item No entanto, verificar se $\mu_1(A) = \mu_2(A)$ para todo $A \in \Sigma$ pode ser complicado.
+	\end{itemize}
+	\item O resultado abaixo nos mostra que é suficiente verificar a igualdade em um subconjunto menor de eventos.
+\end{itemize}
+	\begin{definition}
+		Um $\pi$-sistema em $\Omega$ é uma família $\mathcal{I}$ de subconjuntos de $\Omega$, i.e. $\mathcal{I}\subseteq 2^\Omega$, que satisfaz:
+		$$I_1, I_2 \in \mathcal{I} \implies I_1 \cap I_2 \in \mathcal{I}$$
+	\end{definition}
+	\begin{lemma}
+		(Lema do $\pi$-sistema) Seja $(\Omega, \Sigma)$ um espaço mensurável, $\mu_1$ e $\mu_2$ duas medidas sobre $\Sigma$, e $\mathcal{I}$ um $\pi$-sistema tal que $\Sigma = \sigma(\mathcal{I})$. Se $\mu_1(I) = \mu_2(I)$ para todo $I \in \mathcal{I}$ e $\mu_1(\Omega) = \mu_2(\Omega) < \infty$, então:
+		$$\mu_1 = \mu_2$$
+	\end{lemma}
+
+\end{frame}
+
+\begin{frame}{O espaço de probabilidade $((0,1],\mathcal{B}(0,1], \operatorname{Leb})$}
+\begin{itemize}
+	\item Um espaço de probabilidade bastante importante é aquele em que o espaço amostral é $(0,1]$, dotado da $\sigma$-álgebra de Borel $\mathcal{B}(0,1]$, e a medida de probabilidade é a {\color{red}medida uniforme ou de Lebesgue} em $(0,1]$, que é {\color{blue}caracterizada} por:
+	
+	$$\operatorname{Leb}(0,c] = c,\quad c \in \mathbb{R}\, .$$
+	\begin{itemize}
+		\item Note que, pelo lema do $\pi$-sistema, é suficiente conhecer $\operatorname{Leb}$ no conjunto de intervalos $\mathcal{I} = \{(0,c], c \in \mathbb{R}\}$ para caracterizá-la, visto que qualquer outra medida de probabilidade que coincida nesse conjunto, coincidirá em $\mathcal{B}(0,1] = \sigma(\mathcal{I})$.
+	\end{itemize}
+	\item {\color{orange}Existência} do espaço $((0,1],\mathcal{B}(0,1], \operatorname{Leb})$ será demonstrada por vocês na lista.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Quase certamente e infinitamente frequente}
+\begin{itemize}
+	\item Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade.
+	\item Dizemos que uma afirmação $a: \Omega \mapsto \{V,F\}$ vale $\mathbb{P}$-quase certamente se $S_a \coloneqq \{\omega \in \Omega: a(\omega)=V\}$ é mensurável (i.e. $S_a \in \Sigma$) e:
+	$$\mathbb{P}[S_a] = 1$$
+	\item Seja $(E_n)_{n \in \mathbb{N}} \in \Sigma^{\mathbb{N}}$ uma sequência de eventos. Damos o nome {\color{red}$E_n$ inifinitamente frequente} ao evento
+	$$\limsup_{n \to \infty} E_n \coloneqq \cap_{n \in \mathbb{N}}  \cup_{k\geq n}E_k$$
+	\item De onde vem o nome? Observe que:
+	$$ \omega \in \cap_{n \in \mathbb{N}}  \cup_{k\geq n}E_k \iff \forall n \in \mathbb{N}, \exists k \geq n, \omega \in E_k$$
+\end{itemize}
+\vspace{-1em}
+	\begin{lemma}
+	Seja $(E_n)_{n \in \mathbb{N}} \in \Sigma^{\mathbb{N}} $ uma sequência de eventos.
+	\begin{enumerate}
+		\item Se $\mathbb{P}[E_n]=1 $ para todo $n \in \mathbb{N}$, $\mathbb{P}[\cap_{n \in \mathbb{N}}E_n]=1$.
+		\item (Primeiro lema de Borel-Cantelli) Se $\sum_{n=1}^\infty \mathbb{P}[E_n] < \infty$, $\mathbb{P}[\limsup_{n \to \infty} E_n] = 0$.
+	\end{enumerate}
+\end{lemma}
+\end{frame}
+
+
+
+\begin{frame}{Função mensurável e variável aleatória}
+Sejam $(\Omega_1, \Sigma_1)$ e $(\Omega_2, \Sigma_2)$ espaços mensuráveis.  Uma função $f: \Omega_1 \mapsto \Omega_2$ é dita $\Sigma_1 \slash \Sigma_2$-mensurável se: 
+
+$$f^{-1}(B) \in \Sigma_1, \quad \forall B \in \Sigma_2$$
+
+Nesse contexto, dizemos que uma função $X:  \Omega_1 \mapsto \mathbb{R}$ é uma {\color{red}variável aleatória (real)} se ela for $\Sigma_1/\mathcal{B}(\mathbb{R})$-mensurável, isto é:
+
+$$X^{-1}(B) \in  \Sigma_1, \quad \forall B \in \mathcal{B}(\mathbb{R})$$
+
+Além disso, dizemos que uma função com valores na reta estendida $Y:  \Omega_1 \mapsto \mathbb{R}\cup\{\infty,-\infty\}$ é uma {\color{red}variável aleatória (real) estendida} se ela for $\Sigma_1/\mathcal{B}(\mathbb{R} \cup\{\infty,-\infty\})$-mensurável, isto é:
+
+$$Y^{-1}(B) \in  \Sigma_1, \quad \forall B \in \mathcal{B}(\mathbb{R}\cup\{\infty,-\infty\})$$
+\end{frame}
+
+\begin{frame}{Variável aleatória: interpretação}
+	\begin{itemize}
+		\item Uma variável aleatória real é tão somente uma transformação mensurável do espaço onde mora a incerteza para os números reais.
+		\begin{itemize}
+			\item Requerimento de mensurabilidade é o mínimo que precisamos para calcularmos probabilidades aos eventos associados com esta variável.
+			\item Variáveis aleatórias reais estendidas são importantes quando trabalhamos com limites.
+		\end{itemize}
+		\item Dado um espaço mensurável $(\Omega, \Sigma)$, denotaremos o espaço de variáveis aleatórias reais com domínio em $\Omega$ e $\Sigma$-mensuráveis por $m(\Sigma)$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Verificação da mensurabilidade}
+\begin{lemma}
+	Sejam $(\Omega_1, \Sigma_1)$ e $(\Omega_2, \Sigma_2)$ espaços mensuráveis. Considere uma função $f: \Omega_1 \mapsto \Omega_2$. Se $f^{-1}(I) \in \Sigma$ para todo $I \in \mathcal{I}$, com $\sigma(I) = \Omega_2$, então $f$ é mensurável.
+\end{lemma}
+\begin{corollary}
+	Um mapa $X: \Omega \mapsto \mathbb{R}$ é uma variável aleatória real se:
+	$X^{-1}(-\infty,c] = \{\omega : X(w) \leq c\} \in \Sigma, \quad \forall c \in \mathbb{R} \, .$
+\end{corollary}
+\end{frame}
+
+\begin{frame}{Mensurabilidade: propriedades}
+	\begin{lemma}
+		Considere um espaço mensurável $(\Omega, \Sigma)$:
+		\begin{enumerate}
+			\item Sejam $X_1,X_2 \in m(\Sigma)$ e $\lambda \in \mathbb{R}$, então $\lambda X_1, X_1 + X_2, X_1 \cdot X_2 \in m(\Sigma)$.
+			\item Seja $Y \in m(\Sigma)$, $f \in m(\mathcal{B}(\mathbb{R}))$, então $f\circ Y  \in m(\Sigma)$.
+			\item Seja $(X_n)_{n\in \mathbb{N}}$ uma sequência de elementos de $m\Sigma$, então:
+				$$\inf_{n \in \mathbb{N}} X_n, \liminf_{n\to \infty} X_n, \limsup_{n \to \infty}X_n$$ 
+				são variáveis aleatórias reais estendidas.
+			\end{enumerate}
+		\end{lemma}
+	\end{frame}
+
+
+\begin{frame}{$\sigma$-álgebra gerada}
+	\begin{itemize}
+		\item 	Seja $(\Omega, \Sigma )$ um espaço mensurável, e $X$ uma variável aleatória.
+		\item Definimos a $\sigma$-álgebra gerada por $X$, denotada por $\sigma(X)$, como a menor sub-$\sigma$-álgebra de $\Sigma$ tal que $X$ é $\sigma(X)$-mensurável.
+		\begin{itemize}
+			\item Fácil mostrar que $\sigma(X) = \{X^{-1}(B): B \in \mathcal{B}(\mathbb{R})\}$.
+		\end{itemize}
+		\item De modo mais geral, dada uma coleção de variáveis aleatórias $\{X_\theta: \theta \in \Theta\}$ com domínio em $\Omega$, denotamos por $\sigma(\{X_\theta: \theta \in \Theta\})$ a menor $\sigma$-álgebra contida em $\Sigma$ tal que cada $X_\theta$, $\theta \in \Theta$, é mensurável.
+		
+			\end{itemize}
+\begin{proposition}
+	Sejam $X_1,\ldots, X_n \in m(\Sigma)$. Então $Y \in m(\sigma(X_1,\ldots, X_n))$ se, e somente se, existir uma $f: \mathbb{R}^n \mapsto \mathbb{R}$ $\mathcal{B}(\mathbb{R}^n)\slash \mathcal{B}(\mathbb{R})$-mensurável tal que $Y = f(X_1,\ldots, X_n)$.
+\end{proposition}
+
+\end{frame}
+
+\begin{frame}{Lei de probabilidade induzida e função de distribuição}
+	\begin{itemize}
+	\item 	Seja $(\Omega, \Sigma, \mathbb{P} )$ um espaço de probabilidade, e $X$ uma variável aleatória.
+	\item Observe que $X$ induz uma medida de probabilidade $\mathcal{L}_X$ sobre $(\mathbb{R},\mathcal{B}(\mathbb{R}))$, dada por $\mathcal{\mathcal{L}}_X(B)\coloneqq  \mathbb{P}[\{\omega \in \Omega: X(\omega) \in B\}] = \mathbb{P}[X^{-1}(B)]$, $B \in \mathcal{B}(\mathbb{R})$.
+	\begin{itemize}
+		\item A essa medida de probabilidade costumamos dar o nome de lei (de probabilidade) de $X$
+	\end{itemize}
+	\item Pelo lema do $\pi$-sistema, para conhecer $\mathcal{L}_X$, basta conhecermos as probabilidades associadas aos eventos $\mathcal{L}_X(-\infty,c]$, $c \in \mathbb{R}$.
+	\begin{itemize}
+		\item À função $F_X(c) = \mathcal{L}_X(-\infty,c]$, $c \in \mathbb{R}$ damos o nome de {\color{blue}função de distribuição de $X$}.
+\end{itemize}
+\begin{proposition}
+	Seja $F_X$ uma função de probabilidade de uma variável aleatória $X$ definida num espaço de probabilidade. Então:
+	\begin{enumerate}
+		\item $F_X(c) \in [0,1]\  \forall c$ e $c \leq c'\implies F_X(c) \leq F_X(c')$.
+		\item $\lim_{c \to - \infty}F_X(c) =0$ e $\lim_{c \to - \infty}F_X(c) =1$.
+		\item $F_X$ é contínua à direita e os limites à esquerda existem.
+	\end{enumerate}
+\end{proposition}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Construção reversa}
+\begin{itemize}
+	\item A proposição anterior nos mostra que a função de distribuição de uma variável aleatória $X$ satisfaz as propriedades 1-3 discutidas anteriormente.
+	\item Uma pergunta reversa é se, dada uma função $F$ com as propriedades 1-3 anteriores, é possível definir um espaço de probabilidade e uma variável aleatória $X$ com função de distribuição $F$.
+	\begin{itemize}
+		\item Afirmação é verdadeira, e sua construção é conhecida como {\color{blue}representação de Skorokhod}.
+		\item Construção depende da capacidade do espaço de probabilidade $([0,1],\mathcal{B}[0,1], \operatorname{Leb})$.
+	\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}{Independência}
+	\begin{itemize}
+		\item Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade.
+		\item Uma coleção $\{\mathcal{G}_j\}_{j \in \mathcal{C}}$ de sub-$\sigma$-álgebras de $\Sigma$ é dita independente se, para toda coleção de eventos $G_j \in \mathcal{G}_j$, $j \in \mathcal{C}$, e quaisquer $j_1, j_2, \ldots, j_k \in \mathcal{C}$ \emph{distintos}, com $k < \infty$:
+		
+		$$\mathbb{P}[G_{j_1}\cap G_{j_2}\cap \ldots \cap G_{j_k}] = \prod_{l=1}^k \mathbb{P}[G_{j_l}]\, ,$$
+		\item Uma coleção de variáveis aleatórias $\{\mathcal{X}_j \}_{j \in \mathcal{C}}$ é independente se $\{\sigma(X_j)\}_{j \in \mathcal{C}}$ são independentes.
+		\item Uma coleção de eventos $\{E_j\}_{j\in \mathcal{C}}$ é independente se a sequência de $\sigma$-álgebras ``simples''   $\{\{\emptyset, E_j, E_j^{\complement}\}\}_{j\in \mathcal{C}}$ é independente.
+		\begin{itemize}
+			\item Essa definição concorda com a nossa noção ``básica'' de independência.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Verificação da Independência}
+\begin{lemma}
+	Sejam $\mathcal{I}$ e $\mathcal{J}$ dois $\pi$-sistemas. Se
+	$$\mathbb{P}[I \cap J] = \mathbb{P}[I]\mathbb{P}[J],\quad \forall I \in \mathcal{I}, J \in \mathcal{J}\, ,$$
+	então $\sigma(\mathcal{I})$ e $\sigma(\mathcal{J})$ são independentes.
+\end{lemma}
+\begin{corollary}
+	Variáveis aleatórias $(X_i)_{i=1}^n$ são independentes se, para todo $c_i, c_2,\ldots, c_n \in \mathbb{R}$:
+	$$\mathbb{P}[\cap_{i=1}^n \{\omega \in \Omega: X_i(\omega) \leq c\}] = \prod_{i=1}^n \mathbb{P}[\{\omega \in \Omega: X_i(\omega) \leq c_i\}]$$
+\end{corollary}
+\end{frame}
+
+
+\begin{frame}{Segundo lema de Borel-Cantelli}
+\begin{lemma}
+	Sejam $E_1,E_2,\ldots$ uma sequência de eventos \textit{independentes}. Se:
+	$\sum_{i=1}^\infty \mathbb{P}[E_i]=\infty$
+	então $\mathbb{P}[\limsup_{n}E_n]=1$.
+\end{lemma}
+\end{frame}
+	%\begin{frame}[allowframebreaks]{Bibliografia}
+	%\printbibliography
+	%\end{frame}
+\end{document}
