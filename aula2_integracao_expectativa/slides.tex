@@ -1,0 +1,288 @@
+% !TeX document-id = {0be8c18c-9430-4e9a-bdd9-12beadebfebc}
+% !TeX TXS-program:bibliography = txs:///biber
+\documentclass[11pt]{beamer}
+\uselanguage{portuguese}
+\languagepath{portuguese}
+\deftranslation[to=portuguese]{Theorem}{Teorema}
+\deftranslation[to=portuguese]{Definition}{Definição}
+\deftranslation[to=portuguese]{theorem}{teorema}
+\deftranslation[to=portuguese]{Example}{Exemplo}
+\deftranslation[to=portuguese]{example}{exemplo}
+\deftranslation[to=portuguese]{Lemma}{Lema}
+\deftranslation[to=portuguese]{lemma}{Lema}
+\deftranslation[to=portuguese]{Corollary}{Corolário}
+\deftranslation[to=portuguese]{corollary}{corolário}
+%\deftranslation[to=portuguese]{and}{e}
+
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{color}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{subcaption}
+%\usepackage{appendixnumberbeamer}
+
+\newenvironment{transitionframe}{
+	\setbeamercolor{background canvas}{bg=yellow}
+	\begin{frame}}{
+	\end{frame}
+}
+\usetheme{default}
+\usefonttheme{structuresmallcapsserif}
+
+%% I use a beige off white for my background
+\definecolor{MyBackground}{RGB}{255,253,218}
+\useinnertheme[shadow]{rounded}
+\setbeamercolor{block title}{bg=MyBackground}
+\setbeamercolor{block body}{bg=MyBackground}
+\setbeamercolor{example title}{bg=MyBackground}
+\setbeamercolor{example body}{bg=MyBackground}
+
+
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\purple}[1]{\textcolor{purple}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{page number in head/foot}[appendixframenumber]
+
+%\usepackage{graphics}
+\usepackage{graphicx}
+
+\definecolor{blue_emph}{RGB}{0,114,178}
+\definecolor{red}{RGB}{213,94,0}
+\definecolor{yellow}{RGB}{240,228,66}
+\definecolor{green}{RGB}{0,158,115}
+\definecolor{purple}{RGB}{204,121,167}
+\definecolor{orange}{RGB}{230,159,0}
+\definecolor{lightblue}{RGB}{86,180,233}
+
+%\setbeamercolor{frametitle}{fg=blue}
+%\setbeamercolor{title}{fg=blue}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{itemize items}{-}
+%\setbeamercolor{itemize item}{fg=blue}
+%\setbeamercolor{itemize subitem}{fg=blue}
+\setbeamertemplate{enumerate items}[default]
+%\setbeamercolor{enumerate subitem}{fg=blue}
+\setbeamercolor{button}{bg=MyBackground,fg=blue}
+\usefonttheme{structuresmallcapsserif}
+
+%\setbeamercolor{section in toc}{fg=blue}
+%\setbeamercolor{subsection in toc}{fg=red}
+\setbeamersize{text margin left=1em,text margin right=1em} 
+
+
+\usepackage{appendixnumberbeamer}
+
+\usepackage[
+backend=biber,
+style=authoryear,
+natbib=true
+]{biblatex}
+\addbibresource{../bibliography.bib}
+
+\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{10pt}}{\enditemize}
+\newenvironment{wideenumerate}{\enumerate\addtolength{\itemsep}{10pt}}{\endenumerate}
+\newenvironment{halfwideitemize}{\itemize\addtolength{\itemsep}{0.5em}}{\enditemize}
+\newenvironment{halfwideenumerate}{\enumerate\addtolength{\itemsep}{0.5em}}{\endenumerate}
+
+\def\signed #1{{\leavevmode\unskip\nobreak\hfil\penalty50\hskip2em
+		\hbox{}\nobreak\hfil(#1)%
+		\parfillskip=0pt \finalhyphendemerits=0 \endgraf}}
+
+\newsavebox\mybox
+\newenvironment{aquote}[1]
+{\savebox\mybox{#1}\begin{quote}}
+	{\signed{\usebox\mybox}\end{quote}}
+
+\newtheorem{proposition}{Proposição}
+
+
+
+\author{Luis A. F. Alvarez}
+\title{Probabilidade e Estatística}
+\subtitle{Aula 2 -- Integração e Expectativa}
+%\logo{}
+%\institute{}
+\date{\today}
+%\subject{}
+%\setbeamercovered{transparent}
+
+\begin{document}
+	
+	\maketitle
+\begin{frame}{Integral de Lebesgue}
+	\begin{itemize}
+		\item Nesta  aula, partiremos de um espaço de medida $(\Omega, \Sigma,\mu)$ e definiremos, para uma função mensurável $f: \Omega \mapsto \mathbb{R}$, a integral de Lebesgue com respeito a $\mu$.
+		\begin{itemize}
+			\item Como veremos, essa noção de integral \emph{estende} a noção de integral de Riemann para uma classe mais ampla de funções e espaços subjacentes.
+			\item Esse conceito de integral será fundamental para a definição formal de esperança condicional.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Funções simples}
+	\begin{itemize}
+	\item Seja $(\Omega, \Sigma, \mu)$ um espaço de medida.
+	\item Uma função $f:\Omega \mapsto \mathbb{R} \cup \{-\infty,\infty\}$ é dita simples se existem $k \in \mathbb{N}$ e $E_1, E_2,\ldots, E_k \in \Sigma$, $a_1,\ldots, a_k \in \mathbb{R}\cup \{-\infty,\infty\}$ tais que:
+		$$f(\omega) = \sum_{i=1}^k a_i \mathbf{1}_{E_1}(\omega)\, , \quad \omega \in \Omega$$
+		onde $\mathbf{1}_A(\omega) = \begin{cases}
+			1 & \text{se } \omega \in A \\
+			0 & \text{se } \omega \notin A
+		\end{cases}$ é a função indicadora do conjunto $A$.
+		\item \textbf{Convenção:} se $\mathbf{1}_{E_i}(\omega) =0$ e $a_i = \pm \infty$, então $\mathbf{1}_{E_i}(\omega) a_i = 0$
+		\item Fácil ver que $f$ é mensurável.
+		\begin{itemize}
+			\item Também fácil ver que, sem perda de generalidade, podemos tomar os $E_i$ como disjuntos.
+		\end{itemize}
+		
+	\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Integral de Lebesgue de funções simples não negativas}
+		\begin{itemize}
+				\item Seja $f$ uma função simples \textbf{não negativa}. A integral de Lebesgue com respeito a $\mu$, denotada por $\mu(f)$ ou $\int f(\omega) \mu(d\omega)$ ou $\int f d \mu$, é definida por:
+			$$\int f(\omega) \mu(d\omega)\coloneqq \sum_{i=1}^k a_i \mu(E_i) \, .$$
+			\item Fácil de ver que integral está bem-definida (para duas expressões distintas da função simples em termos de conjuntos finitos, expressão dará a mesma coisa).
+			\item Integral será um elemento de $[0,\infty]$
+		\end{itemize}
+	
+	\end{frame}
+	
+		\begin{frame}{Integral de Lebesgue de funções mensuráveis não negativas}
+		\begin{itemize}
+			\item Seja $f: \Omega \mapsto [0,\infty]$ uma função mensurável não negativa. Definimos a integral de Lebesgue  como:
+			
+			$$\mu(f) \coloneqq \sup (\mu(g): g\text{ simples e não negativa}, g \leq f)\, .$$
+			
+		\begin{lemma}
+			Seja $f \geq 0$ mensurável. 
+			\begin{itemize}
+				\item Se $\mu(f)  < \infty$, então, $\mu(\{\omega: f(\omega) = \infty\}) = 0$.
+				\item Se $\mu(f) = 0$, então $\mu(\{\omega: f(\omega) > 0\}) = 0$.
+				\item Seja $g \geq 0$ mensurável. Se $\mu(\{\omega: g(\omega)\neq f(\omega)\})=0$.
+			\end{itemize}
+		\end{lemma}
+		\vspace{0.1em}
+		\item 	\textbf{Obs:} Quando uma afirmação é válida a não ser em um conjunto de pontos $\omega$ de medida zero, dizemos que ela vale em $\mu$-quase todo ponto ($\mu$-q.t.p.).
+		\begin{itemize}
+			\item Se  $\mu$ é medida de probabilidade, equivalente ao qualificador ``quase certamente'' visto em aula anterior.
+		\end{itemize}
+		\end{itemize}
+	
+	\end{frame}
+	
+	\begin{frame}{Teorema da Covergência Monótona}
+		\begin{itemize}
+	\item Seja $(f_n)_n$ uma sequência de funções mensuráveis. Dizemos que $f_n$ converge a uma função $f$ em $\mu$-quase todo ponto se $\mu(\{\omega: f_n(\omega) \nrightarrow f(\omega)\})) = 0$.
+	\begin{itemize}
+		\item Medida do evento em que não há convergência é zero.
+	\end{itemize}
+	\item 	Como $f$  é mensurável (por quê?),  se $f_n \geq 0$ para todo $n$, podemos nos perguntar se:
+	
+	$$\int f_n d \mu \to \int f d \mu\, ,$$
+	i.e. podemos passar o limite por ``debaixo'' da integral?
+	\item Resposta é verdadeira se a convergência for \textbf{monótona}  em $\mu$-quase todo ponto, i.e. $\mu(\{\omega: f_n(\omega) \uparrow f(\omega)\}^\complement) = 0$.
+	\begin{theorem}
+		Seja $(f_n)_n$ uma sequência de funções não negativas mensuráveis tais que $f_n \uparrow f$ em $\mu$-quase todo ponto. Então.
+		
+		$$\mu(f_n) \uparrow \mu(f)\leq \infty$$
+	\end{theorem}
+	\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Construindo aproximação monotônicas}
+\begin{itemize}
+	\item Em alguns contextos, é interessante construir funções monotônicas que aproximam uma dada função não negativa $f$. 
+	\item Uma construção bastante comum é dada por $f_n = s_n \circ f$, onde $s_n$ são funções escada da forma:
+	
+	$$s_n(y) = \begin{cases}
+		0 & \text{se } y = 0\\
+		\frac{(j-1) n}{2^n}\,, &  \text{se } y \in \left(	\frac{(j-1) n}{2^n} , 	\frac{j n}{2^n}\right], j \in \{1,\ldots, 2^n\} \\
+		n,, & \text{se } y > n
+	\end{cases}$$
+	\item Sequência é tal que $f_n \uparrow f$.
+\end{itemize}
+
+	\end{frame}
+	
+	\begin{frame}{Integral de Lebesgue no caso geral}
+	\begin{itemize}
+		\item 		Seja $f:\Omega \mapsto \mathbb{R}\cup\{\infty,-\infty\}$ uma função mensurável. Defina as partes positiva e negativa de $f$ como:
+		
+		$$f^+ = \max\{f,0\} \,, \quad f^-  = - \min\{f,0\}\, ,$$
+		
+
+		\item Dizemos que $f$ é \textbf{integrável} se $\mu(|f|) = \mu(f^+) + \mu(f^-) < \infty$. Nesse caso, a integral de $f$ é definida como:
+		
+		$$\mu(f) = \mu(f^+)-\mu(f^-)$$
+		
+		\item Vamos denotar por $L^1(\Omega, \Sigma,\mu)$ o espaço de funções Lebesgue-integráveis.
+		
+	\end{itemize}
+		
+	\end{frame}
+	\begin{frame}{Integral de Lebesgue: propriedades}
+	\begin{proposition}
+		Sejam $f,g \in L^1(\Omega,\Sigma, \mu)$ e $\alpha \in \mathbb{R}$. Temos que:
+		\begin{itemize}
+			\item[1] (Monotonicidade) $f \leq g \implies \mu(f)\leq \mu(g)$
+			\item[2] (Linearidade) $f + \lambda g \in  L^1(\Omega,\Sigma, \mu)$ e $\mu(f+\lambda g) = \mu(f)+\lambda\mu(g)$.
+		\end{itemize}
+	\end{proposition}
+	\begin{proposition}
+		Seja $(f_n)_n$ uma sequência de funções em $ L^1(\Omega,\Sigma, \mu)$, tais que $f_n \to f$ em $\mu$-q.t.p. Se existe $g\geq $ mensurável  tal que $\mu(g) < \infty$ e:
+		
+		$$|f_n(\omega)|\leq g(\omega)\,  \forall n \in \mathbb{N}, \omega \in \Omega\, ,$$
+		então  $f \in L^1(\Omega,\Sigma, \mu)$ e: 
+		
+		$$\mu(|f_n-f|)\to 0 \,,$$ $$ \mu(f_n) \to \mu(f)$$
+	\end{proposition}
+	\end{frame}
+	
+	\begin{frame}{Integral de Lebesgue e integral de Riemann}
+		\begin{itemize}
+			\item 	 Considere o espaço $([0,1], \mathcal{B}[0,1], \lambda)$, com $\lambda$ a medida de Lebesgue.
+			\item Nesse espaço, podemos tanto calcular a integral de Lebesgue $\int f(x)\lambda(dx)$ como a integral de Riemann:
+			$$\int_{0} ^1 f(x) dx$$
+			\item Qual a relação entre as duas integrais?
+			\begin{proposition}
+				Seja $f\geq$ uma função real com domínio em $[0,1]$ Riemann integrável. Então $f$ é mensurável e $\lambda(f) = \int_0^1 f(x) dx$.
+			\end{proposition}
+			\item A recíproca do resultado acima nem sempre verdadeira. Por exemplo, a função
+			$$\mathbf{1}_{[0,1]\setminus  \mathbb{Q}}\, ,$$
+			não é Riemann-integrável, embora $\lambda(\mathbf{1}_{[0,1]\setminus  \mathbb{Q}}) = 0$.
+		\end{itemize}
+
+	\end{frame}
+	
+	\begin{frame}{Densidade com respeito a uma medida}
+
+	\begin{itemize}
+		\item 	Seja $(\Omega, \Sigma, \mu)$ um espaço de medida, e $f\geq0$ uma função mensurável.
+		\item O conjunto de integrais:
+		
+		$$\int_{A} f d \mu \coloneqq \mu(f \mathbf{1}_{A})\, , A \in \Sigma$$
+		
+		define uma medida sobre $(\Omega, \Sigma)$ (verifique).
+		\item Reciprocamente, se $\Phi$ é uma medida sobre $(\Omega,\Sigma,\mu)$, dizemos que $\Phi$ admite uma densidade com respeito a $\mu$ se existe $g \geq 0$ mensurável tal que, para todo $A \in \Sigma$:
+		$$\Phi(A) = \int_{A} g d \mu$$
+		\item Condição necessária e suficiente para existência de densidade é dada pelo teorema de Radon-Nikodyn.
+		\begin{theorem}
+			Seja $(\Omega,\Sigma)$ um espaço mensurável, e $\mu$ e $\Phi$ duas medidas {\color{red}$\sigma$-finitas}. $\Phi$ admite uma densidade com respeito a $\mu$ se, e somente se, para todo $A \in \Sigma$, $\mu(A) \implies \Phi(A)$.
+		\end{theorem}
+	\end{itemize}
+
+	\end{frame}
+	%\begin{frame}[allowframebreaks]{Bibliografia}
+	%\printbibliography
+	%\end{frame}
+\end{document}
