@@ -388,16 +388,99 @@ natbib=true
 			\begin{itemize}
 				\item No entanto, cabe a pergunta: será que existe uma variável aleatória que satisfaz as condições requeridas?
 						\item Resposta é {\color{red}afirmativa}, e dada por um teorema devido a Komogorov.
-
+			\end{itemize}
+			\item Além disso, note que, pelo resultado visto em aula anterior, quando $\mathcal{G} = \sigma(X_1,\ldots, X_n)$, a esperança condicional $\mathbb{E}[Y|\sigma(X_1,\ldots, X_n)] = f(X_1,\ldots,X_n)$ para alguma $f$ $\mathcal{B}(\mathbb{R}^n)$-mensurável.
+			\begin{itemize}
+				\item Essa é $f$ é conhecida como \textbf{função de expectativa condicional}.
+				\item Nesses casos, costumeiro usar a notação $\mathbb{E}[Y|X_1,\ldots, X_n]$ para $\mathbb{E}[Y|\sigma(X_1,\ldots, X_n)]  $
 			\end{itemize}
 		\end{itemize}
 	\end{frame}
 	\begin{frame}{Esperança condicional: propriedades básicas}
-		conteúdo...
-	\end{frame}
+	
+			No que segue, tome $X \in \mathcal{L}^1(\Omega,\Sigma,\mathbb{P})$, e $\mathcal{F}$ e $\mathcal{G}$ sub-$\sigma$-álgebras de $\Sigma$.
+	\begin{lemma}
+			\begin{enumerate}
+			\item \textbf{Preservação da Esperança:}  
+			Se \( Y \) é qualquer versão de \( \mathbb{E}(X \mid \mathcal{G}) \), então \( \mathbb{E}(Y) = \mathbb{E}(X) \).
+			
+			\item \textbf{Mensurabilidade:}  
+			Se \( X \) é \( \mathcal{G} \)-mensurável, então \( \mathbb{E}(X \mid \mathcal{G}) = X \) quase certamente.
+			
+			\item \textbf{Linearidade:}
+			\[
+			\mathbb{E}(a_1 X_1 + a_2 X_2 \mid \mathcal{G}) = a_1 \mathbb{E}(X_1 \mid \mathcal{G}) + a_2 \mathbb{E}(X_2 \mid \mathcal{G}), \quad \text{quase certamente.}
+			\]
+			
+			\item \textbf{Positividade:}  
+			Se \( X \geq 0 \), então \( \mathbb{E}(X \mid \mathcal{G}) \geq 0 \), quase certamente.
+			
+			\item \textbf{Monotonicidade (cMON):}  
+			Se \( 0 \leq X_n \uparrow X \), então \( \mathbb{E}(X_n \mid \mathcal{G}) \uparrow \mathbb{E}(X \mid \mathcal{G}) \), quase certamente.
+			
+			\item \textbf{Convergência Dominada (cDOM):}  
+			Se \( |X_n(\omega)| \leq V(\omega) \) para todo \( n \), \( \mathbb{E}[V] < \infty \), e \( X_n \to X \) quase certamente, então
+			\[
+			\mathbb{E}(X_n \mid \mathcal{G}) \to \mathbb{E}(X \mid \mathcal{G}), \quad \text{quase certamente.}
+			\]
+			
+			\item \textbf{Desigualdade de Jensen (cJENSEN):}  
+			Se \( \phi: \mathbb{R} \to \mathbb{R} \) é convexa e \( \mathbb{E}|\phi(X)| < \infty \), então
+			\[
+			\mathbb{E}[\phi(X) \mid \mathcal{G}] \geq \phi(\mathbb{E}[X \mid \mathcal{G}]), \quad \text{quase certamente.}
+			\]
+		\end{enumerate}
+	\end{lemma}
+		
+				
+							
+				\end{frame}
+	
 	
 		\begin{frame}{Esperança condicional: propriedades básicas}
-		conteúdo...
+		
+		No que segue, tome $X \in \mathcal{L}^1(\Omega,\Sigma,\mathbb{P})$, e $\mathcal{F}$ e $\mathcal{G}$ sub-$\sigma$-álgebras de $\Sigma$.
+		\begin{lemma}
+			\begin{enumerate}
+			\item[7] \textbf{Propriedade da Torre:}  
+			Se \( \mathcal{H} \) é uma sub-\(\sigma\)-álgebra de \( \mathcal{G} \), então
+			\[
+			\mathbb{E}[\mathbb{E}(X \mid \mathcal{G}) \mid \mathcal{H}] = \mathbb{E}(X \mid \mathcal{H}), \quad \text{quase certamente}.
+			\]
+			
+			\item[8] \textbf{'Extraindo o que é Conhecido':}  
+			Se \( Z \) é \( \mathcal{G} \)-mensurável e limitada, então
+			\[
+			\mathbb{E}[ZX \mid \mathcal{G}] = Z \mathbb{E}[X \mid \mathcal{G}], \quad \text{quase certamente}.
+			\]
+				(resultado também vale se $X\in L^p$ e $Z \in L^q$, com $p\geq1$ e $\frac{1}{q} = 1-\frac{1}{p}$).
+			
+			\item[9] \textbf{Papel da Independência:}  
+			Se \( \mathcal{H} \) é independente de \( \sigma(X, \mathcal{G}) \), então
+			\[
+			\mathbb{E}[X \mid \sigma(\mathcal{G}, \mathcal{H})] = \mathbb{E}(X \mid \mathcal{G}), \quad \text{quase certamente}.
+			\]
+			Em particular, se \( X \) é independente de \( \mathcal{H} \), então
+			\[
+			\mathbb{E}(X \mid \mathcal{H}) = \mathbb{E}(X), \quad \text{quase certamente}.
+			\]
+			\end{enumerate}
+		\end{lemma}
+		
+		
+		
+	\end{frame}
+	
+		\begin{frame}{Probabilidade condicional}
+\begin{itemize}
+	\item Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade, $A \in \Sigma$ um evento e $\mathcal{G}\subseteq \Sigma$ uma sub-$\sigma$-álgebra de $\Sigma$. Definimos a \textbf{probabilidade condicional} de $A$ dado $\mathcal{G}$ como:
+	$$\mathbb{P}[A|\mathcal{G}] = \mathbb{E}[\mathbf{1}_{A}|\mathcal{G}]$$
+\item Uma função $p: \Sigma \times \Omega \mapsto [0,1]$ é dita uma \textbf{probabilidade condicional regular} se:
+\begin{enumerate}
+	\item $\forall A \in \Sigma$, $\omega \mapsto p(A,\omega)$ é uma versão de $\mathbb{P}[A|\mathcal{G}]$.
+	\item $\forall \omega \in \Omega$, $A \mapsto p(A, \omega)$ é uma lei de probabilidade sobre $(\Omega, \Sigma)$.
+\end{enumerate}
+\item Probabilidades condicionais regulares nem sempre existem, embora, para espaços bem-comportados como os estudados em estatística, elas quase sempre existam.
+\end{itemize}
 	\end{frame}
 \end{document}
-
