@@ -168,7 +168,7 @@ natbib=true
 			\begin{itemize}
 				\item Se $\mu(f)  < \infty$, então, $\mu(\{\omega: f(\omega) = \infty\}) = 0$.
 				\item Se $\mu(f) = 0$, então $\mu(\{\omega: f(\omega) > 0\}) = 0$.
-				\item Seja $g \geq 0$ mensurável. Se $\mu(\{\omega: g(\omega)\neq f(\omega)\})=0$.
+				\item Seja $g \geq 0$ mensurável. Se $\mu(\{\omega: g(\omega)\neq f(\omega)\})=0$, então $\mu(f) = \mu(g)$.
 			\end{itemize}
 		\end{lemma}
 		\vspace{0.1em}
@@ -281,6 +281,86 @@ natbib=true
 		\end{theorem}
 	\end{itemize}
 
+	\end{frame}
+	\begin{frame}{Densidade e uma fórmula padrão}
+		\begin{lemma}
+			Seja $(\Omega,\Sigma)$ um espaço mensurável, e $\mu$ e $\Phi$ duas medidas.  Se $\Phi$ admite densidade $g$ com respeito a a $\mu$, então para qualquer $h \in L^1(\Omega, \Sigma, \Phi)$, temos que:
+			$$\Phi(f) = \int h(\omega) g(\omega) \mu(d\omega)$$
+		\end{lemma}
+		\begin{itemize}
+			\item Fórmula acima nos permite calcular esperança diretamente da integral com respeito a $\mu$.
+			\item \textbf{Demonstração:} primeiro verificamos  a expressão para funções simples, depois para funções não negativas usando uma aproximação por funções-escada, e por fim estendemos para funções gerais.
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{Esperança}
+	\begin{itemize}
+		\item Seja $(\Omega, \Sigma\,\mathbb{P})$ espaço de probabilidade.
+		\item Neste caso, damos à integral de Lebesgue o nome de expectativa ou esperança, denotando-a, para $X \in L^1(\Omega,\Sigma, \mathbb{P})$ por:
+		$$\mathbb{E}[X] \coloneqq \mathbb{P}(X)$$.
+		\item Como uma medida de probabilidade é finita, um corolário imediato do teorema da convergência dominada é:
+		\begin{corollary}[Teorema da convergência limitada]
+			Seja $(X_n)_n \in L^1(\Sigma, \Omega,\mathbb{P})^{\mathbb{N}}$ tais que $X_n \to X$ quase certamente. Se existe $K>0$ tal que:
+			
+			$$\mathbb{P}[\{\omega:|X_n(\omega)|\leq K,\,  \forall n\}] = 1\, ,$$
+			então $X \in L^1(\Sigma, \Omega,\mathbb{P})$ e:
+			$\mathbb{E}[X_n] \to \mathbb{E}[X]$
+		\end{corollary}
+	\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Esperança: desigualdades fundamentais}
+		\begin{itemize}
+			\item No que segue, considere um espaço de probabilidade $(\Omega,\Sigma, \mathbb{P})$.
+		\end{itemize}
+		\begin{lemma}{Desigualdade de Markov}
+			Seja $Z$ uma variável aleatória, e $g: \mathbb{R} \mapsto [0,\infty]$ mensurável e não decrescente.  Então, para todo $c \in \mathbb{R}$.
+			
+			$$\mathbb{P}[Z\geq c] g(c) \leq \mathbb{E}[g(Z)]$$
+		\end{lemma}
+		
+			\begin{lemma}{Desigualdade de Jensen}
+		Seja $X$ uma variável aleatória, e $c: C \mapsto \mathbb{R}$ uma função convexa onde $C \subseteq \mathbb{R}$ é um conjunto aberto. Suponha que:
+		
+		$$\mathbb{E}[|X|]< \infty, \quad \mathbb{P}[X \in C]  = 1, \quad \mathbb{E}[|c(X)|]<\infty\, ,$$
+		então $\mathbb{E}[X] \in C$ e:
+		$$c(\mathbb{E}[X])\leq \mathbb{E}[c(X)]\, .$$
+		\end{lemma}
+	\end{frame}
+	
+	\begin{frame}{A norma $L^p$}
+	\begin{itemize}
+		\item Fixe $p \in [1,\infty]$. Para uma variável aleatória $X$, nós definimos:
+		$$\lVert X\rVert_p = (\mathbb{E}[|X|^p])^{1/p}$$
+		\item Denotamos por $L^p(\Omega, \Sigma, \mathbb{P})$ o espaço de variáveis aleatórias $X \in m(\Sigma)$ tais que $\lVert X\rVert_p<\infty$.
+		\item É possível mostrar que esse espaço é linear normado, com $\lVert \cdot \rVert_p$ definindo uma (semi)norma em $L^p(\Omega, \Sigma, \mathbb{P})$ .
+		\begin{itemize}
+			\item ``Semi'' vem do fato de que $\lVert X \rVert_p = 0 \implies \mathbb{P}[X=0]=1$, de modo que há múltiplas variáveis aleatórias com norma zero, embora todas-quase certamente iguais a zero. 
+			\begin{itemize}
+				\item Essa multiplicidade não é problemática.
+			\end{itemize}
+		\end{itemize}
+	
+	\end{itemize}
+	\end{frame}
+	\begin{frame}{Normas $L_p$: propriedades úteis}
+\begin{itemize}
+	\item Abaixo, elencamos algumas propriedades úteis das normas $L_p$.
+	\begin{lemma}
+		\begin{enumerate}
+			\item (Monotonicidade) Sejam $1 \leq p \leq q$. Se $X \in L^q(\Omega, \Sigma, \mathbb{P})$ , então $X \in L^p(\Omega, \Sigma, \mathbb{P})$ e $\lVert X \rVert_p \leq \lVert X \rVert_q$.
+				\item (Cauchy-Schwarz) sejam $X,Y \in  L^2(\Omega, \Sigma, \mathbb{P})$. Então $X \cdot Y \in L^1(\Omega, \Sigma, \mathbb{P})$ e :
+			$$|\mathbb{E}[XY]| \leq \mathbb{E}[|XY|] \leq \lVert X \rVert_2 \lVert Y \rVert_2\, .$$
+			\item (H\"{o}lder) Seja $1 \leq p \leq q \leq \infty$, $\frac{1}{p}+\frac{1}{q} =1$. Sejam $X \in  L^p(\Omega, \Sigma, \mathbb{P})$ e  $Y \in  L^q(\Omega, \Sigma, \mathbb{P})$. Então $X \cdot Y \in L^1(\Omega, \Sigma, \mathbb{P})$  e: 
+			$$|\mathbb{E}[XY] | \leq \mathbb{E}[|XY|]  \leq \lVert X \rVert_p   \lVert Y \rVert_q\, .   $$
+			\item (Minkowski) Seja $p \geq 1$, e $X,Y \in  L^p(\Omega, \Sigma, \mathbb{P})$, então:
+			$$\lVert X+Y\rVert_p \leq \lVert X\rVert_p+\lVert Y\rVert_p $$
+		\end{enumerate}
+	\end{lemma}
+	\begin{itemize}
+		\item Cauchy-Schwarz é caso particular de H\"{o}lder.
+		\item Minkowski garante desigualdade triangular (e que $\lVert \cdot \rVert_p$ é norma)
+	\end{itemize}
+\end{itemize}
 	\end{frame}
 	%\begin{frame}[allowframebreaks]{Bibliografia}
 	%\printbibliography

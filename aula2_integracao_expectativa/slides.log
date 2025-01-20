@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.6)  17 JAN 2025 17:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.6)  19 JAN 2025 21:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1594,6 +1594,31 @@ Overfull \vbox (11.19344pt too high) detected at line 284
 
 [11
 
+] [12
+
+] [13
+
+] [14
+
+]
+
+LaTeX Font Warning: Font shape `T1/lmss/m/sc' in size <9> not available
+(Font)              Font shape `T1/lmr/m/sc' tried instead on input line 344.
+
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 344.
+LaTeX Font Info:    Font shape `T1/lmss/b/n' in size <14.4> not available
+(Font)              Font shape `T1/lmss/bx/n' tried instead on input line 344.
+LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <14.4> not available
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 344.
+[15
+
+]
+Overfull \vbox (9.3757pt too high) detected at line 364
+ []
+
+[16
+
 ]
 \tf@nav=\write7
 \openout7 = `slides.nav'.
@@ -1616,11 +1641,11 @@ Package logreq Info: Writing requests to 'slides.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45142 strings out of 474116
- 1038040 string characters out of 5743683
- 1938187 words of memory out of 5000000
- 66723 multiletter control sequences out of 15000+600000
- 652024 words of font info for 95 fonts, out of 8000000 for 9000
+ 45246 strings out of 474116
+ 1040882 string characters out of 5743683
+ 1940187 words of memory out of 5000000
+ 66812 multiletter control sequences out of 15000+600000
+ 669763 words of font info for 105 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,123p,719b,1643s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/l
@@ -1629,16 +1654,18 @@ ve/2024/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2024/te
 xmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2024/texmf-dist/fo
 nts/type1/public/lm/lmss10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/
 public/lm/lmss8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/l
-mssbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsso10.p
-fb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsso8.pfb></usr/l
-ocal/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texli
-ve/2024/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2024/tex
-mf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2024
-/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on slides.pdf (11 pages, 207117 bytes).
+mss9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb
+></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsso10.pfb></usr/lo
+cal/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsso12.pfb></usr/local/texli
+ve/2024/texmf-dist/fonts/type1/public/lm/lmsso8.pfb></usr/local/texlive/2024/te
+xmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2024/texmf-dist/f
+onts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/
+public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2024/texmf-dist/fonts/ty
+pe1/public/amsfonts/symbols/msbm10.pfb>
+Output written on slides.pdf (16 pages, 262821 bytes).
 PDF statistics:
- 230 PDF objects out of 1000 (max. 8388607)
- 144 compressed objects within 2 object streams
- 23 named destinations out of 1000 (max. 500000)
- 265 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 326 PDF objects out of 1000 (max. 8388607)
+ 201 compressed objects within 3 object streams
+ 33 named destinations out of 1000 (max. 500000)
+ 439 words of extra memory for PDF output out of 10000 (max. 10000000)
 
