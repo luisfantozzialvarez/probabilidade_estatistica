@@ -299,10 +299,10 @@ natbib=true
 		$$\mathbb{E}[X] \coloneqq \mathbb{P}(X)$$.
 		\item Como uma medida de probabilidade é finita, um corolário imediato do teorema da convergência dominada é:
 		\begin{corollary}[Teorema da convergência limitada]
-			Seja $(X_n)_n \in L^1(\Sigma, \Omega,\mathbb{P})^{\mathbb{N}}$ tais que $X_n \to X$ quase certamente. Se existe $K>0$ tal que:
+			Seja $(X_n)_n \in L^1(\Omega, \Sigma,\mathbb{P})^{\mathbb{N}}$ tais que $X_n \to X$ quase certamente. Se existe $K>0$ tal que:
 			
 			$$\mathbb{P}[\{\omega:|X_n(\omega)|\leq K,\,  \forall n\}] = 1\, ,$$
-			então $X \in L^1(\Sigma, \Omega,\mathbb{P})$ e:
+			então $X \in L^1(\Omega, \Sigma,\mathbb{P})$ e:
 			$\mathbb{E}[X_n] \to \mathbb{E}[X]$
 		\end{corollary}
 	\end{itemize}
@@ -362,7 +362,42 @@ natbib=true
 	\end{itemize}
 \end{itemize}
 	\end{frame}
+	
+	\begin{frame}{Esperança condicional}
+	\begin{itemize}
+		\item Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade, $Y$ uma variável aleatória, e $\mathcal{G}\subseteq \Sigma$ uma sub-$\sigma$-álgebra de $\Sigma$.
+		\item Tome $Y \in L^1(\Omega, \Sigma,\mathbb{P})$.
+		\item Definimos a esperança condicional de $Y$ com respeito a $\mathcal{G}$, denotada por $\mathbb{E}[Y|\mathcal{G}]$ como a {\color{blue}variável aleatória} $\mathbb{E}[Y|\mathcal{G}] \in L^1(\Omega, {\color{red}\mathcal{G}},\mathbb{P})$  que satisfaz, para todo $A \in {\color{red}\mathcal{G}}$:
+		
+		$$\mathbb{E}[\mathbb{E}[Y|\mathcal{G}]\mathbf{1}_A] = \mathbb{E}[Y|\mathbf{1}_A]$$
+		\item Fácil mostrar que esperança condicional está unicamente definida, a não por eventos de probabilidade zero.
+		\begin{itemize}
+			\item Uma variável aleatória que satisfaz as condições acima é conhecida como \emph{versão} da esperança condicional.
+			\item Sejam $Z_1$ e $Z_2$ duas versões de $\mathbb{E}[Y|\mathcal{G}]$, então $\{\omega: Z_1(\omega)>Z_2(\omega)\} \in \mathcal{G}$ e pela definição da esperança condicional $Z_1\geq Z_2$ q.c.
+		\end{itemize}
+	\end{itemize}
+	\end{frame}
+
+	
 	%\begin{frame}[allowframebreaks]{Bibliografia}
 	%\printbibliography
 	%\end{frame}
+		\begin{frame}{Existência da esperança condicional}
+		\begin{itemize}
+			\item No slide anterior, definimos a esperança condicional e verificamos que, caso exista, ela é única.
+			\begin{itemize}
+				\item No entanto, cabe a pergunta: será que existe uma variável aleatória que satisfaz as condições requeridas?
+						\item Resposta é {\color{red}afirmativa}, e dada por um teorema devido a Komogorov.
+
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{Esperança condicional: propriedades básicas}
+		conteúdo...
+	\end{frame}
+	
+		\begin{frame}{Esperança condicional: propriedades básicas}
+		conteúdo...
+	\end{frame}
 \end{document}
+

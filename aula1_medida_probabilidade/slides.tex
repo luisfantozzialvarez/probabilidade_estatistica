@@ -152,7 +152,7 @@ natbib=true
 \end{definition}
 \vspace{1em}
 \begin{itemize}
-	\item 	Uma $\sigma$-álgebra é uma família de conjuntos de  $\Sigma$ fechada sob complementação e uniões enumeráveis de elementos de $\Sigma$.
+	\item 	Uma $\sigma$-álgebra é uma família de subconjuntos de  $\Omega$ fechada sob complementação e uniões enumeráveis de elementos de $\Sigma$.
 	\begin{itemize}
 		\item Também fechada por intersecções enumeráveis.
 	\end{itemize}
@@ -165,11 +165,11 @@ natbib=true
 \begin{frame}{$\sigma$-álgebra gerada e $\sigma$-álgebra de Borel}
 	\begin{itemize}
 		\item De modo geral, $\sigma$-álgebras são objetos difíceis de serem manipulados.
-		\item Por esse motivo, dado um subconjunto ``tratável'' $\mathcal{I}\subseteq \Omega$, definimos como $\sigma(\mathcal{I})$ a menor (no sentido da relação de inclusão $\subseteq$) $\sigma$-álgebra em $\Omega$ que contém $\mathcal{I}$.
+		\item Por esse motivo, dado um subconjunto ``tratável'' $\mathcal{I}\subseteq 2^\Omega$, definimos como $\sigma(\mathcal{I})$ a menor (no sentido da relação de inclusão $\subseteq$) $\sigma$-álgebra em $\Omega$ que contém $\mathcal{I}$.
 			\begin{itemize}
-				\item Isto, é, se $\mathcal{A}$ é qualquer outra $\sigma$-álgebra que contém $\mathcal{I}$, então $\sigma(\mathcal{I}) \subseteq \mathcal{}$
+				\item Isto, é, se $\mathcal{A}$ é qualquer outra $\sigma$-álgebra que contém $\mathcal{I}$, então $\sigma(\mathcal{I}) \subseteq \mathcal{A}$
 				\item Objeto está sempre bem-definido, visto que:
-				$$\sigma(\mathcal{I}) = \cap_{\mathcal{A}\subseteq 2^\Sigma: \mathcal{A} \text{ é $\sigma$-álgebra} } \mathcal{A} \neq \emptyset\, .$$
+				$$\sigma(\mathcal{I}) = \cap_{\mathcal{A}\subseteq 2^\Omega: \mathcal{A} \text{ é $\sigma$-álgebra} } \mathcal{A} \neq \emptyset\, .$$
 			\end{itemize}
 			\item Se $\Omega$ é um espaço topológico (i.e. espaço munido da noção de aberto ou fechado), denotamos por $\mathcal{B}(\Omega)$, a menor $\sigma$-álgebra que contém os conjuntos abertos de $\Omega$, também conhecida como $\sigma$-álgebra de Borel.
 			\begin{itemize}
@@ -177,7 +177,7 @@ natbib=true
 			\end{itemize}
 	\end{itemize}
 	\begin{lemma}
-		Seja $\mathcal{I} = \{ \prod_{j=1}^d(\infty, c_j] : c \in \mathbb{R}^d\}$, então:
+		Seja $\mathcal{I} = \{ \prod_{j=1}^d(-\infty, c_j] : c \in \mathbb{R}^d\}$, então:
 		$\sigma(\mathcal{I}) = \mathcal{B}(\mathbb{R}^d)$.
 	\end{lemma}
 \end{frame}
