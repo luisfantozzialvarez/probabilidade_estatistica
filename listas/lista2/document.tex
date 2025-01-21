@@ -1,0 +1,85 @@
+% !TeX document-id = {1c0b4298-276a-4038-8e08-c4a1f4846da7}
+% !TeX TXS-program:bibliography = txs:///biber
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{xcolor}
+\usepackage{nameref}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{float}
+
+\usepackage[
+backend=biber,
+style=authoryear,
+natbib=true
+]{biblatex}
+\addbibresource{../bibliography.bib}
+
+
+\title{\large Proabilidade e Estatística}
+\author{\normalsize Exercícios sobre Integração e Expectativa}
+\date{}
+\begin{document}
+	\maketitle
+	\paragraph{Exercício 1} Seja $(\Omega, \Sigma, \mathbb{P})$ um espaço de probabilidade, e $X_n\geq0$, $n \in \mathbb{N}$, uma sequência de variáveis aleatórias não negativas.
+	
+	\begin{itemize}
+		\item[a] Mostre que $\mathbb{E}[\sum_{n=1}^\infty Z_n] = \sum_{n=1}^\infty \mathbb{E}[Z_n]$.
+		\item[b] Mostre que $\mathbb{E}[\sum_{n=1}^\infty Z_n] < \infty \implies \mathbb{P}[\{\omega:\sum_{n=1}^\infty Z_n(\omega) <\infty \}] = 1$.
+		\item[c] Mostre que $\mathbb{P}[\{\omega:\sum_{n=1}^\infty Z_n(\omega) <\infty \}] = 1 \implies \mathbb{P}[\{\omega: Z_n(\omega)\nrightarrow 0\}] = 0$.
+\end{itemize}
+
+\paragraph{Exercício 2} Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade, e $X$ uma variável aleatória real integrável. Mostre que:
+
+$$\mathbb{E}[X] = \int x \mathbb{P}_X(dx)\,, $$
+onde $\mathbb{P}_X$ é a medida de probabilidade induzida por $X$ sobre $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$. \textit{Dica:} mostre para funções simples, depois aproxime para funções não-negativas pelo teorema da covnergência monótona, depois use a definição de integral para funções integráveis gerais.
+
+\paragraph{Exercício 3} Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade. Para $A,B \in \mathcal{L}_2(\Omega,\Sigma, \mathbb{P})$ a covariância entre $A$ e $B$ é definida como:
+
+$$\mathbb{C}(A,B) \coloneqq \mathbb{E}[AB] - \mathbb{E}[A] \mathbb{E}[A]\, .$$
+
+Para duas variáveis aleatórias $X,Y$ definidas em $(\Omega, \Sigma,\mathbb{P})$, mostre que $X$ é independente de $Y$ se, e somente se, para quaisquer funções $h:\mathbb{R} \mapsto \mathbb{R}$ e $g:\mathbb{R} \mapsto \mathbb{R}$ limitadas e mensuráveis:
+
+$$\operatorname{C}(h(X), g(Y)) = 0\, .$$
+
+\noindent \textit{Dica:} para a direção ``se'', observe que, para todo $B \in \mathcal{B}(\mathbb{R})$, $\mathbb{P}[X^{-1}(B)] = \mathbb{E}[\mathbf{1}_{X^{-1}(B)}] = \mathbb{E}[\mathbf{1}_{B}(X)] $. Para a outra direção, mostre para funções simples e depois aproxime para funções limitadas por funções-escada.
+
+	\paragraph{Exercício 4} Seja $(\Omega, \Sigma, \mathbb{P})$ e $Y \in L^2(\Omega, \Sigma,\mathbb{P})$. Seja $\mathcal{G}$ uma sub-$\sigma$-álgebra de $\Sigma$.
+	\begin{itemize}
+		\item[a] Mostre que $\mathbb{E}[Y|\mathcal{G}] \in L^2(\Omega, \Sigma,\mathbb{P})$.
+		\item[b] Mostre que $\mathbb{E}[Y|\mathcal{G}]$ é a única (a não ser num evento de probabilidade zero) solução ao problema de minimização:
+		
+		$$\min_{S \in L^2(\Omega,\mathcal{G},\mathbb{P})}\mathbb{E}[(Y-S)^2]$$
+		
+		\item[c] Mostre que, quando $\mathcal{G} = \{\emptyset, \Omega\}$, $\mathbb{E}[Y|\mathcal{G}] = \mathbb{E}[Y]$, e que, quando $\mathcal{G}=\Sigma$, $\mathbb{E}[Y|\mathcal{G}] = Y$. À luz do item anterior, qual a interpretação desses resultados?
+		\item[d] Seja $E \in \Sigma$, com $1> \mathbb{P}[E] > 0$. Tome $\mathcal{G} = \{\emptyset, E, E^\complement, \Omega\}$. Mostre que a função:
+		
+		$$g(\omega) = \begin{cases}
+			\frac{\mathbb{E} [Y\mathbf{1}_E]}{\mathbb{P}[E]}\, , & \text{se } \omega \in E \\
+				\frac{\mathbb{E} [Y\mathbf{1}_{E^\complement}]}{\mathbb{P}[E^\complement]}\, , & \text{se } \omega \in E^\complement
+		\end{cases}\, ,$$
+		é uma versão de $\mathbb{E}[Y|\mathcal{G}]$. Qual a interpretação desse resultado, à luz do item (b)?
+			\end{itemize}
+		\paragraph{Exercício 5} Seja $(\Omega, \Sigma, \mathbb{P})$, e $X$ e $Y$ duas variáveis aleatórias reais. Considere $\mathbb{P}_{X,Y}[B] \coloneqq \mathbb{P}[\{\omega: (X(\omega),Y(\omega)) \in B], \quad B\in \mathcal{B}(\mathbb{R}^2)$, a medida de probabilidade induzida por $(X,Y)$ em $(\mathbb{R}^2, \mathcal{B}(\mathbb{R}^2))$. DIzemos que $\mathbb{P}_{X,Y}$ admite densidade $f$ com respeito a medida de Lebesgue $\lambda^2$ em $(\mathbb{R}^2, \mathcal{B}(\mathbb{R}^2))$ \footnote{A medida de Lebesgue em $\mathbb{R}^2$ é igual à medida produto $\lambda \otimes \lambda$ sobre $\mathcal{B}(\mathbb{R})\otimes \mathcal{B}(\mathbb{R}) = \mathcal{B}(\mathbb{R}^2)$, onde $\lambda$ é a medida de Lebesgue em $(\mathbb{R},\mathcal{B}(\mathbb{R}))$}se, para todo $B\in \mathcal{B}(\mathbb{R}^2)$:
+		
+		$$\mathbb{P}_{X,Y}[B] = \int f(\omega_1,\omega_2) \mathbf{1}_B(\omega_1,\omega_2)\lambda(d \omega )\, ,$$
+		onde, por uma extensão do resultado visto em aula, $\lambda(d \omega )$ pode ser substituída pela integral dupla (de Riemann) quando $(\omega_1,\omega_2) \mapsto f(\omega_1,\omega_2) \mathbf{1}_B(\omega_1,\omega_2)$ for Riemann-integrável.
+		
+	\begin{itemize}
+		\item[a] Mostre que $f_1(\omega) \coloneqq \int f(\omega, y)\lambda(dy)$ define uma densidade para a probabilidade $\mathbb{P}_X$ induzida sobre $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$. \textit{Dica:} tome $A \in \mathcal{B}(\mathbb{R})$ e use o teorema de Fubini para mostrar que  $ \mathbb{P}_{X}[A] = \mathbb{P}_{X,Y}[A\times \mathbb{R}] =  \int \mathbf{1}_{A \times \mathbb{R}} f d\lambda^2 = \int \mathbf{1}_{A} f_1 d\lambda_1$. 
+		\item[b] Suponha que $\mathbb{E}[|Y|]<\infty$. Mostre que a função $g:\mathbb{R} \mapsto \mathbb{R}$:
+		
+		$$g(x) =\begin{cases}
+			\frac{1}{f_1(x)} \int y f(y,x) \lambda(d y ), & \text{se } f_1(x) > 0 \\
+			0, & \text{se } f_1(x) = 0
+		\end{cases}\, ,$$
+		define uma função de expectativa condicional de $Y$ em $X$, i.e. que $g(X)$ é uma versão de $\mathbb{E}[Y|X]$. A escolha, na definição de $g$, do valor $0$ quando $f_1(x) = 0$, faz alguma diferença? Por quê?
+		
+	\end{itemize}
+
+\end{document}

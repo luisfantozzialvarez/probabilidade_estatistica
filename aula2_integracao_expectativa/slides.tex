@@ -232,7 +232,7 @@ natbib=true
 	\end{frame}
 	\begin{frame}{Integral de Lebesgue: propriedades}
 	\begin{proposition}
-		Sejam $f,g \in L^1(\Omega,\Sigma, \mu)$ e $\alpha \in \mathbb{R}$. Temos que:
+		Sejam $f,g \in L^1(\Omega,\Sigma, \mu)$ e $\lambda \in \mathbb{R}$. Temos que:
 		\begin{itemize}
 			\item[1] (Monotonicidade) $f \leq g \implies \mu(f)\leq \mu(g)$
 			\item[2] (Linearidade) $f + \lambda g \in  L^1(\Omega,\Sigma, \mu)$ e $\mu(f+\lambda g) = \mu(f)+\lambda\mu(g)$.
@@ -394,6 +394,10 @@ natbib=true
 				\item Essa é $f$ é conhecida como \textbf{função de expectativa condicional}.
 				\item Nesses casos, costumeiro usar a notação $\mathbb{E}[Y|X_1,\ldots, X_n]$ para $\mathbb{E}[Y|\sigma(X_1,\ldots, X_n)]  $
 			\end{itemize}
+			\item \textbf{Interpretação da esperança condicional:} $\mathcal{G}$ é o conjunto informacional do agente (após sorteio de $\omega \in \Omega$ pela natureza, agente observa se $\omega \in E$ é verdade ou não, para todo $E \in \mathcal{G}$).
+			\begin{itemize}
+				\item $\omega \mapsto \mathbb{E}[Y|\mathcal{G}]$ é a melhor previsão do agente sobre $Y$ após o sorteio, em termos de minimização do erro quadrático médio, dado o conhecimento de $\mathcal{G}$ (exercício da lista).
+			\end{itemize}
 		\end{itemize}
 	\end{frame}
 	\begin{frame}{Esperança condicional: propriedades básicas}
@@ -506,6 +510,7 @@ de forma sequencial, isto é se:
 \item Resposta é \textbf{afirmativa}, e dada pelo \textbf{Teorema de Fubini}.
 \begin{itemize}
 	\item Teorema adicionalmente garante que podemos ``trocar'' as integrais.
+	\item Teorema vale para expectativas e, mais genericamente, integrais de medidas $\sigma$-finitas.
 \end{itemize}
 \end{itemize}
 \end{frame}
