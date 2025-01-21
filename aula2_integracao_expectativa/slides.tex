@@ -133,7 +133,7 @@ natbib=true
 	\begin{itemize}
 	\item Seja $(\Omega, \Sigma, \mu)$ um espaço de medida.
 	\item Uma função $f:\Omega \mapsto \mathbb{R} \cup \{-\infty,\infty\}$ é dita simples se existem $k \in \mathbb{N}$ e $E_1, E_2,\ldots, E_k \in \Sigma$, $a_1,\ldots, a_k \in \mathbb{R}\cup \{-\infty,\infty\}$ tais que:
-		$$f(\omega) = \sum_{i=1}^k a_i \mathbf{1}_{E_1}(\omega)\, , \quad \omega \in \Omega$$
+		$$f(\omega) = \sum_{i=1}^k a_i \mathbf{1}_{E_i}(\omega)\, , \quad \omega \in \Omega$$
 		onde $\mathbf{1}_A(\omega) = \begin{cases}
 			1 & \text{se } \omega \in A \\
 			0 & \text{se } \omega \notin A
@@ -482,5 +482,31 @@ natbib=true
 \end{enumerate}
 \item Probabilidades condicionais regulares nem sempre existem, embora, para espaços bem-comportados como os estudados em Estatística, elas quase existam na maioria dos casos.
 \end{itemize}
-	\end{frame}
+\end{frame}
+\begin{frame}{Medida produto}
+	\begin{itemize}
+		\item Sejam $(\Omega_1,\Sigma_1,\mathbb{P}_1)$ e $(\Omega_2,\Sigma_2,\mathbb{P}_2)$ dois espaços de probabilidade.
+		\item A $\sigma$-álgebra \textbf{produto}, denotada por $\Sigma_1 \otimes \Sigma_2 $, é a $\sigma$-álgebra em $\Omega_1 \times \Omega_2$ gerada pelos conjuntos da forma $B_1 \times B_2$, com $B_1,\Sigma_1$ e $B_2, \Sigma_2$.
+		\item A medida produto, denotada por $\mathbb{P}_1\otimes \mathbb{P}_2$ é a medida caracterizada pelas probabilidades:
+		$$\mathbb{P}_1\otimes \mathbb{P}_2[B_1 \times B_2] = \mathbb{P}_1[B_1] \mathbb{P}_1[B_2],\quad \forall B_1 \in \Sigma_1,B_2 \in \Sigma_2\,.$$
+		(note o paralelismo com o conceito de independência; estamos definindo um novo espaço de probabilidade em que os experimentos 1 e 2 ocorrem de forma independente).
+	
+	\end{itemize} 
+\end{frame}
+\begin{frame}{Teorema de Fubini}
+	\begin{itemize}
+	\item Seja $f \in L^1(\Omega_1\times \Omega_2,\Sigma_1 \otimes \Sigma_2,  \mathbb{P}_1\otimes \mathbb{P}_2)$. Uma pergunta que podemos ter é se podemos calcular a esperança:
+$$\int f d \mathbb{P}_1 \otimes \mathbb{P}_2\,,$$
+de forma sequencial, isto é se:
+\begin{equation*}
+	\begin{aligned}
+		\int f d \mathbb{P}_1 \otimes \mathbb{P}_2\ = \int \left(\int f(\omega_1,\omega_2)\mathbb{P}[d\omega_1]\right) \mathbb{P}[d\omega_2] = \\ \int \left(\int f(\omega_1,\omega_2)\mathbb{P}[d\omega_2]\right) \mathbb{P}[d\omega_1] 
+	\end{aligned}
+\end{equation*}
+\item Resposta é \textbf{afirmativa}, e dada pelo \textbf{Teorema de Fubini}.
+\begin{itemize}
+	\item Teorema adicionalmente garante que podemos ``trocar'' as integrais.
+\end{itemize}
+\end{itemize}
+\end{frame}
 \end{document}
