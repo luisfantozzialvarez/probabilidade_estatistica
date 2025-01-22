@@ -383,10 +383,10 @@ $$Y^{-1}(B) \in  \Sigma_1, \quad \forall B \in \mathcal{B}(\mathbb{R}\cup\{\inft
 		\item À função $F_X(c) = \mathcal{L}_X(-\infty,c]$, $c \in \mathbb{R}$ damos o nome de {\color{blue}função de distribuição de $X$}.
 \end{itemize}
 \begin{proposition}
-	Seja $F_X$ uma função de probabilidade de uma variável aleatória $X$ definida num espaço de probabilidade. Então:
+	Seja $F_X$ uma função de distribuição de uma variável aleatória $X$ definida num espaço de probabilidade. Então:
 	\begin{enumerate}
-		\item $F_X(c) \in [0,1]\  \forall c$ e $c \leq c'\implies F_X(c) \leq F_X(c')$.
-		\item $\lim_{c \to - \infty}F_X(c) =0$ e $\lim_{c \to - \infty}F_X(c) =1$.
+		\item $F_X(c) \in [0,1]\  \forall c \in \mathbb{R}$; e $c \leq c'\implies F_X(c) \leq F_X(c')$.
+		\item $\lim_{c \to - \infty}F_X(c) =0$ e $\lim_{c \to +\infty}F_X(c) =1$.
 		\item $F_X$ é contínua à direita e os limites à esquerda existem.
 	\end{enumerate}
 \end{proposition}
@@ -400,7 +400,7 @@ $$Y^{-1}(B) \in  \Sigma_1, \quad \forall B \in \mathcal{B}(\mathbb{R}\cup\{\inft
 	\item Uma pergunta reversa é se, dada uma função $F$ com as propriedades 1-3 anteriores, é possível definir um espaço de probabilidade e uma variável aleatória $X$ com função de distribuição $F$.
 	\begin{itemize}
 		\item Afirmação é verdadeira, e sua construção é conhecida como {\color{blue}representação de Skorokhod}.
-		\item Construção depende da capacidade do espaço de probabilidade $([0,1],\mathcal{B}[0,1], \operatorname{Leb})$.
+		\item Construção depende da existência do espaço de probabilidade $([0,1],\mathcal{B}[0,1], \operatorname{Leb})$.
 	\end{itemize}
 \end{itemize}
 \end{frame}
@@ -410,7 +410,7 @@ $$Y^{-1}(B) \in  \Sigma_1, \quad \forall B \in \mathcal{B}(\mathbb{R}\cup\{\inft
 		\item Uma coleção $\{\mathcal{G}_j\}_{j \in \mathcal{C}}$ de sub-$\sigma$-álgebras de $\Sigma$ é dita independente se, para toda coleção de eventos $G_j \in \mathcal{G}_j$, $j \in \mathcal{C}$, e quaisquer $j_1, j_2, \ldots, j_k \in \mathcal{C}$ \emph{distintos}, com $k < \infty$:
 		
 		$$\mathbb{P}[G_{j_1}\cap G_{j_2}\cap \ldots \cap G_{j_k}] = \prod_{l=1}^k \mathbb{P}[G_{j_l}]\, ,$$
-		\item Uma coleção de variáveis aleatórias $\{\mathcal{X}_j \}_{j \in \mathcal{C}}$ é independente se $\{\sigma(X_j)\}_{j \in \mathcal{C}}$ são independentes.
+		\item Uma coleção de variáveis aleatórias $\{{X}_j \}_{j \in \mathcal{C}}$ é independente se $\{\sigma(X_j)\}_{j \in \mathcal{C}}$ são independentes.
 		\item Uma coleção de eventos $\{E_j\}_{j\in \mathcal{C}}$ é independente se a sequência de $\sigma$-álgebras ``simples''   $\{\{\emptyset, E_j, E_j^{\complement},\Omega\}\}_{j\in \mathcal{C}}$ é independente.
 		\begin{itemize}
 			\item Essa definição concorda com a nossa noção ``básica'' de independência.
@@ -425,7 +425,7 @@ $$Y^{-1}(B) \in  \Sigma_1, \quad \forall B \in \mathcal{B}(\mathbb{R}\cup\{\inft
 	então $\sigma(\mathcal{I})$ e $\sigma(\mathcal{J})$ são independentes.
 \end{lemma}
 \begin{corollary}
-	Variáveis aleatórias $(X_i)_{i=1}^n$ são independentes se, para todo $c_i, c_2,\ldots, c_n \in \mathbb{R}$:
+	Variáveis aleatórias $(X_i)_{i=1}^n$ são independentes se, para todo $c_1, c_2,\ldots, c_n \in \mathbb{R}$:
 	$$\mathbb{P}[\cap_{i=1}^n \{\omega \in \Omega: X_i(\omega) \leq c\}] = \prod_{i=1}^n \mathbb{P}[\{\omega \in \Omega: X_i(\omega) \leq c_i\}]$$
 \end{corollary}
 \end{frame}
