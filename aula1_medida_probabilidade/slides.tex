@@ -274,11 +274,11 @@ Seja $(\Omega, \Sigma)$ um espaço mensurável. Uma função $\mu: \Sigma \mapst
 
 \begin{frame}{O espaço de probabilidade $((0,1],\mathcal{B}(0,1], \operatorname{Leb})$}
 \begin{itemize}
-	\item Um espaço de probabilidade bastante importante é aquele em que o espaço amostral é $(0,1]$, dotado da $\sigma$-álgebra de Borel $\mathcal{B}(0,1]$, e a medida de probabilidade é a {\color{red}medida uniforme ou de Lebesgue} em $(0,1]$, que é {\color{blue}caracterizada} por:
+	\item Um espaço de probabilidade bastante importante é aquele em que o espaço amostral é $(0,1]$, dotado da $\sigma$-álgebra de Borel $\mathcal{B}(0,1]$, e a medida de probabilidade é a {\color{red}medida uniforme ou de Lebesgue} em $(0,1]$, que é {\color{blue}caracterizada} (i.e. unicamente definida) por:
 	
-	$$\operatorname{Leb}(0,c] = c,\quad c \in \mathbb{R}\, .$$
+	$$\operatorname{Leb}(0,c] = c,\quad c \in [0,1]\, .$$
 	\begin{itemize}
-		\item Note que, pelo lema do $\pi$-sistema, é suficiente conhecer $\operatorname{Leb}$ no conjunto de intervalos $\mathcal{I} = \{(0,c], c \in \mathbb{R}\}$ para caracterizá-la, visto que qualquer outra medida de probabilidade que coincida nesse conjunto, coincidirá em $\mathcal{B}(0,1] = \sigma(\mathcal{I})$.
+		\item Note que, pelo lema do $\pi$-sistema, é suficiente conhecer $\operatorname{Leb}$ no conjunto de intervalos $\mathcal{I} = \{(0,c], c \in [0,1]\}$ para caracterizá-la, visto que qualquer outra medida de probabilidade que coincida nesse conjunto, coincidirá em $\mathcal{B}(0,1] = \sigma(\mathcal{I})$.
 	\end{itemize}
 	\item {\color{orange}Existência} do espaço $((0,1],\mathcal{B}(0,1], \operatorname{Leb})$ será demonstrada por vocês na lista.
 \end{itemize}
@@ -333,7 +333,7 @@ $$Y^{-1}(B) \in  \Sigma_1, \quad \forall B \in \mathcal{B}(\mathbb{R}\cup\{\inft
 
 \begin{frame}{Verificação da mensurabilidade}
 \begin{lemma}
-	Sejam $(\Omega_1, \Sigma_1)$ e $(\Omega_2, \Sigma_2)$ espaços mensuráveis. Considere uma função $f: \Omega_1 \mapsto \Omega_2$. Se $f^{-1}(I) \in \Sigma$ para todo $I \in \mathcal{I}$, com $\sigma(I) = \Omega_2$, então $f$ é mensurável.
+	Sejam $(\Omega_1, \Sigma_1)$ e $(\Omega_2, \Sigma_2)$ espaços mensuráveis. Considere uma função $f: \Omega_1 \mapsto \Omega_2$. Se $f^{-1}(I) \in \Sigma_1$ para todo $I \in \mathcal{I}$, com $\sigma(\mathcal{I}) = \Sigma_2$, então $f$ é mensurável.
 \end{lemma}
 \begin{corollary}
 	Um mapa $X: \Omega \mapsto \mathbb{R}$ é uma variável aleatória real se:
@@ -347,8 +347,8 @@ $$Y^{-1}(B) \in  \Sigma_1, \quad \forall B \in \mathcal{B}(\mathbb{R}\cup\{\inft
 		\begin{enumerate}
 			\item Sejam $X_1,X_2 \in m(\Sigma)$ e $\lambda \in \mathbb{R}$, então $\lambda X_1, X_1 + X_2, X_1 \cdot X_2 \in m(\Sigma)$.
 			\item Seja $Y \in m(\Sigma)$, $f \in m(\mathcal{B}(\mathbb{R}))$, então $f\circ Y  \in m(\Sigma)$.
-			\item Seja $(X_n)_{n\in \mathbb{N}}$ uma sequência de elementos de $m\Sigma$, então:
-				$$\inf_{n \in \mathbb{N}} X_n, \liminf_{n\to \infty} X_n, \limsup_{n \to \infty}X_n$$ 
+			\item Seja $(X_n)_{n\in \mathbb{N}}$ uma sequência de elementos de $m(\Sigma)$, então:
+				$$\inf_{n \in \mathbb{N}} X_n,\, \liminf_{n\to \infty} X_n,\, \limsup_{n \to \infty}X_n$$ 
 				são variáveis aleatórias reais estendidas.
 			\end{enumerate}
 		\end{lemma}
@@ -411,7 +411,7 @@ $$Y^{-1}(B) \in  \Sigma_1, \quad \forall B \in \mathcal{B}(\mathbb{R}\cup\{\inft
 		
 		$$\mathbb{P}[G_{j_1}\cap G_{j_2}\cap \ldots \cap G_{j_k}] = \prod_{l=1}^k \mathbb{P}[G_{j_l}]\, ,$$
 		\item Uma coleção de variáveis aleatórias $\{\mathcal{X}_j \}_{j \in \mathcal{C}}$ é independente se $\{\sigma(X_j)\}_{j \in \mathcal{C}}$ são independentes.
-		\item Uma coleção de eventos $\{E_j\}_{j\in \mathcal{C}}$ é independente se a sequência de $\sigma$-álgebras ``simples''   $\{\{\emptyset, E_j, E_j^{\complement}\}\}_{j\in \mathcal{C}}$ é independente.
+		\item Uma coleção de eventos $\{E_j\}_{j\in \mathcal{C}}$ é independente se a sequência de $\sigma$-álgebras ``simples''   $\{\{\emptyset, E_j, E_j^{\complement},\Omega\}\}_{j\in \mathcal{C}}$ é independente.
 		\begin{itemize}
 			\item Essa definição concorda com a nossa noção ``básica'' de independência.
 		\end{itemize}
