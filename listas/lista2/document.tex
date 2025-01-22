@@ -86,4 +86,15 @@ $$\operatorname{C}(h(X), g(Y)) = 0\, .$$
 		
 	\end{itemize}
 
+\paragraph{Exercício 7} Seja $(\Omega, 2^\Omega,\mathbb{P})$ um espaço de probabilidade em que $\Omega$ é finito. Defina a \emph{medida de contagem} $c$ sobre  $(\Omega, 2^\Omega)$ como, para todo $B\subseteq \Omega$:
+
+$$c(B) = |B| = \sum_{\omega \in \Omega} \mathbf{1}_B(\omega)\, .$$
+Mostre que $\mathbb{P}$ admite densidade com respeito a $c$, e que essa densidade é dada por $g(\omega) = \mathbb{P}[\{\omega\}]$.
+\paragraph{Exercício 8} Se $(\Omega, \Sigma,\mathbb{P})$  um espaço de probabilidade, e $X$ uma variável aleatória real cuja imagem está contida num intervalo $[a,b]$ de $\mathbb{R}$. Suponha que a função de distribuição de $X$, $F_X$ é contínua em $[a,b]$, e diferenciável em $(a,b)$. Mostre que a função $g:\mathbb{R}\mapsto \mathbb{R}$, dada por:
+
+$g(x) = \begin{cases}
+	F'(x),&\text{se } x \in (a,b) \\
+	0, & \text{se } x \notin (a,b)
+\end{cases}$
+define uma densidade de $\mathbb{P}_X$ com respeito à medida de Lebesgue em $(\mathbb{R},\mathcal{B}(\mathbb{R}))$.\textit{Dica:} use o teorema fundamental do cálculo e o lema do $\pi$-sistema.
 \end{document}
