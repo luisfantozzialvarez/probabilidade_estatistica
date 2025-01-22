@@ -34,14 +34,18 @@ natbib=true
 		\item[c] Mostre que $\mathbb{P}[\{\omega:\sum_{n=1}^\infty Z_n(\omega) <\infty \}] = 1 \implies \mathbb{P}[\{\omega: Z_n(\omega)\nrightarrow 0\}] = 0$.
 \end{itemize}
 
-\paragraph{Exercício 2} Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade, e $X$ uma variável aleatória real integrável. Mostre que:
+\paragraph{Exercício 2} Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade, e $X$ uma variável aleatória. Mostre que, para todo $f: \mathbb{R} \mapsto \mathbb{R}$ mensurável tal que $\mathbb{e}[|f(x)|]<\infty$.
 
-$$\mathbb{E}[X] = \int x \mathbb{P}_X(dx)\,, $$
-onde $\mathbb{P}_X$ é a medida de probabilidade induzida por $X$ sobre $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$. \textit{Dica:} mostre para funções simples, depois aproxime para funções não-negativas pelo teorema da covnergência monótona, depois use a definição de integral para funções integráveis gerais.
+$$\mathbb{E}[f(X)] = \int f(x) \mathbb{P}_X(dx)\,, $$
+onde $\mathbb{P}_X$ é a medida de probabilidade induzida por $X$ sobre $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$. \textit{Dica:} mostre para funções $f$ simples, depois aproxime para funções não-negativas pelo teorema da covnergência monótona, depois use a definição de integral para funções gerais.
 
-\paragraph{Exercício 3} Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade. Para $A,B \in \mathcal{L}_2(\Omega,\Sigma, \mathbb{P})$ a covariância entre $A$ e $B$ é definida como:
+\paragraph{Exercício 3} Demonstre a desigualdade de Jensen \emph{estrita}: se $X$ é uma variável aleatória integrável sobre um espaço de probabilidade $(\Omega,\Sigma,\mathbb{P})$, $f: A \mapsto \mathbb{R}$ uma função \textbf{estritamente} convexa sobre $A \subseteq \mathbb{R}$ aberto, com $\mathbb{P}[X\in A] = 1$ e $\mathbb{E}[|c(X)|]$. Se $\mathbb{P}[X = \mathbb{E}[X]] = 0$, então:
 
-$$\mathbb{C}(A,B) \coloneqq \mathbb{E}[AB] - \mathbb{E}[A] \mathbb{E}[B]\, .$$
+$$c(\mathbb{E}[X])<\mathbb{E}[c(X)]$$
+
+\paragraph{Exercício 4} Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade. Para $A,B \in \mathcal{L}_2(\Omega,\Sigma, \mathbb{P})$ a covariância entre $A$ e $B$ é definida como:
+
+$$\mathbb{C}(A,B) \coloneqq \mathbb{E}[AB] - \mathbb{E}[A] \mathbb{E}[Bm]\, .$$
 
 Para duas variáveis aleatórias $X,Y$ definidas em $(\Omega, \Sigma,\mathbb{P})$, mostre que $X$ é independente de $Y$ se, e somente se, para quaisquer funções $h:\mathbb{R} \mapsto \mathbb{R}$ e $g:\mathbb{R} \mapsto \mathbb{R}$ limitadas e mensuráveis:
 
@@ -49,7 +53,7 @@ $$\operatorname{C}(h(X), g(Y)) = 0\, .$$
 
 \noindent \textit{Dica:} para a direção ``se'', observe que, para todo $B \in \mathcal{B}(\mathbb{R})$, $\mathbb{P}[X^{-1}(B)] = \mathbb{E}[\mathbf{1}_{X^{-1}(B)}] = \mathbb{E}[\mathbf{1}_{B}(X)] $. Para a outra direção, mostre para funções simples e depois aproxime para funções limitadas por funções-escada.
 
-	\paragraph{Exercício 4} Seja $(\Omega, \Sigma, \mathbb{P})$ e $Y \in L^2(\Omega, \Sigma,\mathbb{P})$. Seja $\mathcal{G}$ uma sub-$\sigma$-álgebra de $\Sigma$.
+	\paragraph{Exercício 5} Seja $(\Omega, \Sigma, \mathbb{P})$ e $Y \in L^2(\Omega, \Sigma,\mathbb{P})$. Seja $\mathcal{G}$ uma sub-$\sigma$-álgebra de $\Sigma$.
 	\begin{itemize}
 		\item[a] Mostre que $\mathbb{E}[Y|\mathcal{G}] \in L^2(\Omega, \Sigma,\mathbb{P})$.
 		\item[b] Mostre que $\mathbb{E}[Y|\mathcal{G}]$ é a única (a não ser num evento de probabilidade zero) solução ao problema de minimização:
@@ -65,7 +69,7 @@ $$\operatorname{C}(h(X), g(Y)) = 0\, .$$
 		\end{cases}\, ,$$
 		é uma versão de $\mathbb{E}[Y|\mathcal{G}]$. Qual a interpretação desse resultado, à luz do item (b)?
 			\end{itemize}
-		\paragraph{Exercício 5} Seja $(\Omega, \Sigma, \mathbb{P})$, e $X$ e $Y$ duas variáveis aleatórias reais. Considere $\mathbb{P}_{X,Y}[B] \coloneqq \mathbb{P}[\{\omega: (X(\omega),Y(\omega)) \in B], \quad B\in \mathcal{B}(\mathbb{R}^2)$, a medida de probabilidade induzida por $(X,Y)$ em $(\mathbb{R}^2, \mathcal{B}(\mathbb{R}^2))$. DIzemos que $\mathbb{P}_{X,Y}$ admite densidade $f$ com respeito a medida de Lebesgue $\lambda^2$ em $(\mathbb{R}^2, \mathcal{B}(\mathbb{R}^2))$ \footnote{A medida de Lebesgue em $\mathbb{R}^2$ é igual à medida produto $\lambda \otimes \lambda$ sobre $\mathcal{B}(\mathbb{R})\otimes \mathcal{B}(\mathbb{R}) = \mathcal{B}(\mathbb{R}^2)$, onde $\lambda$ é a medida de Lebesgue em $(\mathbb{R},\mathcal{B}(\mathbb{R}))$}se, para todo $B\in \mathcal{B}(\mathbb{R}^2)$:
+		\paragraph{Exercício 6} Seja $(\Omega, \Sigma, \mathbb{P})$, e $X$ e $Y$ duas variáveis aleatórias reais. Considere $\mathbb{P}_{X,Y}[B] \coloneqq \mathbb{P}[\{\omega: (X(\omega),Y(\omega)) \in B], \quad B\in \mathcal{B}(\mathbb{R}^2)$, a medida de probabilidade induzida por $(X,Y)$ em $(\mathbb{R}^2, \mathcal{B}(\mathbb{R}^2))$. DIzemos que $\mathbb{P}_{X,Y}$ admite densidade $f$ com respeito a medida de Lebesgue $\lambda^2$ em $(\mathbb{R}^2, \mathcal{B}(\mathbb{R}^2))$ \footnote{A medida de Lebesgue em $\mathbb{R}^2$ é igual à medida produto $\lambda \otimes \lambda$ sobre $\mathcal{B}(\mathbb{R})\otimes \mathcal{B}(\mathbb{R}) = \mathcal{B}(\mathbb{R}^2)$, onde $\lambda$ é a medida de Lebesgue em $(\mathbb{R},\mathcal{B}(\mathbb{R}))$}se, para todo $B\in \mathcal{B}(\mathbb{R}^2)$:
 		
 		$$\mathbb{P}_{X,Y}[B] = \int f(\omega_1,\omega_2) \mathbf{1}_B(\omega_1,\omega_2)\lambda(d \omega )\, ,$$
 		onde, por uma extensão do resultado visto em aula, $\lambda(d \omega )$ pode ser substituída pela integral dupla (de Riemann) quando $(\omega_1,\omega_2) \mapsto f(\omega_1,\omega_2) \mathbf{1}_B(\omega_1,\omega_2)$ for Riemann-integrável.
