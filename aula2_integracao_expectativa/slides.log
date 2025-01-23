@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.6)  22 JAN 2025 17:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.6)  23 JAN 2025 11:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1645,6 +1645,8 @@ Overfull \vbox (7.90276pt too high) detected at line 476
 
 ] [23
 
+] [24
+
 ]
 \tf@nav=\write7
 \openout7 = `slides.nav'.
@@ -1667,10 +1669,10 @@ Package logreq Info: Writing requests to 'slides.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45302 strings out of 474116
- 1042093 string characters out of 5743683
+ 45312 strings out of 474116
+ 1042399 string characters out of 5743683
  1940187 words of memory out of 5000000
- 66853 multiletter control sequences out of 15000+600000
+ 66861 multiletter control sequences out of 15000+600000
  672565 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,15n,123p,719b,1643s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1689,10 +1691,10 @@ texmf-dist/fonts/type1/public/lm/lmsso8.pfb></usr/local/texlive/2024/texmf-dist
 e1/public/lm/lmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/a
 msfonts/symbols/msam10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/publ
 ic/amsfonts/symbols/msbm10.pfb>
-Output written on slides.pdf (23 pages, 314265 bytes).
+Output written on slides.pdf (24 pages, 317750 bytes).
 PDF statistics:
- 395 PDF objects out of 1000 (max. 8388607)
- 249 compressed objects within 3 object streams
- 47 named destinations out of 1000 (max. 500000)
- 511 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 413 PDF objects out of 1000 (max. 8388607)
+ 260 compressed objects within 3 object streams
+ 49 named destinations out of 1000 (max. 500000)
+ 547 words of extra memory for PDF output out of 10000 (max. 10000000)
 

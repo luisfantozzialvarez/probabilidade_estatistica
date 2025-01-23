@@ -479,14 +479,28 @@ natbib=true
 \begin{itemize}
 	\item Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade, $A \in \Sigma$ um evento e $\mathcal{G}\subseteq \Sigma$ uma sub-$\sigma$-álgebra de $\Sigma$. Definimos a \textbf{probabilidade condicional} de $A$ dado $\mathcal{G}$ como:
 	$$\mathbb{P}[A|\mathcal{G}] = \mathbb{E}[\mathbf{1}_{A}|\mathcal{G}]$$
-\item Uma função $p: \Sigma \times \Omega \mapsto [0,1]$ é dita uma \textbf{probabilidade condicional regular} se:
+\item Uma função $p: \Sigma \times \Omega \mapsto [0,1]$ é dita uma \textbf{probabilidade condicional regular}  dado $\mathcal{G}$ se:
 \begin{enumerate}
 	\item $\forall A \in \Sigma$, $\omega \mapsto p(A,\omega)$ é uma versão de $\mathbb{P}[A|\mathcal{G}]$.
 	\item $\forall \omega \in \Omega$, $A \mapsto p(A, \omega)$ é uma lei de probabilidade sobre $(\Omega, \Sigma)$.
 \end{enumerate}
-\item Probabilidades condicionais regulares nem sempre existem, embora, para espaços bem-comportados como os estudados em Estatística, elas quase existam na maioria dos casos.
+\item Probabilidades condicionais regulares nem sempre existem, embora, para espaços bem-comportados como os estudados em Estatística, elas existam na maioria dos casos.
 \end{itemize}
 \end{frame}
+
+\begin{frame}{Probabilidade condicional regular e uma fórmula para a esperança condicional}
+\begin{lemma}
+	Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade, e $\mathcal{G}\subseteq \Sigma$ uma sub-$\sigma$-álgebra de $\Sigma$. Se existe uma probabilidade condicional regular dado $\mathcal{G}$, $p:\mathcal{A}\times \Omega \mapsto {[0,1]}$, então, para qualquer variável aleatória $Y$ integrável, a função:
+	
+	$$f(\omega) = \int Y(s) p(ds, \omega)\, , $$
+	define uma versão de $\mathbb{E}[Y|\mathcal{G}]$.
+\end{lemma}
+\begin{itemize}
+	\item Se probabilidade condicional regular existe, esperança condicional pode ser calculada usando probabilidades condicionais.
+	\item Demonstração: primeiro verificar para funções simples, depois aproximar para funções não negativas, depois considerar o caso geral.
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Medida produto}
 	\begin{itemize}
 		\item Sejam $(\Omega_1,\Sigma_1,\mathbb{P}_1)$ e $(\Omega_2,\Sigma_2,\mathbb{P}_2)$ dois espaços de probabilidade.
