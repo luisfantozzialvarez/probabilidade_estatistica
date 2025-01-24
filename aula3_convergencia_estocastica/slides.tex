@@ -1,0 +1,174 @@
+% !TeX document-id = {0be8c18c-9430-4e9a-bdd9-12beadebfebc}
+% !TeX TXS-program:bibliography = txs:///biber
+\documentclass[11pt]{beamer}
+\uselanguage{portuguese}
+\languagepath{portuguese}
+\deftranslation[to=portuguese]{Theorem}{Teorema}
+\deftranslation[to=portuguese]{Definition}{Definição}
+\deftranslation[to=portuguese]{theorem}{teorema}
+\deftranslation[to=portuguese]{Example}{Exemplo}
+\deftranslation[to=portuguese]{example}{exemplo}
+\deftranslation[to=portuguese]{Lemma}{Lema}
+\deftranslation[to=portuguese]{lemma}{Lema}
+\deftranslation[to=portuguese]{Corollary}{Corolário}
+\deftranslation[to=portuguese]{corollary}{corolário}
+%\deftranslation[to=portuguese]{and}{e}
+
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{color}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{subcaption}
+%\usepackage{appendixnumberbeamer}
+
+\newenvironment{transitionframe}{
+	\setbeamercolor{background canvas}{bg=yellow}
+	\begin{frame}}{
+	\end{frame}
+}
+\usetheme{default}
+\usefonttheme{structuresmallcapsserif}
+
+%% I use a beige off white for my background
+\definecolor{MyBackground}{RGB}{255,253,218}
+\useinnertheme[shadow]{rounded}
+\setbeamercolor{block title}{bg=MyBackground}
+\setbeamercolor{block body}{bg=MyBackground}
+\setbeamercolor{example title}{bg=MyBackground}
+\setbeamercolor{example body}{bg=MyBackground}
+
+
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\purple}[1]{\textcolor{purple}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{page number in head/foot}[appendixframenumber]
+
+%\usepackage{graphics}
+\usepackage{graphicx}
+
+\definecolor{blue_emph}{RGB}{0,114,178}
+\definecolor{red}{RGB}{213,94,0}
+\definecolor{yellow}{RGB}{240,228,66}
+\definecolor{green}{RGB}{0,158,115}
+\definecolor{purple}{RGB}{204,121,167}
+\definecolor{orange}{RGB}{230,159,0}
+\definecolor{lightblue}{RGB}{86,180,233}
+
+%\setbeamercolor{frametitle}{fg=blue}
+%\setbeamercolor{title}{fg=blue}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{itemize items}{-}
+%\setbeamercolor{itemize item}{fg=blue}
+%\setbeamercolor{itemize subitem}{fg=blue}
+\setbeamertemplate{enumerate items}[default]
+%\setbeamercolor{enumerate subitem}{fg=blue}
+\setbeamercolor{button}{bg=MyBackground,fg=blue}
+\usefonttheme{structuresmallcapsserif}
+
+%\setbeamercolor{section in toc}{fg=blue}
+%\setbeamercolor{subsection in toc}{fg=red}
+\setbeamersize{text margin left=1em,text margin right=1em} 
+
+
+\usepackage{appendixnumberbeamer}
+
+\usepackage[
+backend=biber,
+style=authoryear,
+natbib=true
+]{biblatex}
+\addbibresource{../bibliography.bib}
+
+\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{10pt}}{\enditemize}
+\newenvironment{wideenumerate}{\enumerate\addtolength{\itemsep}{10pt}}{\endenumerate}
+\newenvironment{halfwideitemize}{\itemize\addtolength{\itemsep}{0.5em}}{\enditemize}
+\newenvironment{halfwideenumerate}{\enumerate\addtolength{\itemsep}{0.5em}}{\endenumerate}
+
+\def\signed #1{{\leavevmode\unskip\nobreak\hfil\penalty50\hskip2em
+		\hbox{}\nobreak\hfil(#1)%
+		\parfillskip=0pt \finalhyphendemerits=0 \endgraf}}
+
+\newsavebox\mybox
+\newenvironment{aquote}[1]
+{\savebox\mybox{#1}\begin{quote}}
+	{\signed{\usebox\mybox}\end{quote}}
+
+\newtheorem{proposition}{Proposição}
+
+
+
+\author{Luis A. F. Alvarez}
+\title{Probabilidade e Estatística}
+\subtitle{Aula 3 -- Convergência estocástica}
+%\logo{}
+%\institute{}
+\date{\today}
+%\subject{}
+%\setbeamercovered{transparent}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{frame}{Vetores aleatórios}
+		\begin{itemize}
+			\item Seja $(\Omega,\Sigma,\mathbb{P})$ um espaço de probabilidade.
+			\item Um vetor aleatório $\boldsymbol{Y}: \Omega \mapsto \mathbb{R}^k$ é uma função tal que cada coordenada $\boldsymbol{Y}_l : \Omega \mapsto \mathbb{R}$, $l=1,\ldots, k$, é uma variável aleatória real.
+			\item Um vetor aleatório induz uma distribuição de probabilidade sobre $(\mathbb{R}^k,\mathcal{B}(\mathbb{R}^k))$, dada por $\mathbb{P}_{\boldsymbol{Y}}[B] = \mathbb{P}[\boldsymbol{Y}^{-1}(A)]$, $A \in \mathcal{B}(\mathbb{R}^k)$.
+			\item Pelo lema do $\pi$-sistema, essa distribuição de probabilidade é carectarizada pela função de distribuição $F_{\boldsymbol{Y}}: \mathbb{R}^k \mapsto [0,1]$, dada por:
+			$$F_{\boldsymbol{Y}}(\boldsymbol{c}) \coloneqq \mathbb{P}_{\boldsymbol{Y}}\left[\prod_{l=1}^k (-\infty,\boldsymbol{c}_k]\right]\, , \quad \boldsymbol{c} \in \mathbb{R}^k\, .$$
+			
+		\end{itemize}
+
+	\end{frame}
+	\begin{frame}{Convergência quase-certa}
+		\begin{itemize}
+			\item  Seja $(\Omega,\Sigma,\mathbb{P})$ um espaço de probabilidade, e $\boldsymbol{Y}_1,\boldsymbol{Y}_2,\ldots$ uma sequência de vetores aleatórios.
+			\item Dizemos que $\boldsymbol{Y}_n$ converge quase-certamente para um vetor aleatório $\boldsymbol{Y}$, denotado por $\boldsymbol{Y}_n \overset{\text{q.c.}}{\to} \boldsymbol{Y}$, se:
+			
+			$$\mathbb{P}[\{\omega: \boldsymbol{Y}_n(\omega) \nrightarrow \boldsymbol{Y}(\omega)\}] = 0\, .$$
+			\item Sequência de funções $\boldsymbol{Y}_n$ convergem (ponto a ponto), a não ser num conjunto de pontos de probabilidade zero.
+			
+			\begin{lemma}
+				$\boldsymbol{Y}_n \overset{\text{q.c.}}{\to} \boldsymbol{Y}$ se, e somente se, para todo $\epsilon > 0$:
+				
+			$$\mathbb{P}\left[\limsup_n \{\omega: \lVert\boldsymbol{Y}_n(\omega)-\boldsymbol{Y}(\omega)\rVert > \epsilon\}\right]=0\, .$$
+			\end{lemma} 
+		\end{itemize}
+
+	\end{frame}
+	
+	\begin{frame}{Convergência em probabilidade}
+		\begin{itemize}
+				\item Dizemos que $\boldsymbol{Y}_n$ converge em probabilidade para um vetor aleatório $\boldsymbol{Y}$, denotado por $\boldsymbol{Y}_n \overset{p}{\to} \boldsymbol{Y}$, se, para todo $\epsilon > 0$:
+					$$\lim_{n \to \infty} \mathbb{P}\left[\{\omega: \lVert\boldsymbol{Y}_n(\omega)-\boldsymbol{Y}(\omega)\rVert > \epsilon\}\right]= 0\, .$$
+				
+		\end{itemize}
+		\begin{lemma}
+			Se $\boldsymbol{Y}_n \overset{\text{q.c.}}{\to} \boldsymbol{Y}$, então $\boldsymbol{Y}_n \overset{p}{\to} \boldsymbol{Y}$.
+		\end{lemma}
+	\end{frame}
+	
+	\begin{frame}{Convergência em distribuição}
+			\begin{itemize}
+			\item Dizemos que $\boldsymbol{Y}_n$ converge em probabilidade para um vetor aleatório $\boldsymbol{Y}$, denotado por $\boldsymbol{Y}_n \overset{p}{\to} \boldsymbol{Y}$, se, para todo $\epsilon > 0$:
+			$$\lim_{n \to \infty} \mathbb{P}\left[\{\omega: \lVert\boldsymbol{Y}_n(\omega)-\boldsymbol{Y}(\omega)\rVert > \epsilon\}\right]= 0\, .$$
+			
+		\end{itemize}
+		\begin{lemma}
+			Se $\boldsymbol{Y}_n \overset{\text{q.c.}}{\to} \boldsymbol{Y}$, então $\boldsymbol{Y}_n \overset{p}{\to} \boldsymbol{Y}$.
+		\end{lemma}
+	\end{frame}
+	
+	
+\end{document}
