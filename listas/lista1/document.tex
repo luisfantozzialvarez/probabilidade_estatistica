@@ -42,14 +42,14 @@ natbib=true
 		\item[c] Mostre que, tomando como base o espaço mensurável $(\Omega, 2^\Omega)$, qualquer função $f: \Omega \mapsto \mathbb{R}$ constitui uma variável aleatória.
 	\end{enumerate}
 	
-	\paragraph{Exercício 2 (Construindo a medida uniforme na reta)} O obejtivo destes exercícios consite em construir o espaço $((0,1],\mathcal{B}(0,1], \widetilde{\operatorname{Leb}})$.
+	\paragraph{Exercício 2 (Construindo a medida uniforme na reta)} O objetivo destes exercícios consiste em construir o espaço $((0,1],\mathcal{B}(0,1], \widetilde{\operatorname{Leb}})$.
 	\begin{itemize}
 		\item[a] Considere o conjunto $\mathcal{A}$ de subconjuntos de $(0,1]$ da forma:
 		
 		$$\cup_{i=1}^n (a_i,b_i]\, ,$$
-		com $n \in \mathbb{N}$ e $0\leq a_1\leq b_1 \leq a_2\leq b_2 \leq \cdot \leq a_n \leq b_n \leq 1$. Mostre que esse conjunto $\mathcal{A}$ forma uma \textbf{álgebra}, no seguinte sentido: (1) $(0,1], \emptyset \in \mathcal{A}$; (2) se $A\in \mathcal{A}$, então $A^\complement \in \mathcal{A}$; e (3) sejam $A_1, A_2, \ldots A_k$ elementos de $\mathcal{A}$, com $k <\infty$, então $\cup_{l=1}^k A_l \in \mathcal{A}$.
+		com $n \in \mathbb{N}$ e $0\leq a_1\leq b_1 \leq a_2\leq b_2 \leq \ldots \leq a_n \leq b_n \leq 1$. Mostre que esse conjunto $\mathcal{A}$ forma uma \textbf{álgebra}, no seguinte sentido: (1) $(0,1], \emptyset \in \mathcal{A}$; (2) se $A\in \mathcal{A}$, então $A^\complement \in \mathcal{A}$; e (3) sejam $A_1, A_2, \ldots A_k$ elementos de $\mathcal{A}$, com $k <\infty$, então $\cup_{l=1}^k A_l \in \mathcal{A}$.
 		\item[b] Defina a função ${\widetilde{\operatorname{Leb}}}: \mathcal{A}\mapsto [0,1]$, da seguinte forma. Se $A = \cup_{i=1}^n (a_i,b_i]$, então
-		$${\widetilde{\operatorname{Leb}}}(A) = \sum_{l=1}^k (b_i - a_i)\, .$$
+		$${\widetilde{\operatorname{Leb}}}(A) = \sum_{l=1}^n (b_i - a_i)\, .$$
 		Mostre que $\widetilde{\operatorname{Leb}}$ está bem definida, isto é, que o valor de ${\widetilde{\operatorname{Leb}}}(A)$ é o mesmo para duas representações distintas de um mesmo conjunto $A$ em termos de união de intervalos disjuntos; e que ${\widetilde{\operatorname{Leb}}}(\emptyset) = 0$ e ${\widetilde{\operatorname{Leb}}}(0,1]=1$.
 		
 		\item[c] Mostre que ${\widetilde{\operatorname{Leb}}}$ é \textbf{aditiva} em $\mathcal{A}$, isto é, para $A_1, A_2, \ldots A_k$, $k <\infty$, elementos \textbf{disjuntos} de $\mathcal{A}$:
@@ -61,7 +61,7 @@ natbib=true
 		
 		\textit{Dica:} para os itens (c) e (d), veja o Teorema 1.3 em Billingsley (1995), ``Probability and Measure''.
 		
-		\item[d] Recorra ao Teorema 1.7 de Williams (1991), ``Probability with Martingales'' para concluir que que existe uma única medida de probabilidade que estende $\widetilde{\operatorname{Leb}}$  a  $\mathcal{B}(0,1]$.
+		\item[e] Recorra ao Teorema 1.7 de Williams (1991), ``Probability with Martingales'' para concluir que que existe uma única medida de probabilidade que estende $\widetilde{\operatorname{Leb}}$  a  $\mathcal{B}(0,1]$.
 		
 		
 		\paragraph{Exercício 3 (Conjuntos não mensuráveis)} O objetivo deste exercício consiste em mostrar que existem conjuntos que não estão em $\mathcal{B}(0,1]$.

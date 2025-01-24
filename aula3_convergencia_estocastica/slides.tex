@@ -161,14 +161,69 @@ natbib=true
 	
 	\begin{frame}{Convergência em distribuição}
 			\begin{itemize}
-			\item Dizemos que $\boldsymbol{Y}_n$ converge em probabilidade para um vetor aleatório $\boldsymbol{Y}$, denotado por $\boldsymbol{Y}_n \overset{p}{\to} \boldsymbol{Y}$, se, para todo $\epsilon > 0$:
-			$$\lim_{n \to \infty} \mathbb{P}\left[\{\omega: \lVert\boldsymbol{Y}_n(\omega)-\boldsymbol{Y}(\omega)\rVert > \epsilon\}\right]= 0\, .$$
-			
+			\item Dizemos que $\boldsymbol{Y}_n$ converge em distribuição para um vetor aleatório $\boldsymbol{Y}$, denotado por $\boldsymbol{Y}_n \overset{d}{\to} \boldsymbol{Y}$, se as funções de distribuição dos $\boldsymbol{Y}_n$, $\{F_{\boldsymbol{Y}_n}\}_{n \in \mathbb{N}}$, convergem para a função de distribuição $F_{\boldsymbol{Y}}$ nos pontos em que  $F_{\boldsymbol{Y}}$ é contínua.
+						\begin{itemize}
+				\item Isto é, $\lim_n F_{\boldsymbol{Y}_n}(\boldsymbol{c}) = F_{\boldsymbol{Y}}(\boldsymbol{c}) $ para todo $\boldsymbol{c}$ em que $F_{\boldsymbol{Y}}$ é contínua.
+						\item Conjunto de pontos em que uma função de distribuição é descontínua é enumerável $\implies$ se há convergência em distribuição, então, para qualquer $\boldsymbol{c} \in \mathbb{R}^k$, é sempre possível encontrar um $\boldsymbol{c}' \geq \boldsymbol{c}$ em que a função de distribuição converge.
+					\end{itemize}
+					
+
 		\end{itemize}
 		\begin{lemma}
-			Se $\boldsymbol{Y}_n \overset{\text{q.c.}}{\to} \boldsymbol{Y}$, então $\boldsymbol{Y}_n \overset{p}{\to} \boldsymbol{Y}$.
+			Se $\boldsymbol{Y}_n \overset{p}{\to} \boldsymbol{Y}$, então $\boldsymbol{Y}_n \overset{d}{\to} \boldsymbol{Y}$.
+		\end{lemma}
+		\begin{lemma}[Trecho do lema Portmanteau]
+		$\boldsymbol{Y}_n \overset{d}{\to} \boldsymbol{Y}$ se, e somente se, para qualquer $f: \mathbb{R}^k \mapsto \mathbb{R}$ contínua e limitada.
+			$$\mathbb{E}[f(\boldsymbol{Y}_n )] \to \mathbb{E}[f(\boldsymbol{Y} )]\, .$$
 		\end{lemma}
 	\end{frame}
 	
+	\begin{frame}{Convergência em $L^p$}
+		\begin{itemize}
+			\item 		Dizemos que $\boldsymbol{Y}_n$ converge para um vetor aleatório $\boldsymbol{Y}$ na norma $L^p$, denotado por $\boldsymbol{Y}_n \overset{{L}_p}{\to} \boldsymbol{Y}$, se $\lVert  \boldsymbol{Y}_n -\boldsymbol{Y}\rVert_p \to 0$.
+			\item Pela desigualdade de Markov, convergência em $L_p$ implica convergência em probabilidade.
+			\begin{itemize}
+				\item Recíproca não é, no geral, verdadeira.
+			\end{itemize} 
+		\end{itemize}
+
+	\end{frame}
 	
+	\begin{frame}{Teorema do mapa contínuo}
+	\begin{theorem}
+		Seja $(\boldsymbol{X}_n)_n$ uma sequêncai de vetores aleatórios, $\boldsymbol{X}$ um vetor aleatório, e $f:\mathbb{R}^k \mapsto \mathbb{R}^l$ uma função contínua num conjunto $C$ do domínio tal que:
+		$\mathbb{P}[\{\omega:\boldsymbol{X}(\omega)\in C\}]=1$. Então:
+		
+		\begin{enumerate}
+			\item $\boldsymbol{X}_n \overset{\text{q.c.}}{\to} \boldsymbol{X} \implies f(\boldsymbol{X}_n) \overset{\text{q.c.}}{\to} f(\boldsymbol{X} ) $.
+			\item  $\boldsymbol{X}_n \overset{\text{p}}{\to} \boldsymbol{X} \implies f(\boldsymbol{X}_n) \overset{\text{p}}{\to} f(\boldsymbol{X} ) $.
+			 \item $\boldsymbol{X}_n \overset{\text{d}}{\to} \boldsymbol{X} \implies f(\boldsymbol{X}_n) \overset{\text{d}}{\to} f(\boldsymbol{X} ) $.
+		\end{enumerate}
+	\end{theorem}
+	\begin{itemize}
+		\item Modos de convergência quase certa, em probabilidade e distribuição são preservados por transformações contínuas.
+	\end{itemize}
+	\end{frame}
+	
+	
+	\begin{frame}{Resultados adicionais e lema de Slutsky}
+		\begin{lemma}
+			\begin{enumerate}
+				\item Se $\boldsymbol{X}_n \overset{\text{d}}{\to} \boldsymbol{X}$ e $\lVert \boldsymbol{X}_n - \boldsymbol{Y}_n \rVert\overset{p}{\to}0$, então $\boldsymbol{Y}_n \overset{d}{\to} \boldsymbol{X}$.
+				\item Se $\boldsymbol{X}_n \overset{\text{d}}{\to} \boldsymbol{X}$ e $\boldsymbol{Y}_n \overset{\text{p}}{\to} c$, onde $c \in \mathbb{R}^k$ é constante, então $(\boldsymbol{X}_n, \boldsymbol{Y}_n) \overset{d}{\to} (\boldsymbol{X}, c)$.
+				
+				\item Se $\boldsymbol{X}_n \overset{\text{p}}{\to} \boldsymbol{X}$ e $\boldsymbol{Y}_n \overset{\text{p}}{\to} \boldsymbol{Y}$, então $(\boldsymbol{X}_n, \boldsymbol{Y}_n) \overset{\text{p}}{\to} (\boldsymbol{X}, \boldsymbol{Y}) $.
+			\end{enumerate}
+		\end{lemma}
+		\begin{corollary}[Lema de Slutsky]
+
+		\end{corollary}
+	\end{frame}
+	
+	\begin{frame}{Função geradora de momentos}
+		conteúdo...
+	\end{frame}
+	\begin{frame}{Função característica}
+		conteúdo...
+	\end{frame}
 \end{document}
