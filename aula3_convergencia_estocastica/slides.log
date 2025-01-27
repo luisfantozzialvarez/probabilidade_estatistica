@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.6)  24 JAN 2025 19:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.6)  27 JAN 2025 08:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1643,6 +1643,10 @@ LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <14.4> not available
 
 ] [10
 
+] [11
+
+] [12
+
 ]
 \tf@nav=\write7
 \openout7 = `slides.nav'.
@@ -1665,9 +1669,9 @@ Package logreq Info: Writing requests to 'slides.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45211 strings out of 474116
- 1039324 string characters out of 5743683
- 1942187 words of memory out of 5000000
+ 45215 strings out of 474116
+ 1039380 string characters out of 5743683
+ 1944187 words of memory out of 5000000
  66782 multiletter control sequences out of 15000+600000
  698467 words of font info for 126 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1684,10 +1688,10 @@ m/lmsso10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsso12
 live/2024/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texlive/2024/t
 exmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2024/texmf-dist/f
 onts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on slides.pdf (10 pages, 206353 bytes).
+Output written on slides.pdf (12 pages, 208721 bytes).
 PDF statistics:
- 237 PDF objects out of 1000 (max. 8388607)
- 146 compressed objects within 2 object streams
- 21 named destinations out of 1000 (max. 500000)
+ 248 PDF objects out of 1000 (max. 8388607)
+ 155 compressed objects within 2 object streams
+ 25 named destinations out of 1000 (max. 500000)
  301 words of extra memory for PDF output out of 10000 (max. 10000000)
 
