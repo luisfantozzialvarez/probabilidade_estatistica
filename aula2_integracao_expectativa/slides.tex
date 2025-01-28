@@ -191,7 +191,7 @@ natbib=true
 	$$\int f_n d \mu \to \int f d \mu\, ,$$
 	i.e. podemos passar o limite por ``debaixo'' da integral?
 	\item Resposta é verdadeira se a convergência for \textbf{monótona}  em $\mu$-quase todo ponto, i.e. $\mu(\{\omega: f_n(\omega) \uparrow f(\omega)\}^\complement) = 0$.
-	\begin{theorem}
+	\begin{theorem}[Convergência Monótona]
 		Seja $(f_n)_n$ uma sequência de funções não negativas mensuráveis tais que $f_n \uparrow f$ em $\mu$-quase todo ponto. Então.
 		
 		$$\mu(f_n) \uparrow \mu(f)\leq \infty$$
@@ -238,8 +238,8 @@ natbib=true
 			\item[2] (Linearidade) $f + \lambda g \in  L^1(\Omega,\Sigma, \mu)$ e $\mu(f+\lambda g) = \mu(f)+\lambda\mu(g)$.
 		\end{itemize}
 	\end{proposition}
-	\begin{proposition}
-		Seja $(f_n)_n$ uma sequência de funções em $ L^1(\Omega,\Sigma, \mu)$, tais que $f_n \to f$ em $\mu$-q.t.p. Se existe $g\geq $ mensurável  tal que $\mu(g) < \infty$ e:
+	\begin{proposition}[Teorema da Convergência Dominada]
+		Seja $(f_n)_n$ uma sequência de funções em $ L^1(\Omega,\Sigma, \mu)$, tais que $f_n \to f$ em $\mu$-q.t.p. Se existe $g\geq 0$ mensurável  tal que $\mu(g) < \infty$ e:
 		
 		$$|f_n(\omega)|\leq g(\omega)\,  \forall n \in \mathbb{N}, \omega \in \Omega\, ,$$
 		então  $f \in L^1(\Omega,\Sigma, \mu)$ e: 
