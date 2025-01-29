@@ -273,7 +273,7 @@ natbib=true
 		$$\int_{A} f d \mu \coloneqq \mu(f \mathbf{1}_{A})\, , A \in \Sigma$$
 		
 		define uma medida sobre $(\Omega, \Sigma)$ (verifique).
-		\item Reciprocamente, se $\Phi$ é uma medida sobre $(\Omega,\Sigma,\mu)$, dizemos que $\Phi$ admite uma densidade com respeito a $\mu$ se existe $g \geq 0$ mensurável tal que, para todo $A \in \Sigma$:
+		\item Reciprocamente, se $\Phi$ é uma medida sobre $(\Omega,\Sigma)$, dizemos que $\Phi$ admite uma densidade com respeito a uma medida $\mu$ sobre $(\Omega,\Sigma)$ se existe $g \geq 0$ mensurável tal que, para todo $A \in \Sigma$:
 		$$\Phi(A) = \int_{A} g d \mu$$
 		\item Condição necessária e suficiente para existência de densidade é dada pelo teorema de Radon-Nikodyn.
 		\begin{theorem}
@@ -285,7 +285,7 @@ natbib=true
 	\begin{frame}{Densidade e uma fórmula padrão}
 		\begin{lemma}
 			Seja $(\Omega,\Sigma)$ um espaço mensurável, e $\mu$ e $\Phi$ duas medidas.  Se $\Phi$ admite densidade $g$ com respeito a a $\mu$, então para qualquer $h \in L^1(\Omega, \Sigma, \Phi)$, temos que:
-			$$\Phi(f) = \int h(\omega) g(\omega) \mu(d\omega)$$
+			$$\Phi(h) = \int h(\omega) g(\omega) \mu(d\omega)$$
 		\end{lemma}
 		\begin{itemize}
 			\item Fórmula acima nos permite calcular esperança diretamente da integral com respeito a $\mu$.
@@ -294,7 +294,7 @@ natbib=true
 	\end{frame}
 	\begin{frame}{Esperança}
 	\begin{itemize}
-		\item Seja $(\Omega, \Sigma\,\mathbb{P})$ espaço de probabilidade.
+		\item Seja $(\Omega, \Sigma,\mathbb{P})$ espaço de probabilidade.
 		\item Neste caso, damos à integral de Lebesgue o nome de expectativa ou esperança, denotando-a, para $X \in L^1(\Omega,\Sigma, \mathbb{P})$ por:
 		$$\mathbb{E}[X] \coloneqq \mathbb{P}(X)$$.
 		\item Como uma medida de probabilidade é finita, um corolário imediato do teorema da convergência dominada é:
@@ -312,13 +312,13 @@ natbib=true
 		\begin{itemize}
 			\item No que segue, considere um espaço de probabilidade $(\Omega,\Sigma, \mathbb{P})$.
 		\end{itemize}
-		\begin{lemma}{Desigualdade de Markov}
+		\begin{lemma}[Desigualdade de Markov]
 			Seja $Z$ uma variável aleatória, e $g: \mathbb{R} \mapsto [0,\infty]$ mensurável e não decrescente.  Então, para todo $c \in \mathbb{R}$.
 			
 			$$\mathbb{P}[Z\geq c] g(c) \leq \mathbb{E}[g(Z)]$$
 		\end{lemma}
 		
-			\begin{lemma}{Desigualdade de Jensen}
+			\begin{lemma}[Desigualdade de Jensen]
 		Seja $X$ uma variável aleatória, e $c: C \mapsto \mathbb{R}$ uma função convexa onde $C \subseteq \mathbb{R}$ é um conjunto aberto. Suponha que:
 		
 		$$\mathbb{E}[|X|]< \infty, \quad \mathbb{P}[X \in C]  = 1, \quad \mathbb{E}[|c(X)|]<\infty\, ,$$
