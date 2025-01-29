@@ -216,7 +216,7 @@ natbib=true
 			\end{enumerate}
 		\end{lemma}
 		\begin{corollary}[Lema de Slutsky] Sejam
-	${X}_n \overset{\text{d}}{\to} \boldsymbol{X}$ e ${Y}_n \overset{\text{p}}{\to} c$, duas sequências de variáveis aleatórias reais, onde $c \in \mathbb{R}$ é constante, então:
+	${X}_n \overset{\text{d}}{\to} {X}$ e ${Y}_n \overset{\text{p}}{\to} c$, duas sequências de variáveis aleatórias ou vetores aleatórios, onde $c $ é constante, então:
 	
 	\begin{itemize}
 		\item $X_n + Y_n \overset{d}{\to} X + c$.
@@ -228,16 +228,120 @@ natbib=true
 	\end{frame}
 	
 	\begin{frame}{Notação $O$ e $o$ para sequências não estocásticas}
+		\begin{itemize}
+			\item 	Sejam $(x_n)_n$ e $(y_n)_n$ duas sequências de \textbf{números reais}.
+		\item	Dizemos que $x_n = o(y_n)$ se $\lim_{n \to \infty} \frac{x_n}{y_n} = 0$.
+		\item 	Dizemos que $x_n = O(y_n)$ se existem $C > 0$ e $K \in \mathbb{N}$ tais que:
+		$\left|x_n\right| \leq C | y_n|$, para todo $n \geq K$.
+		\begin{itemize}
+			\item Nesse caso, a razão $\frac{x_n}{y_n}$ é limitada.
+		\end{itemize}
+		\end{itemize}
+
+	\end{frame}
+	
+		\begin{frame}{Notação $O_p$ e $o_p$ para sequências estocásticas}
+		\begin{itemize}
+			\item Sejam $X_n$ e $Y_n$ sequências de {\color{red}variáveis aleatórias}. 
+			\item Dizemos que $X_n = o_p(Y_n)$ se $\frac{X_n}{Y_n} \overset{p}{\to} 0$.
+			\item Dizemos que $X_n = O_p(Y_n)$ se, para todo $\epsilon > 0$, existem $M > 0$ e $K \in \mathbb{N}$ tais que:
+			$$\mathbb{P}[|X_n|\geq M |Y_n|] \leq \epsilon\, , \forall n \geq K\, .$$
+			\begin{itemize}
+				\item Nesse caso, dizemos que $\left|\frac{X_n}{Y_n}\right|$ é {\color{magenta}limitada  em probabilidade}.
+			\end{itemize}			
+				\end{itemize}
+	\end{frame}
+	\begin{frame}{Notação $O_p$ e $o_p$: propriedades}
+		\begin{lemma}
+		\begin{itemize}
+			\item $o_p(1) + o_p(1) = o_p(1)$.
+			\item $o_p(1) + O_p(1) = O_p(1)$.
+			\item $O_p(1) o_p(1) = o_p(1)$.
+			\item $\frac{1}{(1+o_p(1))} = O_P(1)$
+			\item $o_p(Y_n) = Y_n o_p(1)$. 
+			\item $O_p(Y_n) = Y_n O_p(1)$. 
+			\item $o_p(O_p(1)) = o_p(1)$.
+			\item Se $X_n$ converge em distribuição, $X_n = O_p(1)$.
+			\item Seja $\phi: \mathbb{R}^k \mapsto \mathbb{R}$ uma função tal que $\phi(\boldsymbol{0}) = 0$. Se $X_n \overset{p}{\to} \boldsymbol{0}$, então, para qualquer $p > 0$:
+			\begin{enumerate}
+				\item[a] Se $R(h) = o(\lVert h \rVert^p)$ quando $h \to 0$, então $R(\boldsymbol{X_n}) = o_p(\lVert (\boldsymbol{X_n} \rVert^p)$.
+				\item[b] Se $R(h) = O(\lVert h \rVert^p)$ quando $h \to 0$, então $R(X_n) = O_p(\lVert X_n \rVert^p)$.
+			\end{enumerate}
+		\end{itemize}
+	\end{lemma}
+	\end{frame}
+	
+	\begin{frame}{Método Delta}
+
+	\begin{itemize}
+		\item Seja $\boldsymbol{X}_n$ uma sequência de vetores aleatórios. 
+		\item Suponha que existe uma sequência de números reais $r_n \to \infty$, uma constante $\theta \in \mathbb{R}^k$ e um vetor aleatório $\boldsymbol{S}$ tais que: $r_n(\boldsymbol{X}_n-\theta) \overset{d}{\to}\boldsymbol{S}$.
+		\begin{itemize}
+			\item Nesse caso, $\boldsymbol{X}_n \overset{p}{\to} \theta$ (por quê?).
+		\end{itemize}
+		\item Será que podemos calcular $r_n(\psi(\boldsymbol{X}_n)-\psi(\theta))$ para uma transformação $\psi:\mathbb{R}^k \mapsto \mathbb{R}^l$?
+		\begin{itemize}
+			\item Interpretação estatística: derivar a distribuição em amostras grandes de uma estatística a partir de outra estatística.
+		\end{itemize}
+	\end{itemize}
+	\begin{lemma}[Método Delta]
+	Se $\psi$ é continuamente diferenciável numa vizinhança de $\theta$, então:
+	$$r_n(\psi(\boldsymbol{X}_n)-\psi(\theta)) \overset{d}{\to} \nabla_{x}\psi(\theta) S\, ,$$
+	onde $\nabla_{x}\psi(\theta)$ é o Jacobiano de $\psi$ avaliado em $\theta$
+	\end{lemma}
+	\end{frame}
+	\begin{frame}{Função geradora de momentos}
+		\begin{itemize}
+			\item Seja $X$ uma variável aleatória real. Definimos a função geradora de momentos, $M: \mathcal{S} \mapsto \mathbb{R}_+$, $\mathcal{S}\subseteq \mathbb{R}$, como a função dada por.
+			
+			$$M(s) = \mathbb{E}[\exp(sX)]\, ,\quad  s \in \mathcal{S}\, ,$$
+			onde  $\mathcal{S}$ é o conjunto de pontos em que a esperança $ \mathbb{E}[\exp(sX)]$ é finita.
+
+			
+			\begin{proposition}
+				Se existe $\epsilon > 0$ tal que $(-\epsilon,\epsilon)\subseteq\mathcal{S}$, então $X$ possui todos os momentos (i.e. $\mathbb{E}[|X]^j] < \infty$ para todo $j \in \mathbb{N}$), a expansão de Taylor infinita de $M(s)$ em torno de $0$ é exata para $|s|<\epsilon$, i.e.
+				$$M(s) = \sum_{j=0}^\infty  M^{(j)}(0) \frac{s^j}{j!} \,,$$
+				e as derivadas em zero podem ser calculadas por diferenciação sob a integral, resultando em $M^{(j)}(0) = \mathbb{E}[X^j]$ para todo $j \in \mathbb{N}$.
+			\end{proposition}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{Função característica}
+		\begin{itemize}
+			\item Dificuldade de utilizar função característica é que nem sempre ela está disponível numa vizinhança do zero.
+			\item Por esse motivo, definimos uma função alternativa, conhecida como {\color{red}função característica}. 
+			\item Seja $\boldsymbol{X}$ um vetor aleatório de dimensão $k$. Sua função característica é dada por $\phi: \mathbb{R}^k \mapsto \mathbb{C}$, definida por:
+			\begin{equation*}
+				\phi(s) = \mathbb{E}[e^{is'\boldsymbol{X}}] = \mathbb{E}[\cos(s'\boldsymbol{X})] + i \mathbb{E}[\sin(s'\boldsymbol{X})]
+			\end{equation*} 
+			\item Função está sempre bem-definida, para todo $s \in \mathbb{R}^k$ (por quê?).
+			\item Propriedade útil 1: se $\boldsymbol{X}$ é escalar ($k=1$), e $\mathbb{E}[|\boldsymbol{X}|^j]<\infty$ para $j \in \mathbb{N}$ então $\phi$ é $j$-vezes diferenciável no zero, com $j$-ésima derivada dada por diferenciação sob a integral, resultando em $\phi^{(j)}(0) = i^j \mathbb{E}[\boldsymbol{X}^j]$.
+			\item Propriedade útil 2: se $X$ e $Y$ são variáveis aleatórias independentes, $\mathbb{E}[\exp(is(X+Y))] = \mathbb{E}[\exp(isX)] \mathbb{E}[\exp(isY)]$. 
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Caracterizações com base em funções característica}
+		\begin{itemize}
+			\item Funções características apresentam propriedades poderosas de caracterização de distribuições, que coletamos (sem demonstrar) abaixo.
+		\end{itemize}
+		\begin{proposition}
+		\begin{enumerate}
+			\item Dois vetores aleatórias, $\boldsymbol{X}$ e $\boldsymbol{Y}$, possuem funções distribuição iguais se, e somente se, suas funções características são idênticas.
+			\item Uma sequência de vetores aleatórios $\boldsymbol{X}_n$ convergem em distribuição para um vetor aleatório $\boldsymbol{Y}$ se, e somente se, as funções características de $\boldsymbol{X}_n$ convergem para a função característica de $\boldsymbol{Y}$ pontualmente em todo $s \in \mathbb{R}^k$, i.e. $\phi_{\boldsymbol{X}_n}(s) \to \phi_{\boldsymbol{Y}}(s)$ para todo $s \in \mathbb{R}^k$. 
+		\end{enumerate}
+		\end{proposition}
+		\begin{corollary}[Dispositivo de Crámer-Wold]
+			$\boldsymbol{X}_n \overset{d}{\to} \boldsymbol{X}$ se, e somente se, $t'\boldsymbol{X}_n  \overset{d}{\to} t'\boldsymbol{X}$ para todo $t \in \mathbb{R}^k$.
+		\end{corollary}
+	\end{frame}
+	
+	\begin{frame}{Lei forte dos grandes números}
 		conteúdo...
 	\end{frame}
 	
-		\begin{frame}{Notação $O_P$ e $o_P$ para sequências estocásticas}
+		\begin{frame}{Lei fraca dos grandes números}
 		conteúdo...
 	\end{frame}
-	\begin{frame}{Função geradora de momentos}
-		conteúdo...
-	\end{frame}
-	\begin{frame}{Função característica}
+		\begin{frame}{Teorema Central do Limite}
 		conteúdo...
 	\end{frame}
 \end{document}
