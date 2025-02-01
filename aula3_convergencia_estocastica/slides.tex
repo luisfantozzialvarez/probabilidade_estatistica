@@ -191,7 +191,7 @@ natbib=true
 	
 	\begin{frame}{Teorema do mapa contínuo}
 	\begin{theorem}
-		Seja $(\boldsymbol{X}_n)_n$ uma sequêncai de vetores aleatórios, $\boldsymbol{X}$ um vetor aleatório, e $f:\mathbb{R}^k \mapsto \mathbb{R}^l$ uma função contínua num conjunto $C$ do domínio tal que:
+		Seja $(\boldsymbol{X}_n)_n$ uma sequência de vetores aleatórios, $\boldsymbol{X}$ um vetor aleatório, e $f:\mathbb{R}^k \mapsto \mathbb{R}^l$ uma função contínua num conjunto $C$ do domínio tal que:
 		$\mathbb{P}[\{\omega:\boldsymbol{X}(\omega)\in C\}]=1$. Então:
 		
 		\begin{enumerate}
@@ -314,8 +314,8 @@ natbib=true
 				\phi(s) = \mathbb{E}[e^{is'\boldsymbol{X}}] = \mathbb{E}[\cos(s'\boldsymbol{X})] + i \mathbb{E}[\sin(s'\boldsymbol{X})]
 			\end{equation*} 
 			\item Função está sempre bem-definida, para todo $s \in \mathbb{R}^k$ (por quê?).
-			\item Propriedade útil 1: se $\boldsymbol{X}$ é escalar ($k=1$), e $\mathbb{E}[|\boldsymbol{X}|^j]<\infty$ para $j \in \mathbb{N}$ então $\phi$ é $j$-vezes diferenciável no zero, com $j$-ésima derivada dada por diferenciação sob a integral, resultando em $\phi^{(j)}(0) = i^j \mathbb{E}[\boldsymbol{X}^j]$.
-			\item Propriedade útil 2: se $X$ e $Y$ são variáveis aleatórias independentes, $\mathbb{E}[\exp(is(X+Y))] = \mathbb{E}[\exp(isX)] \mathbb{E}[\exp(isY)]$. 
+			\item {\color{blue}Propriedade útil 1:} se $\boldsymbol{X}$ é escalar ($k=1$), e $\mathbb{E}[|\boldsymbol{X}|^j]<\infty$ para $j \in \mathbb{N}$ então $\phi$ é $j$-vezes diferenciável no zero, com $j$-ésima derivada dada por diferenciação sob a integral, resultando em $\phi^{(j)}(0) = i^j \mathbb{E}[\boldsymbol{X}^j]$.
+			\item {\color{blue}Propriedade útil 2:} se $\boldsymbol{X}$ e $\boldsymbol{Y}$ são vetores aleatórios independentes, $\mathbb{E}[\exp(is'(\boldsymbol{X}+\boldsymbol{Y}))] = \mathbb{E}[\exp(is'\boldsymbol{X})] \mathbb{E}[\exp(is'\boldsymbol{Y})]$. 
 		\end{itemize}
 	\end{frame}
 	
@@ -325,7 +325,7 @@ natbib=true
 		\end{itemize}
 		\begin{proposition}
 		\begin{enumerate}
-			\item Dois vetores aleatórias, $\boldsymbol{X}$ e $\boldsymbol{Y}$, possuem funções distribuição iguais se, e somente se, suas funções características são idênticas.
+			\item Dois vetores aleatórios, $\boldsymbol{X}$ e $\boldsymbol{Y}$, possuem funções distribuição iguais se, e somente se, suas funções características são idênticas.
 			\item Uma sequência de vetores aleatórios $\boldsymbol{X}_n$ convergem em distribuição para um vetor aleatório $\boldsymbol{Y}$ se, e somente se, as funções características de $\boldsymbol{X}_n$ convergem para a função característica de $\boldsymbol{Y}$ pontualmente em todo $s \in \mathbb{R}^k$, i.e. $\phi_{\boldsymbol{X}_n}(s) \to \phi_{\boldsymbol{Y}}(s)$ para todo $s \in \mathbb{R}^k$. 
 		\end{enumerate}
 		\end{proposition}
@@ -335,13 +335,41 @@ natbib=true
 	\end{frame}
 	
 	\begin{frame}{Lei forte dos grandes números}
-		conteúdo...
+		\begin{itemize}
+			\item Dizemos que uma sequência de vetores aleatórios $\boldsymbol{X}_1, \boldsymbol{X}_2, \ldots$ é independente e identicamente distribuída (iid) se os vetores aleatórios são independentes (i.e. suas $\sigma$-álgebras geradas são independentes) e se suas funções distribuição $F_{\boldsymbol{X}_j}$ coincidem.
+			\begin{itemize}
+				\item Pelo lema do $\pi$-sistema, a lei induzida por cada $\boldsymbol{X}_j$ sobre $\mathcal{B}(\mathbb{R}^k)$ é igual.
+			\end{itemize}
+		\end{itemize}
+	\begin{proposition}[Lei forte de Kolmogorov]
+			Seja $X_1, X_2,\ldots$ uma sequência de variáveis aleatórias iid em $L^1(\Omega,\Sigma,\mathbb{P})$.
+			Então existe $\mu \in \mathbb{R}$ tal que $\mathbb{E}[X_j] = \mu$ para todo $j\in \mathbb{N}$ e:
+$$\frac{1}{n}\sum_{j=1}^n X_j \overset{\text{q.c.}}{\to} \mu\, .$$
+	\end{proposition}
+
 	\end{frame}
 	
 		\begin{frame}{Lei fraca dos grandes números}
-		conteúdo...
+			\begin{corollary}[Lei fraca de Khinchine]
+			Seja $X_1, X_2,\ldots$ uma sequência de variáveis aleatórias iid em $L^1(\Omega,\Sigma,\mathbb{P})$.
+			Então:
+			$$\frac{1}{n}\sum_{j=1}^n X_j \overset{\text{p}}{\to} \mathbb{E}[X_1]\, .$$
+		\end{corollary}
+		
+					\begin{proposition}[Lei fraca de Markov]
+			Seja $X_1, X_2,\ldots$ uma sequência de variáveis aleatórias em $L^{\color{red}2}(\Omega,\Sigma,\mathbb{P})$, não correlacionadas e tais que $\sup_{j \in \mathbb{N}}\mathbb{V}[X_j] <\infty$. Se $\lim_{n\to\infty} \frac{1}{n}\sum_{j=1}^n \mathbb{E}[X_j]$ existe em $\mathbb{R}$, então, denotando esse limite por $\mu$, temos:
+			 
+		$$\frac{1}{n}\sum_{j=1}^n X_j \overset{\text{p}}{\to} \mu\, .$$
+		\end{proposition}
 	\end{frame}
 		\begin{frame}{Teorema Central do Limite}
-		conteúdo...
+			\begin{proposition}
+						Seja $X_1, X_2,\ldots$ uma sequência de variáveis aleatórias iid em $L^2(\Omega,\Sigma,\mathbb{P})$. Então, denotando por $\mu = \mathbb{E}[X_1]$, temos:
+						
+						
+						$$\frac{1}{\sqrt{n}}\sum_{j=1}^n (X_1 - \mu) \overset{d}{\to} \mathcal{N}(0,\sigma^2)\, , $$
+						onde $\mathcal{N}(0,\sigma^2)$ denota uma variável aleatória com distribuição normal com média zero e variância $\sigma^2$.
+			\end{proposition}
+
 	\end{frame}
 \end{document}
