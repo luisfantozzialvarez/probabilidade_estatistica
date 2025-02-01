@@ -245,7 +245,7 @@ natbib=true
 			\item Sejam $X_n$ e $Y_n$ sequências de {\color{red}variáveis aleatórias}. 
 			\item Dizemos que $X_n = o_p(Y_n)$ se $\frac{X_n}{Y_n} \overset{p}{\to} 0$.
 			\item Dizemos que $X_n = O_p(Y_n)$ se, para todo $\epsilon > 0$, existem $M > 0$ e $K \in \mathbb{N}$ tais que:
-			$$\mathbb{P}[|X_n|\geq M |Y_n|] \leq \epsilon\, , \forall n \geq K\, .$$
+			$$\mathbb{P}[|X_n|> M |Y_n|] \leq \epsilon\, , \forall n \geq K\, .$$
 			\begin{itemize}
 				\item Nesse caso, dizemos que $\left|\frac{X_n}{Y_n}\right|$ é {\color{magenta}limitada  em probabilidade}.
 			\end{itemize}			
@@ -264,8 +264,8 @@ natbib=true
 			\item Se $X_n$ converge em distribuição, $X_n = O_p(1)$.
 			\item Seja $\phi: \mathbb{R}^k \mapsto \mathbb{R}$ uma função tal que $\phi(\boldsymbol{0}) = 0$. Se $X_n \overset{p}{\to} \boldsymbol{0}$, então, para qualquer $p > 0$:
 			\begin{enumerate}
-				\item[a] Se $R(h) = o(\lVert h \rVert^p)$ quando $h \to 0$, então $R(\boldsymbol{X_n}) = o_p(\lVert (\boldsymbol{X_n} \rVert^p)$.
-				\item[b] Se $R(h) = O(\lVert h \rVert^p)$ quando $h \to 0$, então $R(X_n) = O_p(\lVert X_n \rVert^p)$.
+				\item[a] Se $R(h) = o(\lVert h \rVert^p)$ quando $h \to 0$, então $R(\boldsymbol{X_n}) = o_p(\lVert \boldsymbol{X_n} \rVert^p)$.
+				\item[b] Se $R(h) = O(\lVert h \rVert^p)$ quando $h \to 0$, então $R(\boldsymbol{X_n}) = O_p(\lVert \boldsymbol{X_n} \rVert^p)$.
 			\end{enumerate}
 		\end{itemize}
 	\end{lemma}
@@ -343,7 +343,7 @@ natbib=true
 		\end{itemize}
 	\begin{proposition}[Lei forte de Kolmogorov]
 			Seja $X_1, X_2,\ldots$ uma sequência de variáveis aleatórias iid em $L^1(\Omega,\Sigma,\mathbb{P})$.
-			Então existe $\mu \in \mathbb{R}$ tal que $\mathbb{E}[X_j] = \mu$ para todo $j\in \mathbb{N}$ e:
+			Então existe $\mu \in \mathbb{R}$ tal que $\mathbb{E}[X_j] = \mu$ para todo $j\in \mathbb{N}$ e, quando $n \to \infty$:
 $$\frac{1}{n}\sum_{j=1}^n X_j \overset{\text{q.c.}}{\to} \mu\, .$$
 	\end{proposition}
 
@@ -351,20 +351,20 @@ $$\frac{1}{n}\sum_{j=1}^n X_j \overset{\text{q.c.}}{\to} \mu\, .$$
 	
 		\begin{frame}{Lei fraca dos grandes números}
 			\begin{corollary}[Lei fraca de Khinchine]
-			Seja $X_1, X_2,\ldots$ uma sequência de variáveis aleatórias iid em $L^1(\Omega,\Sigma,\mathbb{P})$.
-			Então:
+			Seja $X_1, X_2,\ldots$ uma sequência de variáveis aleatórias iid em $L^1(\Omega,\Sigma,\mathbb{P})$. Então temos quando $n \to \infty$:
+			
 			$$\frac{1}{n}\sum_{j=1}^n X_j \overset{\text{p}}{\to} \mathbb{E}[X_1]\, .$$
 		\end{corollary}
 		
 					\begin{proposition}[Lei fraca de Markov]
-			Seja $X_1, X_2,\ldots$ uma sequência de variáveis aleatórias em $L^{\color{red}2}(\Omega,\Sigma,\mathbb{P})$, não correlacionadas e tais que $\sup_{j \in \mathbb{N}}\mathbb{V}[X_j] <\infty$. Se $\lim_{n\to\infty} \frac{1}{n}\sum_{j=1}^n \mathbb{E}[X_j]$ existe em $\mathbb{R}$, então, denotando esse limite por $\mu$, temos:
+			Seja $X_1, X_2,\ldots$ uma sequência de variáveis aleatórias em $L^{\color{red}2}(\Omega,\Sigma,\mathbb{P})$, não correlacionadas e tais que $\sup_{j \in \mathbb{N}}\mathbb{V}[X_j] <\infty$. Se $\lim_{n\to\infty} \frac{1}{n}\sum_{j=1}^n \mathbb{E}[X_j]$ existe em $\mathbb{R}$, então, denotando esse limite por $\mu$, temos, quando $n \to \infty$:
 			 
 		$$\frac{1}{n}\sum_{j=1}^n X_j \overset{\text{p}}{\to} \mu\, .$$
 		\end{proposition}
 	\end{frame}
 		\begin{frame}{Teorema Central do Limite}
 			\begin{proposition}
-						Seja $X_1, X_2,\ldots$ uma sequência de variáveis aleatórias iid em $L^2(\Omega,\Sigma,\mathbb{P})$. Então, denotando por $\mu = \mathbb{E}[X_1]$, temos:
+						Seja $X_1, X_2,\ldots$ uma sequência de variáveis aleatórias iid em $L^2(\Omega,\Sigma,\mathbb{P})$. Então, denotando por $\mu = \mathbb{E}[X_1]$ e $\sigma^2 = \mathbb{V}[X_1]$, temos, quando $n \to \infty$:
 						
 						
 						$$\frac{1}{\sqrt{n}}\sum_{j=1}^n (X_1 - \mu) \overset{d}{\to} \mathcal{N}(0,\sigma^2)\, , $$
