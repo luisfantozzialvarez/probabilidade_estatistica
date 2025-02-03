@@ -367,7 +367,7 @@ natbib=true
 	\begin{itemize}
 		\item Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade, $Y$ uma variável aleatória, e $\mathcal{G}\subseteq \Sigma$ uma sub-$\sigma$-álgebra de $\Sigma$.
 		\item Tome $Y \in L^1(\Omega, \Sigma,\mathbb{P})$.
-		\item Definimos a esperança condicional de $Y$ com respeito a $\mathcal{G}$, denotada por $\mathbb{E}[Y|\mathcal{G}]$ como a {\color{blue}variável aleatória} $\mathbb{E}[Y|\mathcal{G}] \in L^1(\Omega, {\color{red}\mathcal{G}},\mathbb{P})$  que satisfaz, para todo $A \in {\color{red}\mathcal{G}}$:
+		\item Definimos a esperança condicional de $Y$ com respeito a $\mathcal{G}$, denotada por $\mathbb{E}[Y|\mathcal{G}]$ como a {\color{blue}variável aleatória} $\mathbb{E}[Y|\mathcal{G}] \in L^1(\Omega, \Sigma,\mathbb{P})$ {\color{red}$\mathcal{G}$-mensurável} que satisfaz, para todo $A \in {\color{red}\mathcal{G}}$:
 		
 		$$\mathbb{E}[\mathbb{E}[Y|\mathcal{G}]\mathbf{1}_A] = \mathbb{E}[Y\mathbf{1}_A]$$
 		\item Fácil mostrar que esperança condicional está unicamente definida, a não por eventos de probabilidade zero.
