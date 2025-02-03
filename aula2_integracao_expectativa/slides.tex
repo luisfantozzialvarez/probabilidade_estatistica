@@ -411,7 +411,7 @@ natbib=true
 			\item \textbf{Mensurabilidade:}  
 			Se \( X \) é \( \mathcal{G} \)-mensurável, então \( \mathbb{E}(X \mid \mathcal{G}) = X \) quase certamente.
 			
-			\item \textbf{Linearidade:}
+			\item \textbf{Linearidade:} Sejam $X_1, X_2 \in L^1$, $a_1,a_2\in \mathbb{R}$:
 			\[
 			\mathbb{E}(a_1 X_1 + a_2 X_2 \mid \mathcal{G}) = a_1 \mathbb{E}(X_1 \mid \mathcal{G}) + a_2 \mathbb{E}(X_2 \mid \mathcal{G}), \quad \text{quase certamente.}
 			\]
@@ -457,7 +457,7 @@ natbib=true
 			\[
 			\mathbb{E}[ZX \mid \mathcal{G}] = Z \mathbb{E}[X \mid \mathcal{G}], \quad \text{quase certamente}.
 			\]
-				(resultado também vale se $X\in L^p$ e $Z \in L^q$, com $p\geq1$ e $\frac{1}{q} = 1-\frac{1}{p}$).
+				(resultado também vale se $X\in L^p$ e $Z \in L^q$, com $p,q\geq1$ e $\frac{1}{q}  +\frac{1}{p} =1$).
 			
 			\item[9] \textbf{Papel da Independência:}  
 			Se \( \mathcal{H} \) é independente de \( \sigma(X, \mathcal{G}) \), então
@@ -490,7 +490,7 @@ natbib=true
 
 \begin{frame}{Probabilidade condicional regular e uma fórmula para a esperança condicional}
 \begin{lemma}
-	Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade, e $\mathcal{G}\subseteq \Sigma$ uma sub-$\sigma$-álgebra de $\Sigma$. Se existe uma probabilidade condicional regular dado $\mathcal{G}$, $p:\mathcal{A}\times \Omega \mapsto {[0,1]}$, então, para qualquer variável aleatória $Y$ integrável, a função:
+	Seja $(\Omega, \Sigma,\mathbb{P})$ um espaço de probabilidade, e $\mathcal{G}\subseteq \Sigma$ uma sub-$\sigma$-álgebra de $\Sigma$. Se existe uma probabilidade condicional regular dado $\mathcal{G}$, $p:\Sigma\times \Omega \mapsto {[0,1]}$, então, para qualquer variável aleatória $Y$ integrável, a função:
 	
 	$$f(\omega) = \int Y(s) p(ds, \omega)\, , $$
 	define uma versão de $\mathbb{E}[Y|\mathcal{G}]$.
@@ -504,9 +504,9 @@ natbib=true
 \begin{frame}{Medida produto}
 	\begin{itemize}
 		\item Sejam $(\Omega_1,\Sigma_1,\mathbb{P}_1)$ e $(\Omega_2,\Sigma_2,\mathbb{P}_2)$ dois espaços de probabilidade.
-		\item A $\sigma$-álgebra \textbf{produto}, denotada por $\Sigma_1 \otimes \Sigma_2 $, é a $\sigma$-álgebra em $\Omega_1 \times \Omega_2$ gerada pelos conjuntos da forma $B_1 \times B_2$, com $B_1,\Sigma_1$ e $B_2, \Sigma_2$.
+		\item A $\sigma$-álgebra \textbf{produto}, denotada por $\Sigma_1 \otimes \Sigma_2 $, é a $\sigma$-álgebra em $\Omega_1 \times \Omega_2$ gerada pelos conjuntos da forma $B_1 \times B_2$, com $B_1, \in Sigma_1$ e $B_2 \in \Sigma_2$.
 		\item A medida produto, denotada por $\mathbb{P}_1\otimes \mathbb{P}_2$ é a medida caracterizada pelas probabilidades:
-		$$\mathbb{P}_1\otimes \mathbb{P}_2[B_1 \times B_2] = \mathbb{P}_1[B_1] \mathbb{P}_1[B_2],\quad \forall B_1 \in \Sigma_1,B_2 \in \Sigma_2\,.$$
+		$$\mathbb{P}_1\otimes \mathbb{P}_2[B_1 \times B_2] = \mathbb{P}_1[B_1] \mathbb{P}_2[B_2],\quad \forall B_1 \in \Sigma_1,B_2 \in \Sigma_2\,.$$
 		(note o paralelismo com o conceito de independência; estamos definindo um novo espaço de probabilidade em que os experimentos 1 e 2 ocorrem de forma independente).
 	
 	\end{itemize} 
@@ -518,7 +518,7 @@ $$\int f d \mathbb{P}_1 \otimes \mathbb{P}_2\,,$$
 de forma sequencial, isto é se:
 \begin{equation*}
 	\begin{aligned}
-		\int f d \mathbb{P}_1 \otimes \mathbb{P}_2\ = \int \left(\int f(\omega_1,\omega_2)\mathbb{P}[d\omega_1]\right) \mathbb{P}[d\omega_2] = \\ \int \left(\int f(\omega_1,\omega_2)\mathbb{P}[d\omega_2]\right) \mathbb{P}[d\omega_1] 
+		\int f d \mathbb{P}_1 \otimes \mathbb{P}_2\ = \int \left(\int f(\omega_1,\omega_2)\mathbb{P}_1[d\omega_1]\right) \mathbb{P}_2[d\omega_2] = \\ \int \left(\int f(\omega_1,\omega_2)\mathbb{P}_1[d\omega_2]\right) \mathbb{P}_2[d\omega_1] 
 	\end{aligned}
 \end{equation*}
 \item Resposta é \textbf{afirmativa}, e dada pelo \textbf{Teorema de Fubini}.
