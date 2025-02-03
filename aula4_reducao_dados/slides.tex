@@ -1,0 +1,442 @@
+% !TeX document-id = {0be8c18c-9430-4e9a-bdd9-12beadebfebc}
+% !TeX TXS-program:bibliography = txs:///biber
+\documentclass[11pt]{beamer}
+\uselanguage{portuguese}
+\languagepath{portuguese}
+\deftranslation[to=portuguese]{Theorem}{Teorema}
+\deftranslation[to=portuguese]{theorem}{teorema}
+\deftranslation[to=portuguese]{Example}{Exemplo}
+\deftranslation[to=portuguese]{example}{exemplo}
+\deftranslation[to=portuguese]{Lemma}{Lema}
+\deftranslation[to=portuguese]{lemma}{Lema}
+\deftranslation[to=portuguese]{Corollary}{Corolário}
+\deftranslation[to=portuguese]{corollary}{corolário}
+%\deftranslation[to=portuguese]{and}{e}
+
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{color}
+%\usepackage{appendixnumberbeamer}
+
+\newenvironment{transitionframe}{
+	\setbeamercolor{background canvas}{bg=yellow}
+	\begin{frame}}{
+	\end{frame}
+}
+\usetheme{default}
+\usefonttheme{structuresmallcapsserif}
+
+%% I use a beige off white for my background
+\definecolor{MyBackground}{RGB}{255,253,218}
+\useinnertheme[shadow]{rounded}
+\setbeamercolor{block title}{bg=MyBackground}
+\setbeamercolor{block body}{bg=MyBackground}
+\setbeamercolor{example title}{bg=MyBackground}
+\setbeamercolor{example body}{bg=MyBackground}
+
+
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\purple}[1]{\textcolor{purple}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{page number in head/foot}[appendixframenumber]
+
+%\usepackage{graphics}
+\usepackage{graphicx}
+
+\definecolor{blue_emph}{RGB}{0,114,178}
+\definecolor{red}{RGB}{213,94,0}
+\definecolor{yellow}{RGB}{240,228,66}
+\definecolor{green}{RGB}{0,158,115}
+\definecolor{purple}{RGB}{204,121,167}
+\definecolor{orange}{RGB}{230,159,0}
+\definecolor{lightblue}{RGB}{86,180,233}
+
+%\setbeamercolor{frametitle}{fg=blue}
+%\setbeamercolor{title}{fg=blue}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{itemize items}{-}
+%\setbeamercolor{itemize item}{fg=blue}
+%\setbeamercolor{itemize subitem}{fg=blue}
+\setbeamertemplate{enumerate items}[default]
+%\setbeamercolor{enumerate subitem}{fg=blue}
+\setbeamercolor{button}{bg=MyBackground,fg=blue}
+\usefonttheme{structuresmallcapsserif}
+
+%\setbeamercolor{section in toc}{fg=blue}
+%\setbeamercolor{subsection in toc}{fg=red}
+\setbeamersize{text margin left=1em,text margin right=1em} 
+
+
+\usepackage{appendixnumberbeamer}
+
+\usepackage[
+backend=biber,
+style=authoryear,
+natbib=true
+]{biblatex}
+\addbibresource{bib_aula.bib}
+
+\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{10pt}}{\enditemize}
+\newenvironment{wideenumerate}{\enumerate\addtolength{\itemsep}{10pt}}{\endenumerate}
+\newenvironment{halfwideitemize}{\itemize\addtolength{\itemsep}{0.5em}}{\enditemize}
+\newenvironment{halfwideenumerate}{\enumerate\addtolength{\itemsep}{0.5em}}{\endenumerate}
+
+\author{Luis Antonio Fantozzi Alvarez}
+\title{Redução de Dados}
+\subtitle{Princípios de Redução de Dados}
+%\logo{aa}
+
+
+\date{Universidade de São Paulo}
+%\subject{Statistics}
+%\setbeamercovered{transparent}
+
+
+% If you like road maps, rather than having clutter at the top, have a roadmap show up at the end of each section 
+% (and after your introduction)
+% Uncomment this is if you want the roadmap!
+% \AtBeginSection[]
+%{
+	%   \begin{frame}
+		%       \frametitle{Roadmap of Talk}
+		%       \tableofcontents[currentsection]
+		%   \end{frame}
+	%}
+
+
+
+
+\begin{document}
+	
+	\begin{frame}[plain]
+		\maketitle
+	\end{frame}
+	
+	\begin{frame}{Panorama desta aula}
+		\begin{halfwideitemize}
+			\item Nesta aula, nós discutiremos o conceito de suficiência e seus derivados.
+			\begin{halfwideitemize}
+				\item Conceitos capturam ideia crucial de {\color{blue}redução de dados}: como reduzir a informação nos dados a um conjunto ``pequeno'' de estatísticas, {\color{blue}sem perder informação relevante para o problema de interesse?} 
+				\item Estes conceitos são úteis na construção de estimadores e testes de hipóteses com propriedades desejáveis.
+			\end{halfwideitemize}
+			\item Em seguida, nós veremos que, em {\color{blue}famílias exponenciais}, a redução de dados toma uma forma bastante conveniente.
+			\begin{halfwideitemize}
+				\item Veremos que diversas distribuições conhecidas pertencem à família exponencial.
+				\item Veremos, sob quais condições estatísticas, com boas propriedades de redução de dados são facilmente recuperáveis em famílias exponenciais
+			\end{halfwideitemize}
+			\item Referências desta aula: \citet{Casella2001}, com tópicos de \citet{Schervish1995},  \citet{Lehmann2005} e \citet{lehmann2006theory}.
+		\end{halfwideitemize}
+	\end{frame}
+	
+	
+	\begin{transitionframe}
+		\centering 
+		\Huge{Suficiência}
+	\end{transitionframe}
+	
+	
+	
+	\begin{frame}{Ambiente}
+		\begin{halfwideitemize}
+			\item Nosso ponto de partida é um espaço mensurável $(\Omega,\Sigma)$.
+			\begin{halfwideitemize}
+				\item $\Omega$ é o espaço amostral.
+				\item $\Sigma$ é o espaço de eventos aos quais podemos atribuir probabilidades ($\sigma$-álgebra).
+			\end{halfwideitemize}
+			\item Pesquisador observa uma amostra, dada pela variável aleatória $\boldsymbol{X} \coloneqq \operatorname{Id}_{\Omega}$, cuja lei é dada por uma probabilidade $P$ sobre $(\Omega, \Sigma)$ {\color{blue}desconhecida}.
+			\item O pesquisador postula uma família de leis de probabilidade $\mathcal{P} = \{P_\theta : \theta \in \Theta\}$ {\color{blue}candidatas a terem gerado a amostra}.
+			\begin{halfwideitemize}
+				\item $\Theta$ é o {\color{blue}espaço de parâmetros} que indexa a família.
+			\end{halfwideitemize}
+			\item {\color{blue}Exemplo:} pesquisador observa uma variável escalar, e supõe que tenha sido amostrada de uma distribuição normal com média desconhecida e variância unitária.
+			\begin{halfwideitemize}
+				\item Quem é $\mathcal{P}$?
+				\item E se a variância é desconhecida?
+				\item E se pesquisador possui $n$ observações independentes?
+			\end{halfwideitemize}
+		\end{halfwideitemize}
+		
+	\end{frame}
+	\begin{frame}{Hipóteses técnicas}
+		\begin{halfwideitemize}
+			\item No que segue, supomos que existe uma medida $\mu$ tal que todo elemento de $P_\theta \in \mathcal{P}$ admite densidade $p_\theta$ com respeito a $\mathcal{\mu}$.
+			\begin{halfwideitemize}
+				\item Para famílias de distribuições discretas, $\mu$ é a medida de contagem e $p_\theta$ são as f.m.p.
+				\item Para famílias de distribuições contínuas, $\mathcal{\mu}$ é a medida de Lebesgue e $p_\theta$ são as f.d.p.
+			\end{halfwideitemize}
+			\item Uma estatística é uma transformação (mensurável) da amostra, i.e. uma função $T(\boldsymbol{X})$.
+			\item No que segue, vamos supor que, para qualquer estatística, as distribuições condicionais de $\boldsymbol{X}|T(\boldsymbol{X})$ sob cada $P_\theta$ admitem uma  {\color{blue}densidade condicional (regular)} $p_{\boldsymbol{X}|T(\boldsymbol{X}),\theta}(\cdot|\cdot)$.
+			\begin{halfwideitemize}
+				\item Essa condição limita a complexidade de $(\Omega, \Sigma)$.
+				\item Na maior parte dos casos práticos é satisfeita.
+				\item Condições suficientes em \citet[Seção 4.1.3]{Durrett2019} (fora do escopo do curso).
+			\end{halfwideitemize}
+		\end{halfwideitemize}
+	\end{frame}
+	
+	\begin{frame}{Estatística suficiente}
+		\begin{halfwideitemize}
+			\item Uma estatística é tão somente uma transformação (mensurável) da amostra, isto é, uma função $T(\boldsymbol{X})$ tal que $T^{-1}(A) \in \Sigma$ para todo $A$ na $\sigma$-álgebra do contradomínio.
+			\begin{block}{Definição}
+				Uma estatística $T$ é dita suficiente para $\theta$ se a distribuição condicional de $\boldsymbol{X}|T(\boldsymbol{X})$ não depende de $\theta$, isto é, se existe $H$ tal que:
+				
+				\begin{equation*}
+					P_\theta[\boldsymbol{X} \in A|T(\boldsymbol{X})] = H(A|T(\boldsymbol{X})), \quad \forall \theta \in \Theta, A \in \Sigma \, .
+				\end{equation*}
+				
+			\end{block}
+			\item Uma vez que conhecemos $T(\boldsymbol{X})$, não há mais informação adicional sobre $\theta$ na amostra.
+			\item Sob nossas condições técnicas, a definição é equivalente a que a densidade condicional $p_{\boldsymbol{X}|\boldsymbol{T}(X),\theta}$ não dependa de $\theta$.
+		\end{halfwideitemize}
+		
+	\end{frame}
+	
+	\begin{frame}{Exemplo}
+		Suponha que a amostra consista de duas Bernoullis independentes e identicamente distribuídas, com parâmetro $\theta \in (0,1)$ desconhecido. Neste caso, a f.m.p. é:
+		
+		$$P_\theta[X_1 = x, X_2 = y] = \theta^x (1-\theta)^{1-x} \theta^y (1-\theta)^{1-y},\, \quad \forall x,y \in \{0,1\},$$
+		de onde segue que, para todo $t \in \{0,1/2,1\}$.
+		\begin{equation*}
+			\begin{aligned}         
+				P_\theta[X_1 = x, X_2 = y| X_1 +  X_2 =  2 t] = \frac{P_\theta[X_1 = x, X_2 = y, X_1 +  X_2 =  2 t]}{P_\theta[X_1 +  X_2 =  2 t]} = \\
+				= \frac{\theta^{x+y} (1-\theta)^{2-x-y}\mathbf{1}\{x+y = 2t\}}{\binom{2}{2t} \theta^{2t}(1-\theta)^{1-2t}}= \mathbf{1}\{x+y = 2t\} \, ,
+			\end{aligned}
+		\end{equation*}
+		de onde concluímos que $(X_1+X_2)/2$ é suficiente.
+	\end{frame}
+	\begin{frame}{Lema da fatoração de Neyman-Fisher}
+		\begin{lemma}
+			$T(\boldsymbol{X})$ é suficiente para $\theta$ se, e somente se, existem funções $h_\theta$, $\theta \in \Theta$, e $c$ tais que, para todo $\theta \in \Theta$:
+			
+			$$p_\theta(\boldsymbol{x}) = h_\theta(T(\boldsymbol{x}) )c(\boldsymbol{x}), \quad \mu\text{-q.t.p.}$$
+		\end{lemma}
+		
+		\begin{halfwideitemize}
+			\item Critério conveniente para encontrar uma estatística suficiente.
+			\begin{halfwideitemize}
+				\item No caso discreto, ``$\mu\text{-q.t.p.}$'' pode ser lido como para todo $\boldsymbol{x}$.
+				\item No caso contínuo, condição pode ser violada num conjunto de medida de Lebesgue zero (por exemplo, conjuntos enumeráveis de pontos).
+			\end{halfwideitemize}
+		\end{halfwideitemize}
+		
+	\end{frame}
+	
+	\begin{frame}{Exemplo}
+		Suponha que o pesquisador observe uma amostra iid $X_1,X_2, \ldots, X_n$ de uma distribuiçao exponencial com parâmetro $\lambda > 0$ desconhecido.  Neste caso, observe que:
+		\begin{equation*}
+			\begin{aligned}
+				p_\lambda(x_1,x_2,\ldots x_n) = \prod_{i=1}^n (\lambda e^{-\lambda x} \mathbf{1}\{x>0\}) =\\ =  \lambda^n \exp\left(- \lambda \sum_{i=1}^n x_i\right)\mathbf{1}\{\min_i x_i > 0 \} = h_\lambda \left(\sum_{i=1}^n x_i\right) c(\boldsymbol{x}) \, ,
+			\end{aligned}
+		\end{equation*}
+		de onde concluímos que $(X_1+X_2 + \ldots X_n)/n$ é estatística suficiente.
+		
+	\end{frame}
+	
+	\begin{frame}{Estatística suficiente minimal}
+		\begin{halfwideitemize}
+			\item Observe que o conceito de estatística suficiente só nos informa sobre a capacidade de uma transformação em condensar a informação relevante na amostra sobre $\theta$.
+			\item Este conceito não versa sobre o ``tamanho'' desta estatística.
+			\begin{halfwideitemize}
+				\item De fato, a própria amostra, $T(\boldsymbol{X})=\boldsymbol{X}$, é sempre uma estatística suficiente.
+			\end{halfwideitemize}
+			\item Note que, se $T$ é estatística suficiente e $T = M\circ U$, então $U$ é estatística suficiente.
+			\begin{halfwideitemize}
+				\item Estatísticas mais ``finas'' que uma estatística suficiente são estatísticas suficientes.
+			\end{halfwideitemize}
+			\item Na outra direção, podemos pensar na estatística suficiente mais ``grossa'' possível. 
+		\end{halfwideitemize}
+	\end{frame}
+	\begin{frame}{Estatística suficiente minimal (cont.)}
+		\begin{block}{Definição}
+			Uma estatística $T$ é dita suficiente minimal, se:
+			\begin{halfwideenumerate}
+				\item $T$ é suficiente.
+				\item Para qualquer outra estatística $S$ suficiente, existe $M$ tal que $T = M \circ S$.
+			\end{halfwideenumerate}
+		\end{block}
+		\begin{block}{Lema}
+			Considere uma estatística $T$ tal que:
+			$$T(\boldsymbol{x}) = T(\boldsymbol{y}) \iff \boldsymbol{y} \in D(\boldsymbol{x}) , $$
+			onde
+			$$D(\boldsymbol{x}) = \{\boldsymbol{y}:  p_\theta(\boldsymbol{y}) = p_\theta(\boldsymbol{x}) h(x,y), \quad \forall \theta \in \Theta  \text{ e algum } h(x,y) > 0\}\, .$$
+			
+			Então $T$ é suficiente minimal.
+		\end{block}
+	\end{frame}
+	\begin{frame}{Exemplo}
+		Suponha que o espaço amostral é $\mathbb{R}^n_+$. Considere uma amostra aleatória de $U[0,\theta]$, $\theta > 0$.  Neste caso:
+		
+		$$p_\theta(x_1,\ldots, x_n) = \frac{1}{\theta^n} \mathbf{1}\{\max_i x_i < \theta\} \, .  $$
+		
+		Pelo critério de fatoração, $X_{(n)} : = \max_i X_i$ é suficiente. Vamos mostrar que é minimal suficiente usando o lema anterior. Observe que $D(\boldsymbol{x}) = \{\boldsymbol{y}: y_{(n)} = x_{(n)}\}$. De fato, se $y_{(n)} \neq x_{(n)}$, ao considerar $\theta' = (x_{(n)}+y_{(n)})/2$, teremos que $0 = p_{\theta'}(\boldsymbol{x}) < p_{\theta'}(\boldsymbol{y})$ ou $0 = p_{\theta'}(\boldsymbol{y}) < p_{\theta'}(\boldsymbol{x})$. Segue do lema anterior que $X_{(n)}$ é minimal.
+	\end{frame}
+	
+	\begin{frame}{Ancilaridade}
+		\begin{block}{Definição}
+			Uma estatística é dita ancilar para $\theta$ se sua distribuição não depende de $\theta$, i.e., se existe $F$ tal que:
+			
+			$$P_\theta[T(X) \in A] = F[A], \quad \forall \theta \in \Theta,  A \in \mathcal{S}, $$
+			onde $\mathcal{S}$ é $\sigma$-álgebra acoplada ao contradomínio de $T$.
+		\end{block}
+		\begin{example}
+			No modelo linear Gaussiano homocedástico com regressores fixos:
+			$$\boldsymbol{y}_{n\times 1} \sim \mathcal{N}(\boldsymbol{Z} \beta, \sigma^2 \mathbb{I}_n) \, ,$$
+			onde $\operatorname{posto}(\boldsymbol{Z}) = k$, $\beta \in \mathbb{R}^k$ desconhecido e $\sigma^2 > 0$ conhecido; veremos em Econometria I que a estatística $S = \hat{\boldsymbol{e}}' \hat{\boldsymbol{e}}$, onde $\hat{\boldsymbol{e}} = \boldsymbol{y} - \boldsymbol{Z} \hat{\beta}_{\text{MQO}}$, é ancilar.
+		\end{example}
+	\end{frame}
+	\begin{frame}{Suficiência completa}
+		\begin{halfwideitemize}
+			\item Gostaríamos de que uma estatística suficiente fosse independente de estatísticas ancilares, visto que essas não nos trazem informação de $\theta$.
+			\item Conceito apropriado para isto é o de estatística {\color{blue}completa suficiente}.
+			\begin{block}{Definição}
+				Uma estatística $T$ é dita completa para $\theta$ se, para qualquer $f$ mensurável com valores reais:
+				$$\mathbb{E}_\theta[f(T)] = 0, \forall \theta \in \Theta \implies \mathbb{P}_\theta[f(T) = 0 ] = 1, \forall \theta \in \Theta$$
+			\end{block}
+			
+			\begin{theorem}[Basu]
+				Uma estatística {\color{blue}completa suficiente} para  $\theta$ é independente de qualquer estatística ancilar de $\theta$.
+			\end{theorem}
+			
+		\end{halfwideitemize}
+		
+	\end{frame}
+	
+	\begin{frame}{Suficiência completa vs. suficiência minimal}
+		\begin{theorem}[Bahadur]
+			Se $U$ é estatística completa suficiente de dimensão finita, então é suficiente minimal.
+		\end{theorem}
+		\begin{halfwideitemize}
+			\item Recíproca {\color{red}\textbf{não}} é verdadeira: existem estatísticas minimais suficientes de dimensão finita que não são completas (veja \cite{lehmann2006theory}).
+		\end{halfwideitemize}
+		
+	\end{frame}
+	
+	\begin{transitionframe}
+		\centering 
+		\Huge{Famílias Exponenciais}
+	\end{transitionframe}
+	\begin{frame}{Família exponencial}
+		\begin{block}{Definição}
+			Uma família de distribuições $\mathcal{P} = \{P_\theta : \theta \in \Theta\}$ sobre um espaço mensurável $(\Omega, \Sigma)$ é dita uma família exponencial se:
+			\begin{halfwideenumerate}
+				\item Existe uma medida $\mu$ tal que cada elemento $P_\theta \in \mathcal{P}$  admite densidade $p_\theta$ com respeito a $\mu$.
+				\item Existem $\eta : {\Theta} \mapsto  \mathbb{R}^s$, $T: \Omega \mapsto \mathbb{R}^s$, $B: \Theta \mapsto \mathbb{R}$ e $h: \Omega \mapsto \mathbb{R}_+$ tais que:
+				$$p_\theta(\boldsymbol{x}) = \exp(\eta(\theta)'T(\boldsymbol{x}) -B(\theta)) h(\boldsymbol{x})$$
+			\end{halfwideenumerate}
+		\end{block}
+		\begin{halfwideitemize}
+			\item Diversas distribuições conhecidas pertecem a esta família: Gamma, Chi-Quadrado, Beta, Normal, Poisson, Negativo-Binomial.
+			\item Propriedade útil: se $\mathcal{P}_1,\ldots, \mathcal{P}_n$ são famílias exponenciais, então $\mathcal{P}^n : = \{\otimes_{i=1}^n P_i: P_i \in \mathcal{P}_i\}$ é uma família exponencial.
+			\begin{wideitemize}
+				\item Consequência: a distribuição amostral de uma amostra aleatória de uma família exponencial também constitui uma família exponencial.
+			\end{wideitemize}
+		\end{halfwideitemize}
+	\end{frame}
+	\begin{frame}{Exemplo}
+		Sejam $\boldsymbol{X}= (X_1, X_2, \ldots, X_n)'$ uma amostra aleatória de $N(\mu, \sigma^2)$, onde $\mu \in \mathbb{R}$ e $\sigma^2 >0$ são desconhecidos. Neste caso, fazendo $\theta = (\mu, \sigma^2)'$, temos:
+		\begin{equation}
+			\begin{aligned}
+				p_\theta(x_1,x_2,\ldots, x_n) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(\frac{-(x_i-\mu)^2}{2\sigma^2}\right) =  \\ 
+				\exp\left(-\frac{1}{2\sigma^2}\sum_{i=1}^n x_i^2 + \frac{\mu}{\sigma^2} \sum_{i=1}^n x_i - \frac{\mu^2}{2\sigma^2}n\right)\left(\frac{1}{\sqrt{2\pi\sigma^2}}\right)^n \, ,
+			\end{aligned}
+		\end{equation}
+		de onde segue que a família é exponencial com $T(\boldsymbol{x}) = (\sum_{i=1}^n x_i^2, \sum_{i=1}^n x_i)'$ e ${\eta}(\theta) = \left(-\frac{1}{2\sigma^2}, \frac{\mu}{\sigma^2}\right)'$.
+	\end{frame}
+	
+	\begin{frame}{Identificabilidade de famílias de distribuições}
+		\begin{block}{Definição}
+			Para uma família $\{P_\theta: \theta \in \Theta\}$, dizemos que o parâmetro é identificável se:
+			$$\theta = \theta' \iff P_{\theta} = P_{\theta'}$$
+		\end{block}
+		\begin{halfwideitemize}
+			\item Identificação é o requerimento básico para estimação pontual.
+			\begin{halfwideitemize}
+				\item Requer a existência de um mapa 1-1 entre parâmetro e distribuição amostral.
+			\end{halfwideitemize}
+			\item No exemplo anterior, $\theta$ é identificado, visto que $f_1(P_\theta) := \mathbb{E}_\theta[X_1] = \mu$ e $f_2(P_\theta) := \mathbb{E}[X_1^2] = \sigma^2 + \mu^2$.
+			\item Por outro lado, se a família paramétrica fosse $\{\mathcal{N}( \theta \lor 0, 1): \theta \in \mathbb{R}\}$, $\theta$ não é identificável.
+		\end{halfwideitemize}
+	\end{frame}
+	\begin{frame}{Parametrização natural de família exponencial}
+		Note que, da definição de família exponencial:
+		
+		$$p_\theta(\boldsymbol{x}) = \exp(\eta(\theta)'T(\boldsymbol{x}) -B(\theta)) h(\boldsymbol{x}) \, , \quad  \theta \in \Theta \, ,$$
+		segue uma reparametrização {\color{blue}natural}
+		$$p_{\boldsymbol{\eta}}(\boldsymbol{x}) = \exp(\eta'T(\boldsymbol{x}) -B^*(\boldsymbol{\eta})) h(\boldsymbol{x}) \, , \quad \boldsymbol{\eta} \in \Xi \, ,$$
+		onde $\Xi := \{ \eta(\theta): \theta \in \Theta\} \subseteq \mathbb{R}^s$ é o {\color{blue}espaço paramétrico natural}; e $B^*(\boldsymbol{\eta}) = B(\theta)$ para algum (qualquer) $\theta \in \Theta$ tal que $\eta(\theta) = \boldsymbol{\eta}$
+		
+		\begin{block}{Definição}
+			Uma família exponencial $\{P_\theta: \theta \in \Theta\}$ é dita uma família de posto cheio se sua reparametrização natural é tal que $\eta$ é identificável e $\Xi$ contém uma bola aberta de $\mathbb{R}^s$.
+		\end{block}
+		\begin{halfwideitemize}
+			\item No exemplo de amostra aleatória normal, $\Theta = (-\infty,0) \times \mathbb{R}$, logo a família tem posto cheio.
+			\item $\{N(\mu, \mu^2): \mu \in \mathbb{R}\}$ não tem posto cheio (família curvada).
+		\end{halfwideitemize}
+	\end{frame}
+	\begin{frame}{Suficiência em famílias exponenciais}
+		\begin{corollary}
+			Numa família exponencial, $T(\boldsymbol{X})$ é uma estatística suficiente.
+		\end{corollary}
+		\begin{corollary}
+			Numa família exponencial {\color{blue}de posto cheio}, $T(\boldsymbol{X})$ é uma estatística suficiente minimal.         
+		\end{corollary}
+		\begin{theorem}
+			Numa família exponencial {\color{blue}de posto cheio}, $T(\boldsymbol{X})$ é uma estatística suficiente completa.         
+		\end{theorem}
+	\end{frame}
+	\appendix
+	\begin{transitionframe}
+		\centering
+		\Huge{Tópicos adicionais}
+	\end{transitionframe}
+	\begin{frame}{Momentos de $T$}
+		\begin{theorem}
+			Para uma família exponencial em sua parametrização natural, e $\eta \in \operatorname{int}(\Xi)$, temos que, para toda $h$ tal que
+			
+			$$\int_{\Omega} |h(\boldsymbol{x})| p_{\boldsymbol{\eta}'}(\boldsymbol{x})\mu(d\boldsymbol{x}) < \infty \, ,$$
+			para todo $\boldsymbol{\eta}'$ numa vizinhança de $\eta$; a função:
+			
+			$$\boldsymbol{\psi} \mapsto \int_{\Omega} h(\boldsymbol{x})p_{\boldsymbol{\psi}}(\boldsymbol{x})\mu(d\boldsymbol{x}), $$
+			é diferenciável em $\eta$, com derivada dada por diferenciação dentro da integral.
+		\end{theorem}
+		
+		\begin{halfwideitemize}
+			\item Aplicação do resultado: momentos de $T$.
+		\end{halfwideitemize}
+		
+		
+	\end{frame}
+	
+	\begin{frame}{Teorema de Rao-Blackwell}
+		\begin{halfwideitemize}
+			\item Considere o problema de estimar um parâmetro $\psi(\theta)$ {\color{blue}escalar} de uma família $P_\theta$.
+			\item Seja $L(\theta; \hat \delta)$ a perda incorrida em utilizar o estimador $\hat \delta$ para estimar $\psi(\theta)$.
+			\item A perda esperada, ou risco, é dada por $R_\theta(\hat \delta) = \mathbb{E}_\theta[L(\theta;\hat{\delta})]$.
+		\end{halfwideitemize}
+		\begin{theorem}[Rao-Blackwell]
+			Suponha que $z \mapsto L(\theta, z)$ é convexa e não negativa, para todo $\theta \in \Theta$. Dado um estimador $\hat \delta$ de $\psi(\theta)$ e $T$ uma estatística suficiente integrável de $\theta$, temos que:
+			\begin{halfwideenumerate}
+				\item $S = \mathbb{E}_\theta[\hat{\delta}|T]$ define um estimador.
+				\item $R_{\theta}(S) \leq R_{\theta}(\hat \delta)$ para todo $\theta \in \Theta$.
+				\item Se $\hat \delta$ é não viciado, $S$ também o é.
+			\end{halfwideenumerate}
+		\end{theorem}
+	\end{frame}
+	\begin{transitionframe}
+		\centering
+		\Huge{Referências}
+	\end{transitionframe}
+	\begin{frame}{Referências}
+		\printbibliography
+	\end{frame}
+	
+\end{document}
+

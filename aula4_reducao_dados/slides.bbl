@@ -1,0 +1,200 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{Casella2001}{book}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=c7abc90e14f2761d9325ee092fda0de7}{%
+           family={Casella},
+           familyi={C\bibinitperiod},
+           given={George},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=819beb5f4220e56c3afce0e6c63847a1}{%
+           family={Berger},
+           familyi={B\bibinitperiod},
+           given={Roger\bibnamedelima L},
+           giveni={R\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Duxbury}%
+      }
+      \strng{namehash}{c6df33453b0c6fbb42492656a87f4723}
+      \strng{fullhash}{c6df33453b0c6fbb42492656a87f4723}
+      \strng{bibnamehash}{c6df33453b0c6fbb42492656a87f4723}
+      \strng{authorbibnamehash}{c6df33453b0c6fbb42492656a87f4723}
+      \strng{authornamehash}{c6df33453b0c6fbb42492656a87f4723}
+      \strng{authorfullhash}{c6df33453b0c6fbb42492656a87f4723}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Statistical inference}
+      \field{year}{2001}
+    \endentry
+    \entry{Durrett2019}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=175a15e34b656dab74bea645e2ed84d0}{%
+           family={Durrett},
+           familyi={D\bibinitperiod},
+           given={Rick},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{175a15e34b656dab74bea645e2ed84d0}
+      \strng{fullhash}{175a15e34b656dab74bea645e2ed84d0}
+      \strng{bibnamehash}{175a15e34b656dab74bea645e2ed84d0}
+      \strng{authorbibnamehash}{175a15e34b656dab74bea645e2ed84d0}
+      \strng{authornamehash}{175a15e34b656dab74bea645e2ed84d0}
+      \strng{authorfullhash}{175a15e34b656dab74bea645e2ed84d0}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{5}
+      \field{series}{Cambridge Series in Statistical and Probabilistic Mathematics}
+      \field{title}{Probability: Theory and Examples}
+      \field{year}{2019}
+      \verb{doi}
+      \verb 10.1017/9781108591034
+      \endverb
+    \endentry
+    \entry{lehmann2006theory}{book}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=81446f7a6fa26e0d5a41bd4b8c9a3279}{%
+           family={Lehmann},
+           familyi={L\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c7abc90e14f2761d9325ee092fda0de7}{%
+           family={Casella},
+           familyi={C\bibinitperiod},
+           given={George},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Science \& Business Media}%
+      }
+      \strng{namehash}{98b158d8e0b77fc7e3e0c9894a1cd240}
+      \strng{fullhash}{98b158d8e0b77fc7e3e0c9894a1cd240}
+      \strng{bibnamehash}{98b158d8e0b77fc7e3e0c9894a1cd240}
+      \strng{authorbibnamehash}{98b158d8e0b77fc7e3e0c9894a1cd240}
+      \strng{authornamehash}{98b158d8e0b77fc7e3e0c9894a1cd240}
+      \strng{authorfullhash}{98b158d8e0b77fc7e3e0c9894a1cd240}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Theory of point estimation}
+      \field{year}{1998}
+    \endentry
+    \entry{Lehmann2005}{book}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=81446f7a6fa26e0d5a41bd4b8c9a3279}{%
+           family={Lehmann},
+           familyi={L\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2dd1d20715bec3a78cf515869b223404}{%
+           family={Romano},
+           familyi={R\bibinitperiod},
+           given={J},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer New York}%
+      }
+      \strng{namehash}{3ba496b02b184324d4b2b4248d5cea11}
+      \strng{fullhash}{3ba496b02b184324d4b2b4248d5cea11}
+      \strng{bibnamehash}{3ba496b02b184324d4b2b4248d5cea11}
+      \strng{authorbibnamehash}{3ba496b02b184324d4b2b4248d5cea11}
+      \strng{authornamehash}{3ba496b02b184324d4b2b4248d5cea11}
+      \strng{authorfullhash}{3ba496b02b184324d4b2b4248d5cea11}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780387276052}
+      \field{series}{Springer Texts in Statistics}
+      \field{title}{Testing Statistical Hypotheses}
+      \field{year}{2005}
+      \verb{urlraw}
+      \verb https://books.google.com.br/books?id=K6t5qn-SEp8C
+      \endverb
+      \verb{url}
+      \verb https://books.google.com.br/books?id=K6t5qn-SEp8C
+      \endverb
+    \endentry
+    \entry{Schervish1995}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=b52b71927a74e0d05c36bbdf8f306865}{%
+           family={Schervish},
+           familyi={S\bibinitperiod},
+           given={Mark\bibnamedelima J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Springer New York}%
+      }
+      \strng{namehash}{b52b71927a74e0d05c36bbdf8f306865}
+      \strng{fullhash}{b52b71927a74e0d05c36bbdf8f306865}
+      \strng{bibnamehash}{b52b71927a74e0d05c36bbdf8f306865}
+      \strng{authorbibnamehash}{b52b71927a74e0d05c36bbdf8f306865}
+      \strng{authornamehash}{b52b71927a74e0d05c36bbdf8f306865}
+      \strng{authorfullhash}{b52b71927a74e0d05c36bbdf8f306865}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Theory of Statistics}
+      \field{year}{1995}
+      \verb{doi}
+      \verb 10.1007/978-1-4612-4250-5
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/978-1-4612-4250-5
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/978-1-4612-4250-5
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
