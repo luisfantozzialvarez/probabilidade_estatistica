@@ -90,8 +90,8 @@ natbib=true
 \newenvironment{halfwideenumerate}{\enumerate\addtolength{\itemsep}{0.5em}}{\endenumerate}
 
 \author{Luis Antonio Fantozzi Alvarez}
-\title{Redução de Dados}
-\subtitle{Princípios de Redução de Dados}
+\title{Probabilidade Estatística}
+\subtitle{Princípios de Redução de Dados e Teoria da Decisão Estatística}
 %\logo{aa}
 
 
@@ -120,28 +120,14 @@ natbib=true
 		\maketitle
 	\end{frame}
 	
-	\begin{frame}{Panorama desta aula}
-		\begin{halfwideitemize}
-			\item Nesta aula, nós discutiremos o conceito de suficiência e seus derivados.
-			\begin{halfwideitemize}
-				\item Conceitos capturam ideia crucial de {\color{blue}redução de dados}: como reduzir a informação nos dados a um conjunto ``pequeno'' de estatísticas, {\color{blue}sem perder informação relevante para o problema de interesse?} 
-				\item Estes conceitos são úteis na construção de estimadores e testes de hipóteses com propriedades desejáveis.
-			\end{halfwideitemize}
-			\item Em seguida, nós veremos que, em {\color{blue}famílias exponenciais}, a redução de dados toma uma forma bastante conveniente.
-			\begin{halfwideitemize}
-				\item Veremos que diversas distribuições conhecidas pertencem à família exponencial.
-				\item Veremos, sob quais condições estatísticas, com boas propriedades de redução de dados são facilmente recuperáveis em famílias exponenciais
-			\end{halfwideitemize}
-			\item Referências desta aula: \citet{Casella2001}, com tópicos de \citet{Schervish1995},  \citet{Lehmann2005} e \citet{lehmann2006theory}.
-		\end{halfwideitemize}
-	\end{frame}
-	
-	
-	\begin{transitionframe}
+
+		\begin{transitionframe}
 		\centering 
-		\Huge{Suficiência}
+		\Huge{O Problema de Inferência Estatística}
 	\end{transitionframe}
 	
+	
+
 	
 	
 	\begin{frame}{Ambiente}
@@ -155,32 +141,91 @@ natbib=true
 			\item O pesquisador postula uma família de leis de probabilidade $\mathcal{P} = \{P_\theta : \theta \in \Theta\}$ {\color{blue}candidatas a terem gerado a amostra}.
 			\begin{halfwideitemize}
 				\item $\Theta$ é o {\color{blue}espaço de parâmetros} que indexa a família.
+				\item À família $\mathcal{P}$ damos o nome de {\color{blue} modelo}.
 			\end{halfwideitemize}
+					\item Dizemos que um modelo está {\color{blue}bem-especificado} se $\exists  \theta_0 \in \Theta$, $P = P_{\theta_0}$.
+					\item {\color{red}Notação:} $\mathbb{E}_{\theta}$ denota a expectativa de uma variável aleatória com domínio em $(\Omega, \Sigma)$ com respeito a $P_{\theta}$.
+		\end{halfwideitemize}
+		
+	\end{frame}
+	
+	\begin{frame}{Amostragem aleatória}
+	\begin{itemize}
+		\item Em diversos contextos, o experimento definido por $(\Omega, \Sigma, P)$ tem a seguinte interpretação: pesquisador possui acesso a uma amostra de $n$ unidades sorteadas ao acaso de uma população de interesse, para os quais ele observa um vetor de $k$ características $X_i$, $i=1,\ldots, n$.
+		\item Se população é {\color{blue}grande}, o conceito adequado para modelar o experimento é o de {\color{blue}amostragem aleatória}.
+		\begin{halfwideitemize}
+			\item \textbf{Amostragem aleatória}: espaço é $(\prod_{i=1}^n (\mathbb{R}^k), \otimes_{i=1}^n \mathcal{B}(\mathbb{R}^k), \otimes_{i=1}^n G)$.
+			\begin{itemize}
+								\item  $G$ é a lei de probabilidade sobre $(\mathbb{R}^k, \mathcal{B}(\mathbb{R}^k))$ que reflete a distribuição conjunta das características de interesse na população.
+				\item Observações $\boldsymbol{X} = (X_1,\ldots, X_n)$ são tais que cada $X_i$ tem a mesma distribuição que $G$, e as observações $X_i$ são independentes  entre si (o valor amostrado na $i$-ésima posição não exibe associação com o valor amostrado em outra posição $j\neq i$)
+			\end{itemize}
+			\item Quando o experimento é definido por modelagem aleatória, modelo se resume a uma família de distribuições para a característica de interesse na população.
+			\begin{itemize}
+				\item Em outras palavras, modelo é da forma $\mathcal{P} = \{\otimes_{i=1}^n G : G \in \mathcal{G}\}$, onde $\mathcal{G}$ é uma família de distribuições em $(\mathbb{R}^k, \mathcal{B}(\mathbb{R}^k))$
+			\end{itemize}
+
+	
+		\end{halfwideitemize}
+	\end{itemize}
+		\end{frame}
+		
+		\begin{frame}{Exemplo}
+		\begin{itemize}
 			\item {\color{blue}Exemplo:} pesquisador observa uma variável escalar, e supõe que tenha sido amostrada de uma distribuição normal com média desconhecida e variância unitária.
 			\begin{halfwideitemize}
 				\item Quem é $\mathcal{P}$?
 				\item E se a variância é desconhecida?
 				\item E se pesquisador possui $n$ observações independentes?
 			\end{halfwideitemize}
-		\end{halfwideitemize}
+		\end{itemize}
+	\end{frame}
+
+	
+	\begin{frame}{Modelos}
+	\begin{itemize}
+		\item Um modelo $\mathcal{P}$ é dito de {\color{blue}dimensão finita} quando o espaço de parâmetros pode ser identificado com um subconjunto de $\mathbb{R}^s$, $ s\in \mathbb{N}$.
+		\begin{itemize}
+			\item Uma amostra aleatória de uma população normal com média e variância desconhecidas define um modelo cujo espaço de parâmetros da forma $\mathbb{R}\times \mathbb{R}_+$.
+		\end{itemize}
+				\item Um modelo $\mathcal{P}$ é dito de {\color{blue}dimensão infinita} quando ele não tem dimensão finita.
+		\begin{itemize}
+			\item Uma amostra aleatória de uma população cuja distribuição admite uma densidade com respeito à medida de Lebesgue simétrica em relação à média define um modelo de dimensão infinita.
+		\end{itemize}
 		
+	\end{itemize}
 	\end{frame}
-	\begin{frame}{Hipóteses técnicas}
+	\begin{frame}{Definição de estatística}
 		\begin{halfwideitemize}
-			\item No que segue, supomos que existe uma medida $\mu$ tal que todo elemento de $P_\theta \in \mathcal{P}$ admite densidade $p_\theta$ com respeito a $\mathcal{\mu}$.
-			\begin{halfwideitemize}
-				\item Para famílias de distribuições discretas, $\mu$ é a medida de contagem e $p_\theta$ são as f.m.p.
-				\item Para famílias de distribuições contínuas, $\mathcal{\mu}$ é a medida de Lebesgue e $p_\theta$ são as f.d.p.
-			\end{halfwideitemize}
-			\item Uma estatística é uma transformação (mensurável) da amostra, i.e. uma função $T(\boldsymbol{X})$.
-			\item No que segue, vamos supor que, para qualquer estatística, as distribuições condicionais de $\boldsymbol{X}|T(\boldsymbol{X})$ sob cada $P_\theta$ admitem uma  {\color{blue}densidade condicional (regular)} $p_{\boldsymbol{X}|T(\boldsymbol{X}),\theta}(\cdot|\cdot)$.
-			\begin{halfwideitemize}
-				\item Essa condição limita a complexidade de $(\Omega, \Sigma)$.
-				\item Na maior parte dos casos práticos é satisfeita.
-				\item Condições suficientes em \citet[Seção 4.1.3]{Durrett2019} (fora do escopo do curso).
-			\end{halfwideitemize}
+			
+			\item Uma {\color{blue}estatística} é uma transformação mensurável da amostra, i.e. uma função $T:\Omega \mapsto \mathbb{T}$ em que $T^{-1}(B) \in \Sigma$,  para todo  $B \in \mathcal{T}$, onde $\mathcal{T}$ é uma $\sigma$-álgebra sobre o espaço $\mathbb{T}$.
+			\begin{itemize}
+				\item Nesse caso $T(\boldsymbol{X})$ define uma variável aleatória com valores em $\mathbb{T}$.
+			\end{itemize}
+		
 		\end{halfwideitemize}
 	\end{frame}
+	
+	\begin{frame}{Condições técnicas}
+		\begin{itemize}
+			\item No que segue, supomo que existe uma medida $\mu$ $\sigma$-finita tal que todo elemento $P_\theta \in \mathcal{P}$ admite densidade $p_\theta$ com respeito a $\mathcal{\mu}$ (nesse caso, dizemos que a família $\mathcal{P}$ é \emph{dominada}).
+			\begin{halfwideitemize}
+				\item Para famílias de distribuições ``discretas'' sobre o espaço $(\Omega,2^\Omega)$ em que $\Omega$ é enumerável, $\mu$ é a medida de contagem e $p_\theta$ são as f.m.p. definidas por $p_{\theta}(x) = P_{\theta}(\{x\})$ para todo $x \in \Omega$.
+				\item Para famílias de distribuições ``contínuas'' sobre $(\mathbb{R}^s, \mathcal{B}(\mathbb{R}^s))$, $\mathcal{\mu}$ é a medida de Lebesgue sobre $\mathcal{B}(\mathbb{R}^s)$ e $p_\theta$ são as f.d.p.
+			\end{halfwideitemize}
+
+		\item No que segue, vamos supor também que, para qualquer estatística, as distribuições condicionais de $\boldsymbol{X}|T(\boldsymbol{X})$ sob cada $P_\theta$ admitem uma  {\color{blue}densidade condicional (regular)} $p_{\boldsymbol{X}|T(\boldsymbol{X}),\theta}(\cdot|\cdot)$.
+	\begin{halfwideitemize}
+		\item Essa condição limita a complexidade de $(\Omega, \Sigma)$.
+		\item Na maior parte dos casos práticos é satisfeita.
+		\item Condições suficientes em \citet[Seção 4.1.3]{Durrett2019} (fora do escopo do curso).
+	\end{halfwideitemize}
+			\end{itemize}
+	\end{frame}
+		\begin{transitionframe}
+		\centering 
+		\Huge{Suficiência Estatística}
+	\end{transitionframe}
+	
 	
 	\begin{frame}{Estatística suficiente}
 		\begin{halfwideitemize}
@@ -194,7 +239,7 @@ natbib=true
 				
 			\end{block}
 			\item Uma vez que conhecemos $T(\boldsymbol{X})$, não há mais informação adicional sobre $\theta$ na amostra.
-			\item Sob nossas condições técnicas, a definição é equivalente a que a densidade condicional $p_{\boldsymbol{X}|\boldsymbol{T}(X),\theta}$ não dependa de $\theta$.
+			\item Sob nossas condições, a definição é equivalente a que a densidade condicional $p_{\boldsymbol{X}|\boldsymbol{T}(X),\theta}$ não dependa de $\theta$.
 		\end{halfwideitemize}
 		
 	\end{frame}
@@ -207,7 +252,7 @@ natbib=true
 		\begin{equation*}
 			\begin{aligned}         
 				P_\theta[X_1 = x, X_2 = y| X_1 +  X_2 =  2 t] = \frac{P_\theta[X_1 = x, X_2 = y, X_1 +  X_2 =  2 t]}{P_\theta[X_1 +  X_2 =  2 t]} = \\
-				= \frac{\theta^{x+y} (1-\theta)^{2-x-y}\mathbf{1}\{x+y = 2t\}}{\binom{2}{2t} \theta^{2t}(1-\theta)^{1-2t}}= \mathbf{1}\{x+y = 2t\} \, ,
+				= \frac{\theta^{x+y} (1-\theta)^{2-x-y}\mathbf{1}\{x+y = 2t\}}{\binom{2}{2t} \theta^{2t}(1-\theta)^{1-2t}}= \frac{1}{\binom{2}{2t} } \mathbf{1}\{x+y = 2t\} \, ,
 			\end{aligned}
 		\end{equation*}
 		de onde concluímos que $(X_1+X_2)/2$ é suficiente.
@@ -247,7 +292,7 @@ natbib=true
 			\begin{halfwideitemize}
 				\item De fato, a própria amostra, $T(\boldsymbol{X})=\boldsymbol{X}$, é sempre uma estatística suficiente.
 			\end{halfwideitemize}
-			\item Note que, se $T$ é estatística suficiente e $T = M\circ U$, então $U$ é estatística suficiente.
+			\item Note que, se $T$ é estatística suficiente e $T = M\circ U$, então $U$ é estatística suficiente (pois $\sigma(T)\subseteq \sigma(U)$).
 			\begin{halfwideitemize}
 				\item Estatísticas mais ``finas'' que uma estatística suficiente são estatísticas suficientes.
 			\end{halfwideitemize}
