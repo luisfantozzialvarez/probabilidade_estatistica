@@ -207,7 +207,7 @@ natbib=true
 	$$s_n(y) = \begin{cases}
 		0 & \text{se } y = 0\\
 		\frac{(j-1) n}{2^n}\,, &  \text{se } y \in \left(	\frac{(j-1) n}{2^n} , 	\frac{j n}{2^n}\right], j \in \{1,\ldots, 2^n\} \\
-		n,, & \text{se } y > n
+		n, & \text{se } y > n
 	\end{cases}$$
 	\item Sequência é tal que $f_n \uparrow f$.
 \end{itemize}
@@ -404,6 +404,7 @@ natbib=true
 	
 			No que segue, tome $X \in \mathcal{L}^1(\Omega,\Sigma,\mathbb{P})$, e $\mathcal{F}$ e $\mathcal{G}$ sub-$\sigma$-álgebras de $\Sigma$.
 	\begin{lemma}
+		\footnotesize
 			\begin{enumerate}
 			\item \textbf{Preservação da Esperança:}  
 			Se \( Y \) é qualquer versão de \( \mathbb{E}(X \mid \mathcal{G}) \), então \( \mathbb{E}(Y) = \mathbb{E}(X) \).
@@ -419,20 +420,16 @@ natbib=true
 			\item \textbf{Positividade:}  
 			Se \( X \geq 0 \), então \( \mathbb{E}(X \mid \mathcal{G}) \geq 0 \), quase certamente.
 			
-			\item \textbf{Convergência Monótona (cMON):}  
+			\item \textbf{Convergência Monótona:}  
 			Se \( 0 \leq X_n \uparrow X \), então \( \mathbb{E}(X_n \mid \mathcal{G}) \uparrow \mathbb{E}(X \mid \mathcal{G}) \), quase certamente.
 			
-			\item \textbf{Convergência Dominada (cDOM):}  
+			\item \textbf{Convergência Dominada:}  
 			Se \( |X_n(\omega)| \leq V(\omega) \) para todo \( n \), \( \mathbb{E}[V] < \infty \), e \( X_n \to X \) quase certamente, então
 			\[
 			\mathbb{E}(X_n \mid \mathcal{G}) \to \mathbb{E}(X \mid \mathcal{G}), \quad \text{quase certamente.}
 			\]
 			
-			\item \textbf{Desigualdade de Jensen (cJENSEN):}  
-			Se \( \phi: \mathbb{R} \to \mathbb{R} \) é convexa e \( \mathbb{E}|\phi(X)| < \infty \), então
-			\[
-			\mathbb{E}[\phi(X) \mid \mathcal{G}] \geq \phi(\mathbb{E}[X \mid \mathcal{G}]), \quad \text{quase certamente.}
-			\]
+		
 		\end{enumerate}
 	\end{lemma}
 		
@@ -442,24 +439,29 @@ natbib=true
 	
 	
 		\begin{frame}{Esperança condicional: propriedades básicas}
-		
+		\footnotesize 
 		No que segue, tome $X \in \mathcal{L}^1(\Omega,\Sigma,\mathbb{P})$, e $\mathcal{F}$ e $\mathcal{G}$ sub-$\sigma$-álgebras de $\Sigma$.
 		\begin{lemma}
 			\begin{enumerate}
-			\item[7] \textbf{Propriedade da Torre:}  
+					\item[7] \textbf{Desigualdade de Jensen:}  
+				Se \( \phi: \mathbb{R} \to \mathbb{R} \) é convexa e \( \mathbb{E}|\phi(X)| < \infty \), então
+				\[
+				\mathbb{E}[\phi(X) \mid \mathcal{G}] \geq \phi(\mathbb{E}[X \mid \mathcal{G}]), \quad \text{quase certamente.}
+				\]
+			\item[8] \textbf{Propriedade da Torre:}  
 			Se \( \mathcal{H} \) é uma sub-\(\sigma\)-álgebra de \( \mathcal{G} \), então
 			\[
 			\mathbb{E}[\mathbb{E}(X \mid \mathcal{G}) \mid \mathcal{H}] = \mathbb{E}(X \mid \mathcal{H}), \quad \text{quase certamente}.
 			\]
 			
-			\item[8] \textbf{'Extraindo o que é Conhecido':}  
+			\item[9] \textbf{'Extraindo o que é Conhecido':}  
 			Se \( Z \) é \( \mathcal{G} \)-mensurável e limitada, então
 			\[
 			\mathbb{E}[ZX \mid \mathcal{G}] = Z \mathbb{E}[X \mid \mathcal{G}], \quad \text{quase certamente}.
 			\]
 				(resultado também vale se $X\in L^p$ e $Z \in L^q$, com $p,q\geq1$ e $\frac{1}{q}  +\frac{1}{p} =1$).
 			
-			\item[9] \textbf{Papel da Independência:}  
+			\item[10] \textbf{Papel da Independência:}  
 			Se \( \mathcal{H} \) é independente de \( \sigma(X, \mathcal{G}) \), então
 			\[
 			\mathbb{E}[X \mid \sigma(\mathcal{G}, \mathcal{H})] = \mathbb{E}(X \mid \mathcal{G}), \quad \text{quase certamente}.

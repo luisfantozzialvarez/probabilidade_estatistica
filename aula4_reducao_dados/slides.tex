@@ -91,7 +91,7 @@ natbib=true
 
 \author{Luis Antonio Fantozzi Alvarez}
 \title{Probabilidade Estatística}
-\subtitle{Princípios de Redução de Dados e Teoria da Decisão Estatística}
+\subtitle{Princípios de Redução de Dados e Elementos da Teoria da Decisão Estatística}
 %\logo{aa}
 
 
@@ -197,29 +197,43 @@ natbib=true
 	\begin{frame}{Definição de estatística}
 		\begin{halfwideitemize}
 			
-			\item Uma {\color{blue}estatística} é uma transformação mensurável da amostra, i.e. uma função $T:\Omega \mapsto \mathbb{T}$ em que $T^{-1}(B) \in \Sigma$,  para todo  $B \in \mathcal{T}$, onde $\mathcal{T}$ é uma $\sigma$-álgebra sobre o espaço $\mathbb{T}$.
+			\item Uma {\color{blue}estatística} é uma transformação mensurável da amostra, i.e. uma função $T:\Omega \mapsto \mathcal{T}$ em que $T^{-1}(B) \in \Sigma$,  para todo  $B \in \mathcal{S}$, onde $\mathcal{S}$ é uma $\sigma$-álgebra sobre o espaço $\mathcal{T}$.
 			\begin{itemize}
-				\item Nesse caso $T(\boldsymbol{X})$ define uma variável aleatória com valores em $\mathbb{T}$.
+				\item Nesse caso $T(\boldsymbol{X})$ define uma variável aleatória com valores em $\mathcal{T}$.
 			\end{itemize}
 		
 		\end{halfwideitemize}
 	\end{frame}
 	
-	\begin{frame}{Condições técnicas}
+	\begin{frame}{Família dominada}
 		\begin{itemize}
-			\item No que segue, supomo que existe uma medida $\mu$ $\sigma$-finita tal que todo elemento $P_\theta \in \mathcal{P}$ admite densidade $p_\theta$ com respeito a $\mathcal{\mu}$ (nesse caso, dizemos que a família $\mathcal{P}$ é \emph{dominada}).
+			\item No que segue, supomso que existe uma medida $\mu$ $\sigma$-finita tal que todo elemento $P_\theta \in \mathcal{P}$ admite densidade $p_\theta$ com respeito a $\mathcal{\mu}$ (nesse caso, dizemos que a família $\mathcal{P}$ é \emph{dominada}).
 			\begin{halfwideitemize}
-				\item Para famílias de distribuições ``discretas'' sobre o espaço $(\Omega,2^\Omega)$ em que $\Omega$ é enumerável, $\mu$ é a medida de contagem e $p_\theta$ são as f.m.p. definidas por $p_{\theta}(x) = P_{\theta}(\{x\})$ para todo $x \in \Omega$.
+				\item Para famílias de distribuições ``discretas'' sobre o espaço $(\Omega,2^\Omega)$, com $\Omega$ é enumerável, $\mu$ é a medida de contagem e $p_\theta$ são as f.m.p. definidas por $p_{\theta}(x) = P_{\theta}(\{x\})$ para todo $x \in \Omega$.
 				\item Para famílias de distribuições ``contínuas'' sobre $(\mathbb{R}^s, \mathcal{B}(\mathbb{R}^s))$, $\mathcal{\mu}$ é a medida de Lebesgue sobre $\mathcal{B}(\mathbb{R}^s)$ e $p_\theta$ são as f.d.p.
 			\end{halfwideitemize}
 
-		\item No que segue, vamos supor também que, para qualquer estatística, as distribuições condicionais de $\boldsymbol{X}|T(\boldsymbol{X})$ sob cada $P_\theta$ admitem uma  {\color{blue}densidade condicional (regular)} $p_{\boldsymbol{X}|T(\boldsymbol{X}),\theta}(\cdot|\cdot)$.
-	\begin{halfwideitemize}
-		\item Essa condição limita a complexidade de $(\Omega, \Sigma)$.
-		\item Na maior parte dos casos práticos é satisfeita.
-		\item Condições suficientes em \citet[Seção 4.1.3]{Durrett2019} (fora do escopo do curso).
-	\end{halfwideitemize}
+	
 			\end{itemize}
+	\end{frame}
+	\begin{frame}{Condição técnica}
+		\begin{itemize}
+		 	\item No que segue, vamos supor também que, para qualquer estatística, as distribuições condicionais de $\boldsymbol{X}|T(\boldsymbol{X})$ sob cada $P_\theta$ admitem uma  {\color{blue}probabilidade condicional regular} $(A, t) \mapsto {P}_{\theta}[\boldsymbol{X}\in A|T(\boldsymbol{X}) = t]$.
+			\begin{halfwideitemize}
+				\item Para cada $A \in \Sigma$, $\omega \mapsto {P}_{\theta}[\boldsymbol{X}\in A|T(\boldsymbol{X}) = T(\omega)]$ é uma versão da probabilidade condicional ${P}_{\theta}[A|\sigma({T}(\boldsymbol{X}))]$; e para cada $\omega \in \Omega$, $A \mapsto {P}_{\theta}[A|T(\boldsymbol{X}) = T(\omega)]$ é uma medida de probabilidade sobre $\Sigma$.
+				\item Essa condição limita a complexidade de $(\Omega, \Sigma)$.
+				\item Na maior parte dos casos práticos é satisfeita.
+				\item Condições suficientes em \citet{Durrett2019} (fora do escopo do curso).
+			\end{halfwideitemize}
+			\item Exemplo: no caso discreto, podemos tomar
+			${P}_{\theta}[\boldsymbol{X} \in A|T(\boldsymbol{X}) = t] = \sum_{a \in A} {P}_{\theta}[\{a\}|T(\boldsymbol{X}) = t]$, onde 
+		\end{itemize}
+		\vspace{0.5em}
+			$${P}_{\theta}[\{a\}|T(\boldsymbol{X}) = t] = \begin{cases}
+			\frac{P_\theta(\{a\})}{{P}_\theta[\{T(\boldsymbol{X}) = t\}]},&  \text{se} T(a) = t \text{ e }  P_\theta[\{T(\boldsymbol{X}) = t\}] > 0\\
+			0, & \text{se} T(a) \neq t \text{ e }  P_\theta[\{T(\boldsymbol{X}) = t\}] > 0 \\
+			P_\theta(\{a\}), & \text{se }  P_\theta[\{T(\boldsymbol{X}) = t\}] = 0
+		\end{cases}$$
 	\end{frame}
 		\begin{transitionframe}
 		\centering 
@@ -239,7 +253,7 @@ natbib=true
 				
 			\end{block}
 			\item Uma vez que conhecemos $T(\boldsymbol{X})$, não há mais informação adicional sobre $\theta$ na amostra.
-			\item Sob nossas condições, a definição é equivalente a que a densidade condicional $p_{\boldsymbol{X}|\boldsymbol{T}(X),\theta}$ não dependa de $\theta$.
+			\item 
 		\end{halfwideitemize}
 		
 	\end{frame}
@@ -257,12 +271,12 @@ natbib=true
 		\end{equation*}
 		de onde concluímos que $(X_1+X_2)/2$ é suficiente.
 	\end{frame}
-	\begin{frame}{Lema da fatoração de Neyman-Fisher}
-		\begin{lemma}
+	\begin{frame}{Teorema da fatoração de Neyman-Fisher}
+		\begin{theorem}
 			$T(\boldsymbol{X})$ é suficiente para $\theta$ se, e somente se, existem funções $h_\theta$, $\theta \in \Theta$, e $c$ tais que, para todo $\theta \in \Theta$:
 			
 			$$p_\theta(\boldsymbol{x}) = h_\theta(T(\boldsymbol{x}) )c(\boldsymbol{x}), \quad \mu\text{-q.t.p.}$$
-		\end{lemma}
+		\end{theorem}
 		
 		\begin{halfwideitemize}
 			\item Critério conveniente para encontrar uma estatística suficiente.
@@ -270,9 +284,32 @@ natbib=true
 				\item No caso discreto, ``$\mu\text{-q.t.p.}$'' pode ser lido como para todo $\boldsymbol{x}$.
 				\item No caso contínuo, condição pode ser violada num conjunto de medida de Lebesgue zero (por exemplo, conjuntos enumeráveis de pontos).
 			\end{halfwideitemize}
+			\item Veremos demonstração no caso discreto.
+			\begin{itemize}
+				\item Demonstração no caso geral é mais complexo, pois requer resultados adicionais sobre famílias dominadas.
+			\end{itemize}
 		\end{halfwideitemize}
 		
 	\end{frame}
+	
+	\begin{frame}{Teorema da fatoração (caso discreto)}
+		No que segue, considere uma família $\mathcal{P}$ sobre o espaçp $(\Omega, 2^\Omega)$, onde $\Omega$ é enumerável.
+		\begin{proof}
+			\footnotesize
+			$\implies$ Suponha que $T(\boldsymbol{X})$ é suficiente. Fixe $x \in \Omega$. Observe que:
+			
+			\begin{align*}
+			p_{\theta}(x) = P_\theta[\{ x\}] =  P_\theta[\{x\} \cap \{T(\boldsymbol{X})= T(x)\}] =\\
+			  \mathbb{E}_\theta[P_\theta[\{x\}|T(\boldsymbol{X})] \mathbf{1}_{\{T(\boldsymbol{X}) = T(x)\}}] =\\ \sum_{\omega \in \Omega}  P_\theta[\{x\}|T(\boldsymbol{X}) = T(\omega)] \mathbf{1}_{\{T(\boldsymbol{X}) = T(x)\}}(\omega) p_\theta(\{\omega\}) = \\
+			  	 \underbrace{P_\theta[\{x\}|T(\boldsymbol{X})=T(x)]}_{c(x)} \underbrace{\sum_{\omega \in \Omega: T(\omega)= T(x)} p_\theta(\{\omega\})}_{=P_\theta[\{T(\boldsymbol{X}) = T(x)\}] = h_{\theta}(T(x))}
+			\end{align*}
+			$\impliedby$ Suponha que $p_\theta$ é fatorável. Considere $\tilde{P}[A|T(\boldsymbol{X}) = t] = \frac{\sum_{a\in A}c(a) \mathbf{1}\{T(a) = t\}}{\sum_{\omega \in \Omega : T(\omega) = t} c(\omega)}$ se $\sum_{\omega \in \Omega : T(\omega) = t} c(\omega)>0$ e $0$ do contrário. Fácil verificar que $\tilde{P}$ define uma probabilidade condicional regular para todo $\theta$.
+		\end{proof}
+		
+		
+		
+
+\end{frame}
 	
 	\begin{frame}{Exemplo}
 		Suponha que o pesquisador observe uma amostra iid $X_1,X_2, \ldots, X_n$ de uma distribuiçao exponencial com parâmetro $\lambda > 0$ desconhecido.  Neste caso, observe que:
@@ -311,7 +348,7 @@ natbib=true
 			Considere uma estatística $T$ tal que:
 			$$T(\boldsymbol{x}) = T(\boldsymbol{y}) \iff \boldsymbol{y} \in D(\boldsymbol{x}) , $$
 			onde
-			$$D(\boldsymbol{x}) = \{\boldsymbol{y}:  p_\theta(\boldsymbol{y}) = p_\theta(\boldsymbol{x}) h(x,y), \quad \forall \theta \in \Theta  \text{ e algum } h(x,y) > 0\}\, .$$
+			$$D(\boldsymbol{x}) = \{\boldsymbol{y}:  p_\theta(\boldsymbol{y}) = p_\theta(\boldsymbol{x}) h(x,y) \quad \forall \theta \in \Theta  \text{ e algum } h(x,y) > 0\}\, .$$
 			
 			Então $T$ é suficiente minimal.
 		\end{block}
@@ -402,7 +439,7 @@ natbib=true
 			$$\theta = \theta' \iff P_{\theta} = P_{\theta'}$$
 		\end{block}
 		\begin{halfwideitemize}
-			\item Identificação é o requerimento básico para estimação pontual.
+			\item Identificação é o requerimento básico para estimação pontual (mais à frente).
 			\begin{halfwideitemize}
 				\item Requer a existência de um mapa 1-1 entre parâmetro e distribuição amostral.
 			\end{halfwideitemize}
@@ -440,26 +477,8 @@ natbib=true
 	\appendix
 	\begin{transitionframe}
 		\centering
-		\Huge{Tópicos adicionais}
+		\Huge{Elementos de decisão estatística}
 	\end{transitionframe}
-	\begin{frame}{Momentos de $T$}
-		\begin{theorem}
-			Para uma família exponencial em sua parametrização natural, e $\eta \in \operatorname{int}(\Xi)$, temos que, para toda $h$ tal que
-			
-			$$\int_{\Omega} |h(\boldsymbol{x})| p_{\boldsymbol{\eta}'}(\boldsymbol{x})\mu(d\boldsymbol{x}) < \infty \, ,$$
-			para todo $\boldsymbol{\eta}'$ numa vizinhança de $\eta$; a função:
-			
-			$$\boldsymbol{\psi} \mapsto \int_{\Omega} h(\boldsymbol{x})p_{\boldsymbol{\psi}}(\boldsymbol{x})\mu(d\boldsymbol{x}), $$
-			é diferenciável em $\eta$, com derivada dada por diferenciação dentro da integral.
-		\end{theorem}
-		
-		\begin{halfwideitemize}
-			\item Aplicação do resultado: momentos de $T$.
-		\end{halfwideitemize}
-		
-		
-	\end{frame}
-	
 	\begin{frame}{Teorema de Rao-Blackwell}
 		\begin{halfwideitemize}
 			\item Considere o problema de estimar um parâmetro $\psi(\theta)$ {\color{blue}escalar} de uma família $P_\theta$.
