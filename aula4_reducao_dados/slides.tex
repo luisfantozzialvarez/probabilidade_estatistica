@@ -159,7 +159,7 @@ natbib=true
 								\item  $G$ é a lei de probabilidade sobre $(\mathbb{R}^k, \mathcal{B}(\mathbb{R}^k))$ que reflete a distribuição conjunta das características de interesse na população.
 				\item Observações $\boldsymbol{X} = (X_1,\ldots, X_n)$ são tais que cada $X_i$ tem a mesma distribuição que $G$, e as observações $X_i$ são independentes  entre si (o valor amostrado na $i$-ésima posição não exibe associação com o valor amostrado em outra posição $j\neq i$)
 			\end{itemize}
-			\item Quando o experimento é definido por modelagem aleatória, modelo se resume a uma família de distribuições para a característica de interesse na população.
+			\item Quando o experimento é definido por amostragem aleatória, modelo se resume a uma família de distribuições para as características de interesse na população.
 			\begin{itemize}
 				\item Em outras palavras, modelo é da forma $\mathcal{P} = \{\otimes_{i=1}^n G : G \in \mathcal{G}\}$, onde $\mathcal{G}$ é uma família de distribuições em $(\mathbb{R}^k, \mathcal{B}(\mathbb{R}^k))$
 			\end{itemize}
@@ -185,11 +185,11 @@ natbib=true
 	\begin{itemize}
 		\item Um modelo $\mathcal{P}$ é dito de {\color{blue}dimensão finita} quando o espaço de parâmetros pode ser identificado com um subconjunto de $\mathbb{R}^s$, $ s\in \mathbb{N}$.
 		\begin{itemize}
-			\item Uma amostra aleatória de uma população normal com média e variância desconhecidas define um modelo cujo espaço de parâmetros da forma $\mathbb{R}\times \mathbb{R}_+$.
+			\item Amostragem aleatória de uma população normal com média e variância desconhecidas define um modelo cujo espaço de parâmetros é da forma $\mathbb{R}\times \mathbb{R}_+$.
 		\end{itemize}
 				\item Um modelo $\mathcal{P}$ é dito de {\color{blue}dimensão infinita} quando ele não tem dimensão finita.
 		\begin{itemize}
-			\item Uma amostra aleatória de uma população cuja distribuição admite uma densidade com respeito à medida de Lebesgue simétrica em relação à média define um modelo de dimensão infinita.
+			\item Amostragem aleatória de uma população cuja distribuição admite uma densidade com respeito à medida de Lebesgue simétrica em relação à média define um modelo de dimensão infinita.
 		\end{itemize}
 		
 	\end{itemize}
@@ -474,26 +474,154 @@ natbib=true
 			Numa família exponencial {\color{blue}de posto cheio}, $T(\boldsymbol{X})$ é uma estatística suficiente completa.         
 		\end{theorem}
 	\end{frame}
-	\appendix
+
 	\begin{transitionframe}
 		\centering
 		\Huge{Elementos de decisão estatística}
 	\end{transitionframe}
-	\begin{frame}{Teorema de Rao-Blackwell}
-		\begin{halfwideitemize}
-			\item Considere o problema de estimar um parâmetro $\psi(\theta)$ {\color{blue}escalar} de uma família $P_\theta$.
-			\item Seja $L(\theta; \hat \delta)$ a perda incorrida em utilizar o estimador $\hat \delta$ para estimar $\psi(\theta)$.
-			\item A perda esperada, ou risco, é dada por $R_\theta(\hat \delta) = \mathbb{E}_\theta[L(\theta;\hat{\delta})]$.
-		\end{halfwideitemize}
-		\begin{theorem}[Rao-Blackwell]
-			Suponha que $z \mapsto L(\theta, z)$ é convexa e não negativa, para todo $\theta \in \Theta$. Dado um estimador $\hat \delta$ de $\psi(\theta)$ e $T$ uma estatística suficiente integrável de $\theta$, temos que:
-			\begin{halfwideenumerate}
-				\item $S = \mathbb{E}_\theta[\hat{\delta}|T]$ define um estimador.
-				\item $R_{\theta}(S) \leq R_{\theta}(\hat \delta)$ para todo $\theta \in \Theta$.
-				\item Se $\hat \delta$ é não viciado, $S$ também o é.
-			\end{halfwideenumerate}
-		\end{theorem}
+	
+	\begin{frame}{O problema de decisão estatística}
+	\begin{itemize}
+		\item Considere um experimento estatístico $(\Omega,\Sigma, P)$, e um modelo de leis de probabilidade candidatas para $P$, $\mathcal{P} = \{P:\theta \in \Theta\}$, com $P=P_{\theta_0}$ para algum $\theta_0 \in \Theta$.
+		\item Suponha que o pesquisador esteja interessado em realizar inferência sobre um parâmetro  escalar $\psi(\theta_0) \in \mathbb{R}$.
+		\begin{itemize}
+					\item Após observar $\boldsymbol{X} =\operatorname{Id}_\Omega$, pesquisador deve produzir  estimativa para $\psi(\theta_0)$.
+		\end{itemize}
+		\item A {\color{blue}perda} que o pesquisador incorre em afirmar um valor $c$ a $\psi(\theta_0)$ quando $\theta_0 = \theta$ é dada por $L(\theta,c)$, com $L: \Theta \times \mathbb{R} \mapsto \mathbb{R}_+$.
+		\begin{itemize}
+			\item Perda quadrática: $L(\theta,c)= (c-\psi(\theta))^2$.
+			\item Perda absoluta: $L(\theta,c) = |c-\psi(\theta)|$.
+		\end{itemize}
+		\item Uma {\color{blue}regra de decisão estatística} ou estimador é uma transformação mensurável $\delta:\Omega \mapsto \mathbb{R}$.
+		\begin{itemize}
+			\item Após observar o valor de $\boldsymbol{X}(\omega)$ realizado,  pesquisador reporta a estimativa dada por $\delta(\boldsymbol{X}(\omega))$.
+		\end{itemize}
+		\item A perda esperada ou risco da regra de decisão $\delta$, quando $\theta_0=\theta$, é dada por:
+	$$R(\theta, \delta)=\mathbb{E}_\theta[L(\theta, \delta(\boldsymbol{X}))]$$
+
+	\end{itemize}
 	\end{frame}
+	
+
+
+	
+	\begin{frame}{Escolhendo uma regra de decisão}
+		\begin{itemize}
+			\item Dado que desconhecemos o valor verdadeiro de $\theta_0$, uma regra de comunicação ideal $\delta^*$ numa classe de regras candidatas $\Delta$ deveria ser tal que, para todo $\theta \in \Theta$:
+			$$\delta^* = \inf_{\delta \in \Delta}R(\theta,\delta)\, ,$$
+			\item Infelizmente, se $\Delta$ é irrestrita, problema não possuirá, no geral, solução.
+			\begin{itemize}
+				\item Por exemplo, sob perda quadrática, para todo $\theta \in \Theta$, a regra de decisão $\delta(\boldsymbol{X}) = \psi(\theta)$ atinge risco zero sob $\theta_0=\theta$, o que implica que, a não ser em casos extremos em que $\theta \mapsto \psi(\theta)$ é constante ou $\boldsymbol{X}$ é perfeitamente informativo sobre $\psi(\theta)$, a regra ótima inexistirá $\delta^*$ inexistirá.
+			\end{itemize}
+			\item Dada a inexistência, no geral, de um $\delta^*$ que minimiza o risco uniformemente sobre $\Theta$ quando $\Delta$ é irrestrito, a literatura estatística propõe dois conjuntos soluções alternativas ao problema
+			\begin{enumerate}
+				\item Restringir $\Delta$.
+				\item Minimizar o pior risco sobre $\Theta$ (estimação minimax) ou um risco médio sobre $\Theta$, onde a média se dá com respeito a uma distribuição sobre $\Theta$ (estimadores de Bayes). 
+			\end{enumerate}
+		\end{itemize}
+	\end{frame}
+		\begin{frame}{Restringindo $\Delta$: estimadores não viciados}
+		\begin{itemize}
+			\item Uma restrição bastante comum à classe de estimadores é de que eles não possuam viés.
+			\item Formalmente, um estimador $\delta$ de um parâmetro $\psi(\theta)$ é {\color{blue}não viciado} numa família $\mathcal{P} =\{P_\theta: \theta \in \Theta\}$ de distribuições candidatas se:
+			
+			$$\mathbb{E}_\theta[\delta(\boldsymbol{X})] = \psi(\theta),\quad \forall \theta \in \Theta\, .$$
+			\item Um estimador $\delta$ de $\psi(\theta)$ é dito não viciado de variância uniformemente mínima (numa família $\mathcal{P}$) se:
+			\begin{enumerate}
+				\item $\delta$ é não viciado.
+				\item para qualquer outro estimador $\tilde{\delta}$ de $\psi(\theta)$ não viciado em $\mathcal{P}$:
+				$$\mathbb{V}_\theta[\delta(\boldsymbol{X})] \leq \mathbb{V}_\theta[\tilde{\delta}(\boldsymbol{X})], \quad \forall \theta \in \Theta$$
+			\end{enumerate}			
+			
+			
+			
+		\end{itemize}
+	\end{frame}
+	
+		\begin{frame}{Caracterizando estimadores NVVUM}
+		Um estimador $\delta$ é dito de variância finita em $\mathcal{P}$ se $\mathbb{V}_\theta[\delta(\boldsymbol{X})] < \infty$ para todo $\theta \in \Theta$. 
+		\begin{theorem}
+			Um estimador $\delta$ de variância finita e não viciado para  $\psi(\theta)$ em $\mathcal{P}$ é não viciado de variância uniformemente mínima em $\mathcal{P}$ se, e somente se, para qualquer estimador $U$  de variância finita e não viciado para zero em $\mathcal{P}$:
+			
+			$$\mathbb{E}_\theta[\delta(\boldsymbol{X}) U(\boldsymbol{X})] = 0\, , \quad \forall \theta \in \Theta\, .$$
+		\end{theorem}
+		\begin{corollary}
+			Se um estimador $\delta$ de $\psi(\theta)$ com variância finita é não viciado com variância uniformemente mínima em $\mathcal{P}$, então ele é único.
+		\end{corollary}
+	\end{frame}
+	
+	\begin{frame}{Funções perdas mais gerais}
+	\begin{itemize}
+		\item Estimadores não viciados de variância uniformemente mínima minimizam o risco, sob perda quadrática, uniformemente na classe de estimadores não viciados.
+		\item Será que é possível encontrar estimadores que minimizem o risco uniformemente, na mesma classe, para outras funções perdas?
+		\begin{itemize}
+			\item Resposta dada pelo teorema abaixo.
+		\end{itemize}
+		
+
+		
+		\begin{theorem}
+			Seja $\delta$ um estimador não viciado de um parâmetro $\psi(\theta)$ numa família $\mathcal{P}$, e $T$ uma estatística completa suficiente para $\mathcal{P}$. Então:
+			\begin{enumerate}
+				\item $\phi(\boldsymbol{X}) = \mathbb{E}[\delta|T(\boldsymbol{X})]$ define um estimador não viciado de $\psi(\theta)$, e o único estimador não viciado de $\psi(\theta)$ que é função de $T$.
+				\item $\phi$ minimiza o risco uniformemente na classe de estimadores não viciados de $\psi(\theta)$, para qualquer perda $L(\theta,z)$ convexa no segundo argumento.
+				\item Se $\phi$ possui risco finito para algum $\theta$ e a perda é estritamente convexa no segundo argumento, então $\phi$ é o único estimador que minimiza o risco uniformemente  na classe de estimadores não viciados de $\psi(\theta)$.
+			\end{enumerate}
+		\end{theorem}
+	\end{itemize}
+	\end{frame}
+	
+			\begin{frame}{Limite inferior de Crámer-Rao}
+		\begin{itemize}
+			\item Resultados anteriores nos deram dois métodos para se tentar construir um ENVVUM.
+			\begin{itemize}
+				\item Encontrar $\delta$ resolvendo o ``sistema de equações'': $\mathbb{E}_\theta[\delta(\boldsymbol{X})]=\psi(\theta)$, $\mathbb{E}_\theta[\delta(\boldsymbol{X}) U(\boldsymbol{X})] = 0$ para todo $\theta$ e $U$ não viciado para zero (de variância finita).
+				\item Encontrar um estimador não viciado, uma estatística completa suficiente e calcular a esperança condicional.
+			\end{itemize}
+			\item Uma pergunta alternativa é: se temos um estimador não viciado, será que existe uma condição {\color{blue}suficiente} simples de ser verificada, que quando garantida implica que estimador é ENVVUM?
+			\begin{itemize}
+				\item Resposta é afirmativa, e dada pelo limite inferior de Crámer-Rao.
+				\item Esse limite nos dá a menor variância que um estimador não viciado de um parâmetro em uma família de dimensão finita pode atingir.
+				\item Limite nem sempre é atingível por um estimador, mas, se for o caso, sabemos que ele é ENNVVUM.
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	\begin{frame}{Limite inferior de Crámer-Rao: derivação}
+		\begin{itemize}
+				\item Seja $\mathcal{P} = \{P_\theta : \theta  \in \Theta\}$ uma família (dominada) de dimensão finita, com $\Theta \subseteq \mathbb{R}^s$.
+				\item Suponha que, para todo $\theta \in \operatorname{int}(\Theta)$ e $x \in \Omega$, $\tau \mapsto p_\tau(x)$ é continuamente diferenciável em $\tau = \theta$.
+			\item Considere um estimador $\delta$ não viciado de um parâmetro escalar $\psi(\theta)$.
+			\item Tome um ponto $\theta \in \operatorname{int}(\Theta)$.
+			
+			\item Considere uma direção $\boldsymbol{e} \in \mathbb{R}^s$, $\boldsymbol{e} \neq \boldsymbol{0}$.
+			\item Defina a variável aleatória $S_{\theta,\boldsymbol{e}}(x) = \frac{\nabla_{\tau} p_{\theta_0}(x) \cdot \boldsymbol{e}}{p_{\theta}(x)}$.
+				\item Observe que, como $\int p_{\tau}(x)\mu(dx)=1$ para todo $\tau$, se pudermos diferenciar em $\tau$ por dentro da integral, segue que $\mathbb{E}_{\theta}[S_{\theta,\boldsymbol{e}}(x)] = 0$ e que $\operatorname{cov}_{\theta}(\delta, S_{\theta,\boldsymbol{e}}) = \int\delta(x)  (\nabla_{\tau} p_{\theta}(x) \cdot \boldsymbol{e})  \mu(dx)$.
+				\item Ademais, como $\int \delta(x) p_\tau(x) \mu(dx) =\psi(\tau) $ para todo $\tau$, se pudermos diferenciar por debaixo da integral, segue que $   \operatorname{cov}_{\theta}(\delta, S_{\theta,\boldsymbol{e}}) =\nabla_{\tau}\psi(\theta) \cdot \boldsymbol{e}$
+			
+		\end{itemize}
+
+		
+	
+		
+	\end{frame}
+	
+	\begin{frame}{Derivação (cont)}
+		\begin{itemize}
+			\item Combinando os fatos anteriores com a desigualdade de Cauchy-Schwarz, temos:
+			
+			$$\frac{(\partial_{\tau}\psi(\theta)\cdot \boldsymbol{e})^2}{ \mathbb{V}_\theta[S_{\theta,\boldsymbol{e}}]} \leq \mathbb{V}_{\theta}[\delta]$$
+			onde $\mathbb{V}_\theta[S_{\theta,\boldsymbol{e}}]= \boldsymbol{e}'\mathbb{V}_\theta\left[\partial_\tau \log p_\theta\right]\boldsymbol{e}$, e $\mathbb{V}_\theta\left[\partial_\tau \log p_\theta\right]$ é a matriz de covariância do vetor aleatório $\partial_\tau \log p_\theta = \frac{\partial_\tau p_\theta}{p_\theta}$.
+			\item Não é difícil mostrar que, se $\mathbb{V}_\theta\left[\partial_\tau \log p_\theta\right]$ tem posto cheio, então, maximizando com respeito a $\boldsymbol{e}$, chegamos a:
+			
+				$$ \mathbb{V}_{\theta}[\delta]\geq (\partial_{\tau}\psi(\theta))' I(\theta)^{-1} (\partial_{\tau}\psi(\theta))\, ,$$
+				onde $I(\theta) \coloneqq \mathbb{V}_\theta\left[\partial_\tau \log p_\theta\right]$ é conhecida como informação de Fisher.
+				\begin{itemize}
+					\item Invertibilidade de $I(\theta)$ está relacionada com identificabilidade da família $\{P_\theta\}$.
+					\item Sob condições adicionais de diferenciabilidade, fácil ver que $I(\theta) = -\mathbb{E}_\theta[\frac{\partial^2}{\partial \tau\partial\tau'} \log p_\theta]$.
+				\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
 	\begin{transitionframe}
 		\centering
 		\Huge{Referências}
