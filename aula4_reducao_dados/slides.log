@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.6)  9 FEB 2025 15:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2025.1.6)  12 MAR 2025 13:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1429,7 +1429,7 @@ LaTeX Font Info:    Font shape `T1/lmss/bx/it' in size <7> not available
 ] [13
 
 ]
-Overfull \vbox (3.86356pt too high) detected at line 312
+Overfull \vbox (4.86362pt too high) detected at line 312
  []
 
 [14
@@ -1529,7 +1529,7 @@ Package logreq Info: Writing requests to 'slides.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
  31436 strings out of 474116
- 615878 string characters out of 5743683
+ 615872 string characters out of 5743683
  1941187 words of memory out of 5000000
  53120 multiletter control sequences out of 15000+600000
  725834 words of font info for 143 fonts, out of 8000000 for 9000
@@ -1559,7 +1559,7 @@ lic/lm/lmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy
 /local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></usr/local/texl
 ive/2024/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/local/texlive/2024/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on slides.pdf (38 pages, 430798 bytes).
+Output written on slides.pdf (38 pages, 431016 bytes).
 PDF statistics:
  643 PDF objects out of 1000 (max. 8388607)
  416 compressed objects within 5 object streams

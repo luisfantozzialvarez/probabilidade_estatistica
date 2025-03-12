@@ -303,7 +303,7 @@ natbib=true
 			  \mathbb{E}_\theta[P_\theta[\{x\}|T(\boldsymbol{X})] \mathbf{1}_{\{T(\boldsymbol{X}) = T(x)\}}] =\\ \sum_{\omega \in \Omega}  P_\theta[\{x\}|T(\boldsymbol{X}) = T(\omega)] \mathbf{1}_{\{T(\boldsymbol{X}) = T(x)\}}(\omega) p_\theta(\{\omega\}) = \\
 			  	 \underbrace{P_\theta[\{x\}|T(\boldsymbol{X})=T(x)]}_{c(x)} \underbrace{\sum_{\omega \in \Omega: T(\omega)= T(x)} p_\theta(\{\omega\})}_{=P_\theta[\{T(\boldsymbol{X}) = T(x)\}] = h_{\theta}(T(x))}
 			\end{align*}
-			$\impliedby$ Suponha que $p_\theta$ é fatorável. Considere $\tilde{P}[A|T(\boldsymbol{X}) = t] = \frac{\sum_{a\in A}c(a) \mathbf{1}\{T(a) = t\}}{\sum_{\omega \in \Omega : T(\omega) = t} c(\omega)}$ se $\sum_{\omega \in \Omega : T(\omega) = t} c(\omega)>0$ e $0$ do contrário. Fácil verificar que $\tilde{P}$ define uma probabilidade condicional regular para todo $\theta$.
+			$\impliedby$ Suponha que $p_\theta$ é fatorável. Considere $\tilde{P}[A|T(\boldsymbol{X}) = t] = \frac{\sum_{a\in A}c(a) \mathbf{1}\{T(a) = t\}}{\sum_{\omega \in \Omega : T(\omega) = t} c(\omega)}$ se $\sum_{\omega \in \Omega : T(\omega) = t} c(\omega)>0$ e $S(A)$ do contrário, onde $S$ é uma probabilidade arbitrária sobre $\Omega$. Fácil verificar que $\tilde{P}$ define uma probabilidade condicional regular para todo $\theta$.
 		\end{proof}
 		
 		
