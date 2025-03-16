@@ -1,0 +1,79 @@
+% !TeX document-id = {1c0b4298-276a-4038-8e08-c4a1f4846da7}
+% !TeX TXS-program:bibliography = txs:///biber
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{xcolor}
+\usepackage{nameref}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{float}
+
+\usepackage[
+backend=biber,
+style=authoryear,
+natbib=true
+]{biblatex}
+\addbibresource{../bibliography.bib}
+
+\title{}
+\author{\normalsize Exercícios sobre Redução de Dados}
+\date{}
+\begin{document}
+	\maketitle
+	
+ \paragraph{Exercício 1} Seja $\boldsymbol{X}$ um vetor aleatório $k$-dimensional com distribuição normal $\mathcal{N}(\boldsymbol{\mu},\boldsymbol{\Sigma})$. Mostre que, para qualquer matriz $A$ de tamanho $s \times k$, $A\boldsymbol{X} \sim N(A\boldsymbol{\mu},A\boldsymbol{\Sigma}A')$. \textit{Dica:} use a função característica de uma normal.
+ \paragraph{Exercício 2} Considere o experimento dado pela observação de $n\geq 2$ variáveis aleatórias normais independentes, $X_1$,$X_2$,\ldots, $X_n$ com parâmetro de média $\mu$ comum desconhecido e parâmetro de variância $\sigma^2$ \textbf{conhecido}.
+ 
+ \begin{enumerate}
+ 	\item[a] Qual é o modelo $\mathcal{P}$?
+ 	\item[b] Mostre que $T(X_1,\ldots, X_n) = \frac{X_1+X_2+\ldots+X_n}{n}$ é uma estatística completa suficiente em  $\mathcal{P}$ .
+ 	\item[c] Mostre que $\hat{S}^2 = \frac{\sum_{i=1}^n (X_i- T(X_1,\ldots, X_n))^2}{n-1}$ é ancilar em  $\mathcal{P}$. \textit{Dica:} proceda indutivamente, começando de $n=2$.
+ 	\item[d] Conclua que, para todo valor possível de $\mu$, $T(X_1,\ldots, X_n)$ é independente de $\hat{S}^2$.
+ \end{enumerate}
+ \paragraph{Exercício 3} Considere o experimento dado pela observação de $n$ variáveis aleatórias independentes com distribuição $U[0,\theta]$, com $\theta > 0$ desconhecido.
+ \begin{itemize}
+ 	\item[a] Qual é o modelo $\mathcal{P}$?
+ 	\item[b] Mostre que $X_{(n)} \coloneqq \max_{1\leq i \leq n} X_i$ é estatística suficiente para $\mathcal{P}$.
+ 	\item[c] Mostre que a lei de probabilidade induzida por $X_{(n)}$ admite densidade com respeito à medida de Lebesgue $\lambda$ em $\mathbb{R}_+$ dada por:
+ 	
+ 	$$g_\theta(z) \coloneqq \frac{n z^{n-1}}{\theta^n}\mathbf{1}_{[0,\theta]}(z)$$
+ 	
+ 	\item[d] Mostre que, para qualquer transformação $f: \mathbb{R} \mapsto \mathbb{R}$ tal que $\mathbb{E}_\theta[f(X_{(n)})] = 0$ para todo $\theta > 0$, devemos ter que:
+ 	
+ 	$$\int t^{n-1} f^+(t) \mathbf{1}_{[0,\theta]}\lambda(dt) = \int t^{n-1} f^-(t) \mathbf{1}_{[0,\theta]}\lambda(dt)\, .$$
+ 	
+ 	Pela extensão do lema do $\pi$-sistema vista na Lista 1 do curso de verão, esse fato implicará que:
+ 	
+ 	$$\int t^{n-1} f^+(t) \mathbf{1}_{B}(t)\lambda(dt) = \int t^{n-1} f^-(t) \mathbf{1}_{B}(t)\lambda(dt)\, ,\quad \forall B \in \mathcal{B}(\mathbb{R}_+)\, .$$
+ 	
+ 	Usando o fato acima, mostre que $f(t) = 0$ em $\lambda$-quase-todo ponto. Conclua que $X_{(n)}$ é estatística completa suficiente..
+ 	
+ 	\item[e] Encontre um estimador não viciado de variância uniformemente mínima para $\theta$. \textit{Dica:} $2 X_1$ é estimador não viciado de $\theta$.
+ 	
+ 	
+ \end{itemize}
+ 
+ \paragraph{Exercício 4} Considere uma família exponencial $\{P_\eta : \eta \in \Xi\}$ com respeito a uma medida $\mu$ em que as densidades são da forma:
+ 
+ $$p_\theta(x) = \exp(\eta T(x) - B(\eta)) h(x)\, ,$$
+ com $\xi \in \mathbb{R}$ e $T(x) \in \mathbb{R}$. O espaço $\Xi$ é o conjunto de pontos em que: 
+ 
+ $$\int \exp(\eta T(x)) h(x) \mu(dx) < \infty$$
+ 
+ No que segue, vamos supor que esse conjunto é \textbf{aberto}.
+ 
+ \begin{itemize}
+ 	\item[a]Usando que $p_\eta$ é densidade,  encontre uma expressão fechada para $B(\eta)$.
+ 	\item[b] Mostre que, para todo $\eta \in \Xi$, a função geradora de momentos de $T(X)$ existe numa vizinhança de zero, e é dada, nesta vizinhança, por:
+ 	
+ 	$$M_{T(X)|\eta}(u) =  \exp(B(\eta+u) - B(\eta))$$
+ 	
+ 	\item[c] Mostre que $\mathbb{E}_\eta[T(X)] = B'(\eta)$ para todo $\eta \in \Xi$.
+ 	\item[d] Mostre que a variância de $T(X)$, visto enquanto estimador de  $B'(\eta)$, atinge o limite inferior de Crámer-Rao.
+ \end{itemize}
+\end{document}

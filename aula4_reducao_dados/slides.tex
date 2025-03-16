@@ -266,7 +266,7 @@ natbib=true
 		\begin{equation*}
 			\begin{aligned}         
 				P_\theta[X_1 = x, X_2 = y| X_1 +  X_2 =  2 t] = \frac{P_\theta[X_1 = x, X_2 = y, X_1 +  X_2 =  2 t]}{P_\theta[X_1 +  X_2 =  2 t]} = \\
-				= \frac{\theta^{x+y} (1-\theta)^{2-x-y}\mathbf{1}\{x+y = 2t\}}{\binom{2}{2t} \theta^{2t}(1-\theta)^{1-2t}}= \frac{1}{\binom{2}{2t} } \mathbf{1}\{x+y = 2t\} \, ,
+				= \frac{\theta^{x+y} (1-\theta)^{2-x-y}\mathbf{1}\{x+y = 2t\}}{\binom{2}{2t} \theta^{2t}(1-\theta)^{w-2t}}= \frac{1}{\binom{2}{2t} } \mathbf{1}\{x+y = 2t\} \, ,
 			\end{aligned}
 		\end{equation*}
 		de onde concluímos que $(X_1+X_2)/2$ é suficiente.
@@ -315,7 +315,7 @@ natbib=true
 		Suponha que o pesquisador observe uma amostra iid $X_1,X_2, \ldots, X_n$ de uma distribuiçao exponencial com parâmetro $\lambda > 0$ desconhecido.  Neste caso, observe que:
 		\begin{equation*}
 			\begin{aligned}
-				p_\lambda(x_1,x_2,\ldots x_n) = \prod_{i=1}^n (\lambda e^{-\lambda x} \mathbf{1}\{x>0\}) =\\ =  \lambda^n \exp\left(- \lambda \sum_{i=1}^n x_i\right)\mathbf{1}\{\min_i x_i > 0 \} = h_\lambda \left(\sum_{i=1}^n x_i\right) c(\boldsymbol{x}) \, ,
+				p_\lambda(x_1,x_2,\ldots x_n) = \prod_{i=1}^n (\lambda e^{-\lambda x_i} \mathbf{1}\{x_i>0\}) =\\ =  \lambda^n \exp\left(- \lambda \sum_{i=1}^n x_i\right)\mathbf{1}\{\min_i x_i > 0 \} = h_\lambda \left(\sum_{i=1}^n x_i\right) c(\boldsymbol{x}) \, ,
 			\end{aligned}
 		\end{equation*}
 		de onde concluímos que $(X_1+X_2 + \ldots X_n)/n$ é estatística suficiente.
