@@ -415,7 +415,7 @@ natbib=true
 			\end{halfwideenumerate}
 		\end{block}
 		\begin{halfwideitemize}
-			\item Diversas distribuições conhecidas pertecem a esta família: Gamma, Chi-Quadrado, Beta, Normal, Poisson, Negativo-Binomial.
+			\item Diversas famílias de distribuições conhecidas constituem uma família exponencial: Gamma, Chi-Quadrado, Beta, Normal, Poisson, Negativo-Binomial.
 			\item Propriedade útil: se $\mathcal{P}_1,\ldots, \mathcal{P}_n$ são famílias exponenciais, então $\mathcal{P}^n : = \{\otimes_{i=1}^n P_i: P_i \in \mathcal{P}_i\}$ é uma família exponencial.
 			\begin{wideitemize}
 				\item Consequência: a distribuição amostral de uma amostra aleatória de uma família exponencial também constitui uma família exponencial.
@@ -508,7 +508,7 @@ natbib=true
 	\begin{frame}{Escolhendo uma regra de decisão}
 		\begin{itemize}
 			\item Dado que desconhecemos o valor verdadeiro de $\theta_0$, uma regra de comunicação ideal $\delta^*$ numa classe de regras candidatas $\Delta$ deveria ser tal que, para todo $\theta \in \Theta$:
-			$$\delta^* = \inf_{\delta \in \Delta}R(\theta,\delta)\, ,$$
+			$$R(\theta,\delta^*) = \inf_{\delta \in \Delta}R(\theta,\delta)\, ,$$
 			\item Infelizmente, se $\Delta$ é irrestrita, problema não possuirá, no geral, solução.
 			\begin{itemize}
 				\item Por exemplo, sob perda quadrática, para todo $\theta \in \Theta$, a regra de decisão $\delta(\boldsymbol{X}) = \psi(\theta)$ atinge risco zero sob $\theta_0=\theta$, o que implica que, a não ser em casos extremos em que $\theta \mapsto \psi(\theta)$ é constante ou $\boldsymbol{X}$ é perfeitamente informativo sobre $\psi(\theta)$, a regra ótima $\delta^*$ inexistirá.
@@ -582,7 +582,7 @@ natbib=true
 			\begin{itemize}
 				\item Resposta é afirmativa, e dada pelo limite inferior de Crámer-Rao.
 				\item Esse limite nos dá a menor variância que um estimador não viciado de um parâmetro em uma família de dimensão finita pode atingir.
-				\item Limite nem sempre é atingível por um estimador, mas, se for o caso, sabemos que ele é ENNVVUM.
+				\item Limite nem sempre é atingível por um estimador, mas, se for o caso, sabemos que ele é ENVVUM.
 			\end{itemize}
 		\end{itemize}
 	\end{frame}
