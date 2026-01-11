@@ -51,10 +51,10 @@ natbib=true
  
   \paragraph{Exercício 4} No que segue, sejam $X_n$ e $Y_n$ duas sequências de variáveis aleatórias definidas num mesmo espaço de probabilidade, e $a_n$ e $b_n$ duas sequências de números reais. Mostre que:
   \begin{enumerate}
-  	\item $X_n = O_P(1)$ se e somente se existe uma sequência de números reais $\epsilon_n \uparrow \infty$ tais que $\lim_{n \to \infty} \mathbb{P}[|X_n|>\epsilon_n ] = 0$.
-  	\item Se $X_n = O_P(a_n)$ e $a_n \downarrow 0$, então $Y_n = o_P(1)$.
-  	  	\item Se $X_n = o_P(a_n)$, então $Y_n = O_P(a_n)$.
-  	  	  	  	\item Se $X_n = O_P(a_n)$ e $Y_n = O_P(b_n)$  então $X_n Y_n = O_P(a_n b_n)$. e $X_n Y_n = O_P(\max\{a_n,b_n\})$.
+  	\item $X_n = O_P(1)$ se, e somente se, para toda sequência de números reais $\epsilon_n \uparrow \infty$, tem-se que $\lim_{n \to \infty} \mathbb{P}[|X_n|>\epsilon_n ] = 0$.
+  	\item Se $X_n = O_P(a_n)$ e $a_n \downarrow 0$, então $X_n = o_P(1)$.
+  	  	\item Se $X_n = o_P(a_n)$, então $X_n = O_P(a_n)$.
+  	  	  	  	\item Se $X_n = O_P(a_n)$ e $Y_n = O_P(b_n)$  então $X_n Y_n = O_P(a_n b_n)$. e $X_n +Y_n = O_P(\max\{a_n,b_n\})$.
   	  	  	  	\item Se, para $r>0$, $\mathbb{E}[|X_n|^r] < \infty$ para todo $n \in \mathbb{N}$ então $X_n  = O_P(\lVert X_n \rVert_r)$. \textit{Dica:} use a desigualdade de Markov.
   \end{enumerate} 
 
@@ -68,7 +68,7 @@ $$f(\boldsymbol{s}) =\frac{1}{(2\pi)^{n/2} \sqrt{\operatorname{det}(\Sigma)}}\ex
 
 Nesse caso, é possível mostrar que $\mathbb{E}[X_j] =\boldsymbol{\mu}_j$ e $\Sigma_{i,j} = \mathbb{C}(\boldsymbol{X}_i,\boldsymbol{X}_j)$ para todo $i,j=1,\ldots, n$.
 \begin{itemize}
-	\item[a] Mostre que $X_1,\ldots,X_n$ são independentes se, e somente se, $ \mathbb{C}(\boldsymbol{X}_i,\boldsymbol{X}_j) = 0$ para $i\neq j$. \textit{Dica:} a função característica de $\boldsymbol{X}$ é  $\boldsymbol{s}\mapsto \exp(i\boldsymbol{\mu}'\boldsymbol{s} + (1/2)\boldsymbol{s}'\Sigma \boldsymbol{s})$.
+	\item[a] Mostre que $X_1,\ldots,X_n$ são independentes se, e somente se, $ \mathbb{C}(\boldsymbol{X}_i,\boldsymbol{X}_j) = 0$ para $i\neq j$. \textit{Dica:} a função característica de $\boldsymbol{X}$ é  $\boldsymbol{s}\mapsto \exp(i\boldsymbol{\mu}'\boldsymbol{s} - (1/2)\boldsymbol{s}'\Sigma \boldsymbol{s})$.
 	\item[b] A equivalência anterior também é verdadeira pra qualquer distribuição não normal?  
 \end{itemize}
 
