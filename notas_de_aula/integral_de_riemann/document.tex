@@ -1,0 +1,131 @@
+% !TeX document-id = {1c0b4298-276a-4038-8e08-c4a1f4846da7}
+% !TeX TXS-program:bibliography = txs:///biber
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{xcolor}
+\usepackage{nameref}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{float}
+%\usepackage[margin=2.5cm]{geometry}
+\usepackage[brazilian]{babel}
+\usepackage[
+backend=biber,
+style=authoryear,
+natbib=true
+]{biblatex}
+\addbibresource{../bibliography.bib}
+\newtheorem{definition}{Definição}
+\newtheorem{lemma}{Lema}
+\newtheorem{proposition}{Proposição}
+\title{Conectando a Integral de Riemann e a Integral de Lebesgue}
+\author{ Professor Luís Antonio Fantozzi Alvarez}
+\date{21 de fevereiro de 2025}
+\begin{document}
+	\maketitle
+	
+	Nestas notas, conectaremos a noção de integral de Riemann de uma função $f: [0,1] \mapsto \mathbb{R}$, com a integral de Lebesgue de uma variável aleatória $g : [0,1] \mapsto \mathbb{R}$ mensurável com respeito ao espaço de medida $([0,1],\mathcal{B}[0,1],\lambda)$, onde $\lambda$ denota a medida de Lebesgue sobre os Borelianos de $[0,1]$.
+	
+	Começamos revisando a construção de integral de Riemann. Para isso, introduzimos o conceito de partição do intervalo $[0,1]$.
+	
+	\begin{definition}
+	Uma partição $\mathcal{P}$ de $[0,1]$ é uma coleção de subconjuntos do intervalo $[0,1]$ da forma:
+	
+	$$\mathcal{P} = \{[a_0,a_1), [a_1,a_2),[a_2,a_3),\ldots, [a_{k},a_{k+1}]\}\, ,$$
+	onde $k \in \mathbb{N}$ e $0=a_0 < a_1 < \ldots <a_k = a_{k+1}=1$.
+	\end{definition} 
+	Uma partição do intervalo $[0,1]$ consiste numa decomposição do intervalo $[0,1]$ em termos de sub-intervalos disjuntos.
+	
+	No que segue, considere uma função $f : [0,1] \mapsto\mathbb{R}$.
+	\begin{definition}
+		A \textbf{soma de Darboux superior} de $f$ com respeito a $\mathcal{P}$ é definida como a quantidade:
+		
+		$$U(f;\mathcal{P}) := \sum_{j=0}^{k} \bar{f}_{j}(a_{j+1}-a_{j})\, ,$$
+		onde $\bar{f}_j = \sup_{x \in [a_{j},a_{j+1})}f(x)$ se $j<k$ e $\bar{f}_k = \sup_{x \in [a_{k},a_{k+1}]}f(x)$. Similarmente, a \textbf{soma de Darboux inferior} de $f$ com respeito a $\mathcal{P}$ é definida como a quantidade
+		
+			$$L(f;\mathcal{P}) := \sum_{j=0}^{k} \underline{f}_{j}(a_{j+1}-a_{j})\, ,$$
+			onde $\underline{f}_j = \inf_{x \in [a_{j},a_{j+1})}f(x)$ se $j<k$ e $\underline{f}_k = \inf_{x \in [a_{k},a_{k+1}]}f(x)$.
+	\end{definition}
+	
+	Observe que as somas de Darboux superior e inferior correspondem, respectivamente, à integral de Lebesgue das seguintes funções simples.
+	
+	$$\bar{f}_{\mathcal{P}} = \sum_{j=0}^k \mathbf{1}_{[a_{j},a_{j+1})}\bar{f}_j + \mathbf{1}_{\{1\}}\bar{f}_k$$
+		$$\underline{f}_{\mathcal{P}} = \sum_{j=0}^k \mathbf{1}_{[a_{j},a_{j+1})}\underline{f}_j + \mathbf{1}_{\{1\}}\underline{f}_k$$
+		
+	Com base na definição de somas de Darboux, estamos preparados para construir a integral de Riemann de uma função.
+	
+	\begin{definition}
+		A \textbf{integral de Riemann superior} de uma função $f: [0,1] \mapsto \mathbb{R}$ é dada por:
+		
+		$$U(f) =  \inf\{U(f;\mathcal{P}): \mathcal{P} \text{ é partição de } [0,1]\}\, .$$
+		
+		Simetricamente, a \textbf{integral de Riemann inferior} é dada por
+		
+				$$L(f) =  \sup\{L(f;\mathcal{P}): \mathcal{P} \text{ é partição de } [0,1]\}\, .$$
+		
+		Note que $L(f)\leq U(f)$. Se $L(f)=U(f) \in \mathbb{R}$, dizemos que $f$ é \textbf{Riemann-integrável}, e denotamos a integral de Riemann por $\int_0^1 f(x) dx = L(f)$.
+	\end{definition}
+	
+	No que segue, provaremos a seguinte propriedade importante das integrais de Riemann superior e inferior.
+	\begin{lemma}
+		Se $U(f) \in \mathbb{R}$, existe uma sequência monotônica decrescente de funções simples $(\bar{f}_n)_n$, $\bar{f}_n \geq f$, tais que $\lambda(\bar{f}_n) \downarrow U(f)$. Simetricamente, se  $L(f)\in \mathbb{R}$, existe uma sequência monotônica crescente de funções simples $(\underline{f}_n)_n$, $\underline{f}_n \leq f$, tais que $\lambda(\underline{f}_n) \uparrow L(f)$.
+				\end{lemma}
+		\begin{proof}
+		Vamos provar o caso para $U(f)$, pois a demonstração para $L(f)$ é análoga. Para cada $n \in \mathbb{N}$, observe que, pela definição de ínfimo, $U(f)+ \frac{1}{n}$ não é cota inferior do conjunto:
+		
+		$$\{U(f;\mathcal{P}): \mathcal{P} \text{ é partição de } [0,1]\}\, ;$$
+		consequentemente, existe uma partição $\mathcal{P}_n$ tal que: $U(f) \leq \lambda(\bar{f}_{\mathcal{P}_n}) < U(f)+\frac{1}{n}$, garantindo a existência de uma sequência de funções simples com $\bar{f}_{\mathcal{P}_n}\geq f$ cujas integrais de Lebesgue convergem a $U(f)$. Para garantir que a sequência é monotônica decrescente e que as integrais convergem monotonicamente, definimos o conceito de refinamento de uma partição. Sejam $\mathcal{A}$ e $\mathcal{B}$ duas partições de $[0,1]$. Definimos a partição refinada de  $\mathcal{A}$ e $\mathcal{B}$ como:
+		
+$$\mathcal{A} \land \mathcal{B} = \{A\cap B: A \in \mathcal{A}, B \in \mathcal{B}\}\, .$$
+
+Não é difícil ver que $\mathcal{A} \land \mathcal{B}$ é uma partição em $[0,1]$. Ademais, segue pelas propriedades de supremo que:
+
+$$\bar{f}_{\mathcal{A}\land \mathcal{B}}\leq \bar{f}_{\mathcal{A}}\, ,$$
+de onde também segue, pela monotonicidade da integral de Lebesgue que:
+
+$$\lambda(\bar{f}_{A\land B})\leq \lambda(\bar{f}_{A})\, .$$
+
+Dessa forma, segue que podemos definir a sequência $(\bar{f}_n)_n$ desejada como, para todo $n \in \mathbb{N}$:
+
+$$\bar{f}_n = \bar{f}_{\mathcal{P}_1\land \mathcal{P}_2\land \ldots \land \mathcal{P}_n}\, .$$
+		\end{proof}
+
+		
+		Com base no resultado acima, podemos mostrar a proposição vista em aula:
+		
+		\begin{proposition}
+			Seja $f: [0,1]\mapsto \mathbb{R}$ não negativa e Riemann integrável. Então $f$ é mensurável e $\lambda(f)  = \int_0^1 f(x) dx$.
+			\end{proposition}
+			\begin{proof}
+				Pelo lema anterior, existe uma sequência decrescente $(\bar{f}_n)_n$  tal que:
+				
+				$$\lambda(\bar{f}_n) \downarrow \int_0^1 f(x)dx\, ,$$
+				
+				Similarmente, existe uma sequência crescente $(\underline{f}_n)_n$ tal que: 
+								$$\lambda(\underline{f}_n) \uparrow \int_0^1 f(x)dx$$
+								
+								Como as sequências de funções são monotônicas, note que as seguintes funções estão bem-definidas e são mensuráveis:
+								
+								$$\bar{f} = \lim_n \bar{f}_n\, ,$$
+								
+								$$\underline{f} =  \lim_n \underline{f}_n\, , $$
+								
+								Note, ademais, que, por monotonicidade de limites:
+								
+								$$ \overline{f}_n \geq f \geq \underline{f}_n, \quad \forall n \implies \overline{f}\geq f \geq \underline{f}\, ,$$
+								e que, pelo teorema da convergência monótona:
+								
+								$$0 \leq \underline{f}_n \uparrow \underline{f} \implies \lambda(\underline{f}_n) \uparrow \int_0^1 f(x) dx =  \lambda(\underline{f}) $$
+								
+									$$0\leq \overline{f}_1 - \overline{f}_n \uparrow \overline{f}_1 - \overline{f} \implies \lambda(\overline{f}_n)\downarrow \int_0^1 f(x) dx = \lambda(\overline{f}) $$
+									
+									Consequentemente, temos que $\overline{f}- \underline{f}\geq 0$ e $\lambda(\overline{f} - \underline{f})  =0  \implies \overline{f} = \underline{f} \quad \lambda-\text{quase-certamente} \implies \overline{f} = f \quad \lambda-\text{quase-certamente} \implies f \text{ é mensurável e } \lambda(f) =  \int_0^1 f(x)dx $.
+								
+			\end{proof}
+			A recíproca do resultado acima é claramente falsa: existem funções não negativas Lebesgue-integráveis que não são Riemann integráveis. De fato, tomando $g = \mathbf{1}_{[0,1]\setminus \mathbb{Q}}$, obtemos que $\lambda(g) =\lambda([0,1]\setminus \mathbb{Q}) = \lambda([0,1]) - \lambda(\mathbb{Q} \cap [0,1]) = 1-0 = 1$, mas para toda partição $\mathcal{P}$ de $[0,1]$, $U(f;\mathcal{P}) = 1$ e $L(f;\mathcal{P}) = 0$.
+\end{document}
