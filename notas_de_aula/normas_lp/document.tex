@@ -1,0 +1,145 @@
+% !TeX document-id = {1c0b4298-276a-4038-8e08-c4a1f4846da7}
+% !TeX TXS-program:bibliography = txs:///biber
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{xcolor}
+\usepackage{nameref}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{float}
+%\usepackage[margin=2.5cm]{geometry}
+\usepackage[brazilian]{babel}
+\usepackage[
+backend=biber,
+style=authoryear,
+natbib=true
+]{biblatex}
+\addbibresource{../bibliography.bib}
+\newtheorem{definition}{Definição}
+\newtheorem{lemma}{Lema}
+\newtheorem{proposition}{Proposição}
+\newtheorem{fact}{Fato}
+\title{Propriedades das normas $L_p$}
+\author{ Professor Luís Antonio Fantozzi Alvarez}
+%\date{21 de fevereiro de 2025}
+\begin{document}
+	\maketitle
+	
+	Nestas notas, vamos demonstrar algumas propriedades das normas $L_p$ vistas em aula.
+	
+	\begin{proposition}[Monotonicdade]  Sejam $1 \leq p \leq q$. Se $X \in L^q(\Omega, \Sigma, \mathbb{P})$ , então $X \in L^p(\Omega, \Sigma, \mathbb{P})$ e $\lVert X \rVert_p \leq \lVert X \rVert_q$.
+		
+	\end{proposition}
+	\noindent	{\color{red} \textbf{Observação:} Observe que a desigualdade $\lVert X \rVert_p \leq \lVert X \rVert_q$ é trivialmente verdadeira quando $\lVert X \rVert_q = \infty$. Por isso a proposição cuida do caso em que $X \in L^q(\Omega, \Sigma, \mathbb{P})$, pois este é o interessante. }
+	\begin{proof}
+		Começamos, inicialmente, considerando uma variável aleatória $X \in L^q(\Omega, \Sigma, \mathbb{P})$ tal que também $X \in L^p(\Omega, \Sigma, \mathbb{P})$. Nesse caso, observe que:
+		
+		$$\mathbb{E}[|X|^q] = \mathbb{E}[|X|^q\mathbf{1}_{\{|X|>0\}}] +  \mathbb{E}[\underbrace{|X|^q\mathbf{1}_{\{|X|=0\}}}_{=0 \mathbf{1}_{\Omega}}] =  \mathbb{E}[|X|^q\mathbf{1}_{\{|X|>0\}}] = \mathbb{E}[(\phi \circ \tau)(|X|^p)]\, ,$$
+		onde $\phi:[0,\infty) \mapsto \mathbb{R}$ é definida como $\phi(z) = z^{q/p}$ e, $\tau: \mathbb{R}\mapsto [0,\infty)$ é definida como $\tau(s) = \max\{s,0\}$. Observe que, como $q \geq p$,  $\phi$ é convexa e monotônica crescente e que $\tau$ é convexa. Portanto, um simples argumento revela que a composição $(\phi \circ \tau):\mathbb{R} \mapsto \mathbb{R}$ é convexa,\footnote{De fato, para $a,b \in \mathbb{R}$ e $\lambda \in [0,1]$:
+			
+			\begin{equation*}
+				\begin{aligned}
+							(\phi \circ \tau)(\lambda a + (1-\lambda)b)= \phi(\tau(\lambda a + (1-\lambda)b)) \leq \phi(\lambda \tau(a) + (1-\lambda)\tau(b)) \leq \\ \lambda\phi(\tau(a)) + (1-\lambda)\phi(\tau(b)) \\ =\lambda (\phi \circ \tau)(a) + (1-\lambda) (\phi \circ \tau)(b)
+				\end{aligned}\, ,
+			\end{equation*}
+onde o primeiro passo segue da definição de composição de funções; a desigualdade seguinte decorre da convexidade de $\tau$ e do fato de que $\phi$ é monotônica crescente; o terceiro passo segue de que $\phi$ é convexa; e a última igualdade segue, novamente, da definição de composição de funções.
+		} e, como $\mathbb{E}[|X^p|]<\infty$ por hipótese, podemos aplicar a desigualdade de Jensen para concluir que:
+		
+		 $$\mathbb{E}[|X|^q]\geq (\phi \circ \tau)(\mathbb{E}[|X|^p]) = (\max\{\mathbb{E}[|X|^p],0\})^{\frac{q}{p}} = (\mathbb{E}[|X|^p])^{\frac{q}{p}}\implies \lVert X \rVert_q \geq \lVert X \rVert_p\, .$$
+		 
+		 Para o caso geral, suponha agora somente que $X \in L^q(\Omega, \Sigma, \mathbb{P})$. Defina a sequência de variáveis aleatórias, $X_n := \max\{\min\{X_n,n\},-n\}$, $n \in \mathbb{N}$. Observe que $|X_n|\leq n$ para todo $n \in \mathbb{N}$, o que implica que $\max \{\lVert X_n \rVert_p, \lVert X_n \rVert_q\} \leq n < \infty$ para todo $n \in \mathbb{N}$. Portanto, o resultado anterior se aplica, e temos que, para todo $n \in \mathbb{N}$: 
+		 
+		 $$\lVert X_n \rVert_p \leq \lVert X_n \rVert_q\, .$$
+			
+			Observe que $|X_n|\uparrow |X|$. Mas então, segue da aplicação do teorema da convergência monótona que:
+			
+			$$0 \leq |X_n|^p \uparrow |X|^p \implies \lim_{n \to \infty}\mathbb{E}[|X_n|^p] = \mathbb{E}[|X|^p]\, ,$$
+			e
+						$$0 \leq |X_n|^q \uparrow |X|^q \implies \lim_{n \to \infty}\mathbb{E}[|X_n|^q] = \mathbb{E}[|X|^q]\, ,$$
+			de onde concluímos que:
+			$$\lVert X \rVert_p =\lim_{n\to \infty}\lVert X_n \rVert_p \leq \lim_{n\to \infty} \lVert X_n \rVert_q = \lVert X \rVert_q\, .$$
+	\end{proof}
+
+	
+	\begin{proposition}[Desigualdade de H\"{o}lder]
+		Seja $1 \leq p \leq q \leq \infty$, $\frac{1}{p}+\frac{1}{q} =1$. Sejam $X \in  L^p(\Omega, \Sigma, \mathbb{P})$ e  $Y \in  L^q(\Omega, \Sigma, \mathbb{P})$. Então $X \cdot Y \in L^1(\Omega, \Sigma, \mathbb{P})$  e: 
+		$$|\mathbb{E}[XY] | \leq \mathbb{E}[|XY|]  \leq \lVert X \rVert_p   \lVert Y \rVert_q\, .   $$
+	\end{proposition}
+	
+	\begin{proof}
+		Observe que, no caso em que $\lVert Y \rvert_q = 0$, a desigualdade é trivialmente verdadeira, visto que:
+		
+		$$\lVert Y \rvert_q = 0 \implies \mathbb{P}[\{Y=0\}]=1 \implies \mathbb{P}[|XY|=0]=\mathbb{P}[XY=0]=1\, ,$$
+		e, portanto:
+		$$\mathbb{E}[|XY|]=0\, ,$$
+		$$\mathbb{E}[XY]=0\, ,$$
+		$$\lVert X \rVert_p   \lVert Y \rVert_q = 0\, ,$$
+		
+		Consideremos, então, o caso em que $\lVert Y \rvert_q > 0$. Nesse caso, $\mathbb{E}[|Y|^q]$ e, da nossa discussão sobre densidades da aula anterior, sabemos que o mapa $\tilde P: \Sigma \mapsto [0,1]$ definido por:
+		
+		$$\tilde{P}[A] =\int \mathbf{1}_A \frac{|Y|^q}{\mathbb{E}[|Y|^q]} d\mathbb{P} \, , \quad \forall A \in \Sigma ,$$
+		define uma medida de probabilidade. Mas então, podemos escrever:
+		
+		$$\mathbb{E}[|XY|] = \int \frac{|X|}{|Y|^{q-1}} |Y|^q d\mathbb{P} = \mathbb{E}[|Y|^q] \int \frac{|X|}{|Y|^{q-1}} \frac{|Y|^q}{\mathbb{E}[|Y|^q]}  d\mathbb{P}  = \mathbb{E}[|Y|^q]  \int |Z| d\tilde{P}\, ,$$
+		onde $Z := \frac{X}{Y^{q-1}}$, e a última igualdade segue, crucialmente, da fórmula de integrais de Lebesgue a partir de densidades que demonstramos na aula anterior. Mas então, como $p\geq 1$, segue da monotonicidade das normas $L_p$ demonstradas anteriormente que:
+		
+		$$\int |Z| d\tilde{P} \leq \left(\int |Z|^p d\tilde{P}\right)^{\frac{1}{p}}\, .$$
+		
+		Mas observe que:
+		
+		$$\int |Z|^p d\tilde{P} = \int \frac{|X|^p}{|Y|^{(q-1)p}} \frac{|Y|^q}{\mathbb{E}[|Y|^q]} d \mathbb{P} = \frac{1}{\mathbb{E}[|Y|^q]} \int |X|^p |Y|^{q - (q-1)p} d\mathbb{P}\, .$$
+		Mas, como $\frac{1}{p} + \frac{1}{q}=1$, temos que $p+q=pq$. Portanto $q - (q-1)p$ = 0, e obtemos que:
+		
+		$$\int |Z|^p d\tilde{P}  = \frac{1}{\mathbb{E}[|Y|^q]} \int |X|^p d\mathbb{P} \, . $$
+		Coletando as desigualdades acima, e usando que $\frac{1}{q} = 1 - \frac{1}{p}$, obtemos que:
+		
+		$$\mathbb{E}[|XY|]  =  \mathbb{E}[|Y|^q]  \int |Z| d\tilde{P} \leq    \frac{\mathbb{E}[|Y|^q]}{\mathbb{E}[|Y|^q]^{\frac{1}{p}}}  \lVert X \rVert_p = \lVert X\rVert_p \lVert X\rVert_q \, .$$
+		
+		Portanto, concluímos que $XY$ é integrável se $X \in L_p(\Omega, \Sigma, \mathbb{P})$ e $Y \in L_q(\Omega, \Sigma, \mathbb{P})$. Que $\mathbb{E}[XY]\leq \mathbb{E}[|XY|]$ segue imediatamente da monotonicidade e linearidade de integrais, visto que: $XY \leq |XY| \implies \mathbb{E}[XY]\leq \mathbb{E}[|XY|]$ e $-XY \leq |XY| \implies -\mathbb{E}[XY] = \mathbb{E}[-XY]\leq \mathbb{E}[|XY|] \implies \mathbb{E}[XY]\geq - \mathbb{E}[|XY|]$.
+	\end{proof}
+	
+	O conteúdo abaixo é de leitura opcional:
+	\paragraph{Uma observação sobre a norma $L_\infty$} observe que, na afirmação da desigualde de H\"{o}lder, existe a possibilidade de tomar-se $p$ ou $q$ iguais a $\infty$ (e, respectivamente, $q=1$ ou $p=1$). Nós não definimos no que consiste a norma $L_p$ nesses casos, mas agora estamos munidos das ferramentas para fazê-lo. Observe que, pela monotonicidade das normas $L^p$, para uma dada variável aleatória $X \in m(\Sigma)$, a sequência de números reais estendidos:
+	 $$(\lVert X \rVert_{n})_{n\in \mathbb{N}}\, ,$$
+	é monotônica não decrescente, e portanto possui um limite na reta estendida. Definimos como esse limite a norma $L_\infty$, isto é:
+	
+	$$\lVert X \rVert_{\infty} := \lim_{n \to \infty}\lVert X \rVert_{n}\, .$$
+	
+	É imediato ver que a norma $L_\infty$ satisfaz, por construção, a propriedade de monotonicidade que demonstramos no começo dessas notas e, por esse motivo, a desigualdade de H\"{o}lder também se aplica com $p$ ou $q$ iguais a $\infty$. Notamos, ademais que essa norma possui a seguinte caracterização alternativa.
+	
+	\begin{fact}
+	$	\lVert X \rVert_{\infty} = \inf \{C \geq 0: \mathbb{P}[{\{|X|>C\}}] = 0\} $
+		\end{fact}
+		\begin{proof}
+			Primeiramente, observamos que, para qualquer $C$ tal que $\mathbb{P}[|X| > C] = 0$,
+			
+			$$|X|\leq C , \, \,  \mathbb{P}\text{-q.c.} \implies \lVert X \rVert_n \leq C , \, \, \forall n \in \mathbb{N} \implies \lVert X \rVert_\infty \leq C \, .$$
+			Portanto, $\lVert X \rVert_\infty$ é uma cota inferior de $ \{C \geq 0: \mathbb{P}[{\{|X|>C\}}] = 0\}$. Segue, assim, da definição de ínfimo que:
+			$$ \lVert X \rVert_\infty \leq \inf \{C \geq 0: \mathbb{P}[{\{|X|>C\}}] = 0\}\, . $$
+			
+			Na outra direção, seja $U = \inf \{C \geq 0: \mathbb{P}[{\{|X|>C\}}] = 0\}$. Consideramos os dois casos possíveis:
+			
+			\begin{itemize}
+				\item[(a)] $U = \infty$. Nesse caso, $\{C \geq 0: \mathbb{P}[{\{|X|>C\}}] = 0\}=\emptyset\implies \text{ para todo } C \geq 0$, $\mathbb{P}[{\{|X|>C\}}] > 0$. Mas então, para um dado $K \in \mathbb{N}$ arbitrário, temos que:
+				
+				$$K\mathbf{1}_{\{|X|> K\}} \leq |X| \implies \mathbb{P}[|X| > K]^{\frac{1}{n}} K \leq \lVert X \rVert_n \, , \, \forall n \in \mathbb{N} \implies K \leq \lVert X \rVert_\infty\, ,$$
+				onde usamos que $ \lim_{n \to \infty} \mathbb{P}[|X| > K]^{\frac{1}{n}} = 1$, pois  $\mathbb{P}[|X| > K] = 1$. Mas, como $K$ foi arbitrariamente escolhido, segue que, tomando $K \to \infty$, $\lVert X \rVert_\infty = \infty$.
+				\item[(b)] $U < \infty$. Nesse caso, para todo $l \in \mathbb{N}$, $\mathbb{P}[\{X> U-\frac{1}{l}\}] > 0$, de onde segue, por um argumento análogo ao anterior que:
+				
+				\begin{equation*}
+					\begin{aligned}
+						(U+l^{-1})\mathbf{1}_{\{|X|> (U+l^{-1})\}} \leq |X| \implies \mathbb{P}[|X| > (U+l^{-1})]^{\frac{1}{n}} (U+l^{-1}) \leq \lVert X \rVert_n \, , \, \forall n \in \mathbb{N} \\ \implies (U+l^{-1}) \leq \lVert X \rVert_\infty
+						\end{aligned}\, ,
+				\end{equation*}
+				e, tomando $l \to \infty$, obtemos:
+				
+				$$U \leq \lVert X \rVert_\infty\, ,$$
+como desejado.		\end{itemize}	\end{proof}
+		
+		Da caracterização acima, concluímos que a norma $L_\infty$ é finita se, e somente se, $X$ é limitada quase-certamente (i.e. se existe $L\geq 0$ tal que $\mathbb{P}[\{|X|>L\}]=0$).
+\end{document}
