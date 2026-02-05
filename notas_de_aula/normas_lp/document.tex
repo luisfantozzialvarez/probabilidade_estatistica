@@ -56,7 +56,7 @@ onde o primeiro passo segue da definição de composição de funções; a desig
 		 
 		 $$\lVert X_n \rVert_p \leq \lVert X_n \rVert_q\, .$$
 			
-			Observe que $|X_n|\uparrow |X|$. Mas então, segue da aplicação do teorema da convergência monótona que:
+			Observe que $0 \leq |X_n|\uparrow |X|$. Mas então, segue da aplicação do teorema da convergência monótona que:
 			
 			$$0 \leq |X_n|^p \uparrow |X|^p \implies \lim_{n \to \infty}\mathbb{E}[|X_n|^p] = \mathbb{E}[|X|^p]\, ,$$
 			e
@@ -72,15 +72,15 @@ onde o primeiro passo segue da definição de composição de funções; a desig
 	\end{proposition}
 	
 	\begin{proof}
-		Observe que, no caso em que $\lVert Y \rvert_q = 0$, a desigualdade é trivialmente verdadeira, visto que:
+		Observe que, no caso em que $\lVert Y \rVert_q = 0$, a desigualdade é trivialmente verdadeira, visto que:
 		
-		$$\lVert Y \rvert_q = 0 \implies \mathbb{P}[\{Y=0\}]=1 \implies \mathbb{P}[|XY|=0]=\mathbb{P}[XY=0]=1\, ,$$
+		$$\lVert Y \rVert_q = 0 \implies \mathbb{P}[\{Y=0\}]=1 \implies \mathbb{P}[|XY|=0]=\mathbb{P}[XY=0]=1\, ,$$
 		e, portanto:
 		$$\mathbb{E}[|XY|]=0\, ,$$
 		$$\mathbb{E}[XY]=0\, ,$$
 		$$\lVert X \rVert_p   \lVert Y \rVert_q = 0\, ,$$
 		
-		Consideremos, então, o caso em que $\lVert Y \rvert_q > 0$. Nesse caso, $\mathbb{E}[|Y|^q]$ e, da nossa discussão sobre densidades da aula anterior, sabemos que o mapa $\tilde P: \Sigma \mapsto [0,1]$ definido por:
+		Consideremos, então, o caso em que $\lVert Y \rVert_q > 0$. Nesse caso, $\mathbb{E}[|Y|^q] > 0$ e, da nossa discussão sobre densidades da aula anterior, sabemos que o mapa $\tilde P: \Sigma \mapsto [0,1]$ definido por:
 		
 		$$\tilde{P}[A] =\int \mathbf{1}_A \frac{|Y|^q}{\mathbb{E}[|Y|^q]} d\mathbb{P} \, , \quad \forall A \in \Sigma ,$$
 		define uma medida de probabilidade. Mas então, podemos escrever:
@@ -128,7 +128,7 @@ onde o primeiro passo segue da definição de composição de funções; a desig
 				\item[(a)] $U = \infty$. Nesse caso, $\{C \geq 0: \mathbb{P}[{\{|X|>C\}}] = 0\}=\emptyset\implies \text{ para todo } C \geq 0$, $\mathbb{P}[{\{|X|>C\}}] > 0$. Mas então, para um dado $K \in \mathbb{N}$ arbitrário, temos que:
 				
 				$$K\mathbf{1}_{\{|X|> K\}} \leq |X| \implies \mathbb{P}[|X| > K]^{\frac{1}{n}} K \leq \lVert X \rVert_n \, , \, \forall n \in \mathbb{N} \implies K \leq \lVert X \rVert_\infty\, ,$$
-				onde usamos que $ \lim_{n \to \infty} \mathbb{P}[|X| > K]^{\frac{1}{n}} = 1$, pois  $\mathbb{P}[|X| > K] = 1$. Mas, como $K$ foi arbitrariamente escolhido, segue que, tomando $K \to \infty$, $\lVert X \rVert_\infty = \infty$.
+				onde usamos que $ \lim_{n \to \infty} \mathbb{P}[|X| > K]^{\frac{1}{n}} = 1$, pois  $\mathbb{P}[|X| > K] > 0$. Mas, como $K$ foi arbitrariamente escolhido, segue que, tomando $K \to \infty$, $\lVert X \rVert_\infty = \infty$.
 				\item[(b)] $U < \infty$. Nesse caso, para todo $l \in \mathbb{N}$, $\mathbb{P}[\{X> U-\frac{1}{l}\}] > 0$, de onde segue, por um argumento análogo ao anterior que:
 				
 				\begin{equation*}
