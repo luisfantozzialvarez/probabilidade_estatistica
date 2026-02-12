@@ -1,0 +1,156 @@
+% !TeX document-id = {1c0b4298-276a-4038-8e08-c4a1f4846da7}
+% !TeX TXS-program:bibliography = txs:///biber
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{xcolor}
+\usepackage{nameref}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{float}
+%\usepackage[margin=2.5cm]{geometry}
+\usepackage[brazilian]{babel}
+\usepackage[
+backend=biber,
+style=authoryear,
+natbib=true
+]{biblatex}
+\addbibresource{../bibliography.bib}
+\newtheorem{definition}{Definição}
+\newtheorem{lemma}{Lema}
+\newtheorem{proposition}{Proposição}
+\newtheorem{fact}{Fato}
+\title{Leis dos grandes números}
+\author{ Professor Luís Antonio Fantozzi Alvarez}
+%\date{21 de fevereiro de 2025}
+\begin{document}
+	\maketitle
+	
+	Nestas notas, veremos duas versões das leis dos grandes números vistas em aula:
+	
+		\begin{proposition}[Lei forte de Kolmogorov]
+		Seja $X_1, X_2,\ldots$ uma sequência de variáveis aleatórias iid em $L^1(\Omega,\Sigma,\mathbb{P})$.
+		Então existe $\mu \in \mathbb{R}$ tal que $\mathbb{E}[X_j] = \mu$ para todo $j\in \mathbb{N}$ e, quando $n \to \infty$:
+		$$\frac{1}{n}\sum_{j=1}^n X_j \overset{\text{q.c.}}{\to} \mu\, .$$
+	\end{proposition}
+	\begin{proof}
+		Para a primeira parte, observe que, pelo segundo exercício da Lista 2, para todo $i \in \mathbb{N}$.
+		
+		$$\mathbb{E}[X_i] = \int x \mathbb{P}_{X_i}(dx)\, ,$$
+		onde $\mathbb{P}_{X_i}$ é a lei induzida por $X_i$ sobre $(\mathbb{R},\mathcal{B}(\mathbb{R}))$. Mas, pelo lema do $\pi$-sistema, como $F_{X_i}=F_{X_j}$ para todo $i$ e $j$ (visto que a sequência é identicamente distribuída), então $\mathbb{P}_{X_i}=\mathbb{P}_{X_j}$ para todo $i$ e $j$; de onde concluímos que $\mathbb{E}[X_i]=\mathbb{E}[X_j]$ para todo $i,j$.
+		
+		Para a segunda parte, vamos fazer a demonstração supondo que a sequência está em $L^{\color{red}2}(\Omega, \Sigma, \mathbb{P})$.\footnote{O caso geral pode ser obtido adaptando-se o argumento a seguir (embora isso não seja tão imediato como se possa imaginar).} Nesse caso, observe que, por um argumento similar ao do parágrafo precedente, $\infty > \mathbb{V}[X_1]=\mathbb{E}[X_1^2]-\mathbb{E}[X_1]^2 = \mathbb{E}[X_i^2]-\mathbb{E}[X_i]^2 = \mathbb{V}[X_i]$ para todo $i \in \mathbb{N}$. Nós também notamos que é suficiente provar a convergência quase-certa para um sequência de variáveis aleatórias iid em $L^{2}(\Omega, \Sigma, \mathbb{P})$ \textbf{não negativas} (i.e. tais que $X_i\geq 0$ para todo $i\in \mathbb{N}$). De fato, suponha que tenhamos provado a lei forte para o caso não negativo. Para o caso geral, sempre podemos escrever:
+		
+		$$\frac{1}{n}\sum_{i=1}^n X_i = \frac{1}{n}\sum_{i=1}^n X_i^+ - \frac{1}{n}\sum_{i=1}^n X_i^-\, .$$
+		
+		Como $(X_i)_i$ é iid, não é difícil ver que $(X_i^+)_i$ é iid, e $(X_i^-)_i$ é iid.\footnote{Isso segue da observação de que, para todo $i \in \mathbb{N}$ e $A \in \mathcal{B}(\mathbb{R})$.
+		$(X_i^+)^{-1}(A) = X_i^{-1}(h^{-1}(A))$, onde $h: \mathbb{R}\mapsto \mathbb{R}$ é a transformação dada por $h(x)=\max\{x,0\}$. Como $h$ é contínua, $h$ é $\mathcal{B}(\mathbb{R})$-mensurável, e portanto $h^{-1}(A) \in \mathcal{B}(\mathbb{R})$. Mas então  $(X_i^+)^{-1}(A)\in \sigma(X_i)$, e, como $A$ foi escolhido arbitrariamente, $\sigma(X_i^+) \subseteq \sigma(X_i)$. } Ademais como os $X_i$ estão em $L^2(\Omega, \Sigma, \mathbb{P})$, então $\max\{\mathbb{E}[(X_i^+)^2],\mathbb{E}[(X_i^-)^2]\} \leq \mathbb{E}[X_i^2] < \infty$, i.e. os $X_i^+$ e $X_i^-$ também estão em $L^2(\Omega, \Sigma, \mathbb{P})$. Mas então a lei forte se aplica às sequências de variáveis aleatórias não negativas $(X_i^+)_i$ e $(X_i^-)_i$, i.e.:
+		
+		$$\mathbb{P}\left[\left\{\omega:\frac{1}{n}\sum_{i=1}^n X_i^+(\omega)  \to \mathbb{E}[X_1^+]\right\}\right] = 1\, ,$$
+		
+		$$\mathbb{P}\left[\left\{\omega: \frac{1}{n}\sum_{i=1}^n X_i^-(\omega)  \to \mathbb{E}[X_1^-]\right\}\right] = 1\, ,$$
+		de onde obtemos que:
+		\begin{equation*}
+			\begin{aligned}
+						1 = \mathbb{P}\left[\left\{\omega:\frac{1}{n}\sum_{i=1}^n X_i^+(\omega)  \to \mathbb{E}[X_1^+]\right\} \cap \left\{\omega: \frac{1}{n}\sum_{i=1}^n X_i^-(\omega)  \to \mathbb{E}[X_1^-]\right\} \right]\leq\\  \mathbb{P}\left[\left\{\omega:\frac{1}{n}\sum_{i=1}^n X_i(\omega)  \to \mathbb{E}[X_1]\right\} \right] 
+			\end{aligned}\, 
+		\end{equation*}
+mostrando a lei forte no caso geral. Portanto, de agora em diante, vamos supor que $X_i\geq 0$ para todo $i$.
+
+Fixe $\alpha > 1$ e, para um $\epsilon > 0$, defina sequência de eventos:
+
+$$E^\epsilon_k := \left\{\left|\frac{1}{\lceil \alpha^k \rceil}\sum_{i=1}^{\lceil \alpha^k \rceil} (X_i-\mu) \right|> \epsilon\right\}, \quad k \in \mathbb{N}\, ,$$
+onde, para $x \in \mathbb{R}_+$, $\lceil x \rceil$ consiste na operação '' arrendondar para cima'', i.e. $\lceil x \rceil$  é o menor número natural $z$ tal que $z \geq x$.
+
+Observe que, pela desigualdade de Markov, temos:
+
+$$\mathbb{P}[E^\epsilon_k] \leq \frac{\mathbb{V}[\frac{1}{\lceil \alpha^k \rceil}\sum_{i=1}^{\lceil \alpha^k \rceil} X_i]}{\epsilon^2}$$ 
+
+A demonstração então se valerá do seguinte fato, cuja demonstração consiste em uma simples manipulação algébrica:
+
+\begin{fact} Seja $Y_1,\ldots, Y_l$ uma sequência de variáveis aleatórias em $L^2(\Omega, \Sigma, \mathbb{P})$, então:
+	
+	$$\mathbb{V}\left[\sum_{i=1}^l Y_i\right] = \sum_{i=1}^l \sum_{j=1}^l \operatorname{cov}(Y_i, Y_j)\, .$$
+\end{fact}
+\noindent e, além disso, do fato abaixo, cuja demonstração encontra-se no Williams (Teorema 7.1; um resultado similar foi por vocês demonstrado na lista 2).
+\begin{fact}
+	Sejam $X$ e $Z$ variáveis aleatórias independentes em $L^2(\Omega, \Sigma, \mathbb{P})$, então:
+	$$\operatorname{cov}(X,Z)=0\,.$$ 
+\end{fact}
+
+Combinando os dois fatos acima, temos que:
+
+$$\mathbb{P}[E^\epsilon_k] \leq  \frac{\sum_{i=1}^{\lceil \alpha^k \rceil} \mathbb{V}[X_i]}{\epsilon^2
+	{\lceil \alpha^k \rceil}^2} = \frac{\mathbb{V}[X_1]}{\epsilon^2 \lceil \alpha^k \rceil} \leq \frac{\mathbb{V}[X_1]}{\epsilon^2  \alpha^k }$$
+	
+	Mas então, como $|1/\alpha| < 1$, segue que:
+	$$ \sum_{k=1}^\infty \mathbb{P}[E^\epsilon_k] \leq  \sum_{k=1}^\infty \frac{\mathbb{V}[X_1]}{\epsilon^2  \alpha^k } < \infty\, ,$$
+	de onde concluímos, por aplicação do primeiro lema de Borel-Cantelli, que:
+	
+	$$\mathbb{P}\left[\limsup_k E_k^\epsilon \right] = 0\, ,$$
+	e como $\epsilon > 0$ foi escolhido arbitrariamente, obtemos, da caracterização de convergência quase certa vista em aula, que:
+	
+	$$\lim_{k\to \infty} \frac{1}{\lceil \alpha^k \rceil}\sum_{i=1}^{\lceil \alpha^k \rceil} X_i = \mu\, , \quad \mathbb{P}\text{-quase certamente}\, .$$
+	 
+	Para concluir, notamos o seguinte fato. Para todo $n \in \mathbb{N}$, é possível encontrar um $k(n) \in \mathbb{N}\cup \{0\}$ tal que:
+	$ \alpha^{k(n)} \leq n \leq \alpha^{k(n)+1} $.\footnote{De fato, isso é consequência direta de $\alpha>1$ e $\lim_{s \to \infty}\alpha^s = \infty$. } Observe que essa sequência é tal que $\lim_{n \to \infty} k(n) = \infty$ e satisfaz as seguintes propriedades:
+	
+	$$\lim_{n \to \infty} \frac{\alpha^{k(n)}}{\lceil \alpha^{k(n)}\rceil } = 1$$
+	
+	$$\lim_{n \to \infty} \frac{\alpha^{k(n) +1}}{\lceil \alpha^{k(n)+1}\rceil } = 1$$
+	e que além disso, as seguintes implicações são imediatas:
+	 
+	 $$\frac{\alpha^{k(n)}}{n} \leq 1, \quad \forall n\implies \limsup_{n \to \infty}\frac{\alpha^{k(n)}}{n}\leq 1 $$
+	 
+	 
+	 	 
+	 	 	 $$\frac{\alpha^{k(n)}}{n}\geq \frac{1}{\alpha}, \quad \forall n\implies \liminf_{n \to \infty} \frac{\alpha^{k(n)}}{n} \geq \frac{1}{\alpha} $$
+	 	 	 
+	 	 	 Ademais, como os $X_i$ são não negativos, temos, para todo $n \in \mathbb{N}$, que:
+	 	 	 \begin{equation*}
+	 	 	 	\begin{aligned}
+	 	 	 		 \frac{ \alpha^{k(n)} }{n}   \frac{\lceil \alpha^{k(n)} \rceil}{ \alpha^{k(n)} }\frac{\sum_{i=1}^{\lceil \alpha^{k(n)} \rceil}X_i}{\lceil \alpha^{k(n)} \rceil} = \\  \frac{1}{n}\sum_{i=1}^{\lceil \alpha^{k(n)} \rceil}X_i \leq  \\ \frac{1}{n}\sum_{i=1}^{n}X_i \leq\\ \frac{1}{n} \sum_{i=1}^{\lceil \alpha^{k(n)+1} \rceil}X_i =\\ \frac{\sum_{i=1}^{\lceil \alpha^{k(n)+1} \rceil}X_i}{\lceil \alpha^{k(n)+1} \rceil}\frac{\lceil \alpha^{k(n)+1} \rceil}{\alpha^{k(n)+1} }\frac{\alpha^{k(n)+1} }{n} 
+	 	 	 	\end{aligned}
+	 	 	 \end{equation*}
+
+Dos fatos acima, não é difícil ver que a seguinte inclusão de eventos é verdadeira:
+\begin{equation*}
+	\begin{aligned}	
+		\left\{\omega: \lim_{k\to \infty} \frac{1}{\lceil \alpha^k \rceil}\sum_{i=1}^{\lceil \alpha^k \rceil} X_i(\omega) = \mu\right\}\subseteq \\ \left\{\omega: \frac{1}{\alpha}\mu \leq \liminf_{n \to \infty}\frac{1}{n}\sum_{i=1}^{n}X_i(\omega) \leq\limsup_{n \to \infty}\frac{1}{n}\sum_{i=1}^{n}X_i(\omega) \leq \alpha \mu \right\} =: A_\alpha
+	\end{aligned}
+\end{equation*}
+e que, portanto, como a probabilidade do evento incluso é $1$, $\mathbb{P}[A_\alpha]=1$. Mas então, considerando uma sequência $\alpha_j = (1+ \frac{1}{j})$ para todo $j \in \mathbb{N}$, observe que:
+
+$$\cap_{j \in \mathbb{N}} A_{\alpha_j} \subseteq \left\{\omega: \lim_{n \to \infty}\frac{1}{n}X_i =\mu\right\}\, ,$$
+	 	 	 e, como $\mathbb{P}\left[\cap_{j \in \mathbb{N}} A_{\alpha_j}\right]=1$, segue a conclusão desejada.
+	 	 	 	\end{proof}
+	 	 	 	
+	 	 	 	
+	 	 	 	
+	 	 	 	\begin{proposition}[Lei fraca de Markov]
+	 	 	 		Seja $X_1, X_2,\ldots$ uma sequência de variáveis aleatórias em $L^{\color{red}2}(\Omega,\Sigma,\mathbb{P})$, não correlacionadas e tais que $\sup_{j \in \mathbb{N}}\mathbb{V}[X_j] <\infty$. Se $\lim_{n\to\infty} \frac{1}{n}\sum_{j=1}^n \mathbb{E}[X_j]$ existe em $\mathbb{R}$, então, denotando esse limite por $\mu$, temos, quando $n \to \infty$:
+	 	 	 		
+	 	 	 		$$\frac{1}{n}\sum_{j=1}^n X_j \overset{\text{p}}{\to} \mu\, .$$
+	 	 	 	\end{proposition}
+	 	 	 	\begin{proof}
+	 	 	 	Fixe $\epsilon > 0$. Da desigualdade de Markov, temos que:
+	 	 	 	
+	 	 	 	$$\mathbb{P}\left[\left\{\omega: \left|\frac{1}{n}\sum_{i=1}^n X_i(\omega) - \frac{1}{n}\sum_{i=1}^n\mathbb{E}[X_i]\right|> \frac{\epsilon}{2}\right\}\right]\leq 4\frac{\mathbb{V}\left[\frac{1}{n}\sum_{i=1}^n X_i\right]}{\epsilon^2}\leq 4\frac{\sup_{j \in \mathbb{N}}\mathbb{V}[X_j]}{n \epsilon^2}\, .$$
+	 	 	 	
+	 	 	 	O limite superior acima vai a zero quando $n \to \infty$; portanto, pelo lema do sanduíche, $\lim_{n \to \infty }\mathbb{P}\left[\left\{\omega: \left|\frac{1}{n}\sum_{i=1}^n X_i(\omega) - \frac{1}{n}\sum_{i=1}^n\mathbb{E}[X_i]\right|> \epsilon\right\}\right] = 0$. Para concluir, note que, como $\lim_{n \to \infty}\frac{1}{n}\sum_{j=1}\mathbb{E}[X_j]$ existe e é um número real $\mu$, existe um $K^*$ tal que, para todo $n \geq K^*$:
+	 	 	 	
+	 	 	 $$\left|\frac{1}{n}\sum_{j=1}\mathbb{E}[X_j] - \mu \right|< \frac{\epsilon}{2}\, ,$$
+	 	 	 e portanto, para todo $n \geq K^*$, segue da desigualdade triangular a seguinte inclusão:
+	 	 	 
+	 	 	 $$ \left\{\omega: \left|\frac{1}{n}\sum_{i=1}^n X_i(\omega) - \frac{1}{n}\sum_{i=1}^n\mathbb{E}[X_i]\right|\leq  \frac{\epsilon}{2}\right\}\subseteq \left\{\omega: \left|\frac{1}{n}\sum_{i=1}^n X_i(\omega) -\mu\right|\leq  \epsilon\right\}$$
+	 	 	 de onde concluímos que, para $n\geq K^*$:
+	 	 	 
+	 	 	 $$\mathbb{P}\left[\left\{\omega: \left|\frac{1}{n}\sum_{i=1}^n X_i(\omega) - \frac{1}{n}\sum_{i=1}^n\mathbb{E}[X_i]\right|> \frac{\epsilon}{2}\right\}\right] \geq \mathbb{P}\left[ \left\{\omega: \left|\frac{1}{n}\sum_{i=1}^n X_i(\omega) -\mu\right|>  \epsilon\right\}\right]\, ,$$
+	 	 	 e portanto,  $\lim_{n \to \infty} \mathbb{P}\left[ \left\{\omega: \left|\frac{1}{n}\sum_{i=1}^n X_i(\omega) -\mu\right|>  \epsilon\right\}\right]=0$. Como $\epsilon$ foi escolhido de forma arbitrária, obtemos a conclusão desejada.
+	 	 	 	\end{proof}
+	
+\end{document}
