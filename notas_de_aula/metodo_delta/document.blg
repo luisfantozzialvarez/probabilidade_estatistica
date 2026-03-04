@@ -1,0 +1,9 @@
+[0] Config.pm:308> INFO - This is Biber 2.20
+[0] Config.pm:311> INFO - Logfile is 'document.blg'
+[30] biber:340> INFO - === qua mar  4, 2026, 15:35:49
+[36] Biber.pm:420> INFO - Reading 'document.bcf'
+[61] Biber.pm:994> INFO - Found 0 citekeys in bib section 0
+[68] bbl.pm:676> INFO - Writing 'document.bbl' with encoding 'UTF-8'
+[68] bbl.pm:779> INFO - Output to document.bbl
+[69] Biber.pm:131> WARN - The file 'document.bcf' does not contain any citations!
+[69] Biber.pm:133> INFO - WARNINGS: 1

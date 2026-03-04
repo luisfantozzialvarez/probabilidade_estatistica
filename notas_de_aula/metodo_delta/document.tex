@@ -1,0 +1,94 @@
+% !TeX document-id = {1c0b4298-276a-4038-8e08-c4a1f4846da7}
+% !TeX TXS-program:bibliography = txs:///biber
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{xcolor}
+\usepackage{nameref}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{float}
+%\usepackage[margin=2.5cm]{geometry}
+\usepackage[brazilian]{babel}
+\usepackage[
+backend=biber,
+style=authoryear,
+natbib=true
+]{biblatex}
+\addbibresource{../bibliography.bib}
+\newtheorem{definition}{Definição}
+\newtheorem{lemma}{Lema}
+\newtheorem{proposition}{Proposição}
+\newtheorem{fact}{Fato}
+\title{Método Delta}
+\author{ Professor Luís Antonio Fantozzi Alvarez}
+%\date{21 de fevereiro de 2025}
+\begin{document}
+	\maketitle
+	
+	Nestas notas, vamos demonstrar a versão do método Delta vista em aula:
+	
+		\begin{lemma}[Método Delta]
+		Seja $\boldsymbol{X}_n$ uma sequência de vetores aleatórios com contradomínio em $\mathbb{R}^k$. Seja $\theta \in \mathbb{R}^k$, e $(r_n)_n \in \mathbb{R}^\infty$ uma sequência de números reais positivas tais que $r_n \to \infty$. Suponha que $r_n(\boldsymbol{X}_n - \theta)\overset{d}{\to} S$, onde $S$ é um vetor aleatório com valores em $\mathbb{R}^k$. Se $\psi: \mathbb{R}^k \mapsto \mathbb{R}^l$ é continuamente diferenciável numa vizinhança de $\theta$, então:
+		$$r_n(\psi(\boldsymbol{X}_n)-\psi(\theta)) \overset{d}{\to} \nabla_{x}\psi(\theta) S\, ,$$
+		onde $\nabla_{x}\psi(\theta)$ é o Jacobiano de $\psi$ avaliado em $\theta$.
+	\end{lemma}
+	\begin{proof}
+		Como $\psi$ é continuamente diferenciável numa vizinhança de $\theta$, sabemos que existe $\epsilon > 0$ tal que $s \mapsto \psi_x(s)$ existe e é contínua no conjunto $B(\theta;\epsilon) := \{x \in \mathbb{R}^k: \lVert x-\theta \rVert < \epsilon \}$. Considere a sequência de eventos $E_n = \{\boldsymbol{X}_n \in B(\theta;\epsilon)\}$, $n \in \mathbb{N}$. Observe que, trivialmente, podemos escrever:
+		
+		$$r_n(\psi(\boldsymbol{X}_n)-\psi(\theta)) = \mathbf{1}_{E_n}r_n(\psi(\boldsymbol{X}_n)-\psi(\theta)) + \underbrace{\mathbf{1}_{E_n^\complement} r_n(\psi(\boldsymbol{X}_n)-\psi(\theta))}_{=: R_n}\, .$$
+		
+		Note, ademais que, como $\boldsymbol{X}_n \overset{p}{\to} \theta$ (vimos isso em aula), para todo $\xi > 0$:
+		
+		$$0 \leq \mathbb{P}[\{\lVert R_n \rVert>\xi\}] \leq \mathbb{P}[E^\complement_n] \to 0 \implies \lim_{n \to \infty} \mathbb{P}[\{\lVert R_n \rVert>\xi\}] = 0\, ,$$
+		de onde concluímos que $ R_n \overset{p}{\to} \boldsymbol{0}_{l \times 1}$. Em seguida, observamos que, como $\psi$ é continuamente diferenciável em $B(\theta;\epsilon)$, para todo $i =1\, \ldots, l$, temos que, pelo teorema do valor médio:\footnote{Para os nossos fins, é suficiente a seguinte versão: seja $O \subseteq \mathbb{R}^k$ um subconjunto aberto e convexo, e $f: O \mapsto \mathbb{R}$ uma função continuamente diferenciável (i.e. cujas derivadas parciais existem e são contínuas). Então, para todo $a, b \in O$, existe $\lambda \in [0,1]$ tal que, definindo $c = \lambda a + (1-\lambda)b$:
+		
+		$$f(a)- f(b) = \nabla_x f(c) (a-b)\, .$$
+		 }
+		
+		$$\mathbf{1}_{E_n}r_n(\psi_i(\boldsymbol{X}_n)-\psi_i(\theta)) = \mathbf{1}_{E_n}\nabla_x \psi_i(\tilde{\theta}_{i,n})r_n(\boldsymbol{X}_n - \theta)\, ,$$ 
+		onde $\tilde{\theta}_{i,n}$ é uma variável aleatória que, com probabilidade 1, se encontra no segmento de reta que une $\boldsymbol{X}_n$ a $\theta$. Empilhando a relação acima, obtemos:
+		
+			$$\mathbf{1}_{E_n}r_n(\psi(\boldsymbol{X}_n)-\psi(\theta)) = \mathbf{1}_{E_n}r_n \begin{pmatrix}
+				\psi_1(\boldsymbol{X}_n) \\
+				\psi_2(\boldsymbol{X}_n)\\
+				\vdots \\
+				\psi_l(\boldsymbol{X}_n)
+			\end{pmatrix} = \mathbf{1}_{E_n}  \begin{pmatrix}
+			\nabla_x \psi_1(\tilde{\theta}_{1,n}) \\
+		\nabla_x \psi_2(\tilde{\theta}_{2,n})\\
+			\vdots \\
+		\nabla_x \psi_l(\tilde{\theta}_{l,n})
+			\end{pmatrix}r_n(\boldsymbol{X}_n - \theta)\, ,$$ 
+			
+				Agora, pelo teorema do mapa contínuo, temos que, quando $n \to\infty$:
+			
+			$$\begin{pmatrix}
+				\nabla_x \psi_1(\tilde{\theta}_{1,n}) \\
+				\nabla_x \psi_2(\tilde{\theta}_{2,n})\\
+				\vdots \\
+				\nabla_x \psi_l(\tilde{\theta}_{l,n})
+			\end{pmatrix} \overset{p}{\to} \begin{pmatrix}
+				\nabla_x \psi_1(\theta) \\
+				\nabla_x \psi_2(\theta)\\
+				\vdots \\
+				\nabla_x \psi_l(\theta)
+			\end{pmatrix} = \nabla_x \psi(\theta)$$
+			Ademais, observe que:
+			
+			$$\mathbb{E}[|\mathbf{1}_{E_n}-1|] =\mathbb{E}[\mathbf{1}_{E_n^\complement}] =  \mathbb{P}[E^\complement_n] \to 0\, , $$
+			isto é, $\mathbf{1}_{E_n} \overset{L_1}{\to}1$, e, como consequência, $\mathbf{1}_{E_n} \overset{p}{\to}1$. Aplicando o lema de Slutsky, obtemos, dessa forma, que 
+		
+		
+			$$\mathbf{1}_{E_n}r_n(\psi(\boldsymbol{X}_n)-\psi(\theta))\overset{d}{\to} \nabla_x \psi(\theta),\, $$
+			e, como $R_n \overset{p}{\to} \boldsymbol{0}_{l\times 1}$, uma segunda aplicação do lema de Slutsky nos leva a concluir que: 
+			
+			$$r_n(\psi(\boldsymbol{X}_n)-\psi(\theta))\overset{d}{\to} \nabla_x \psi(\theta)\, ,$$
+			como desejado.
+	\end{proof}
+
+\end{document}
