@@ -1,0 +1,81 @@
+% !TeX document-id = {1c0b4298-276a-4038-8e08-c4a1f4846da7}
+% !TeX TXS-program:bibliography = txs:///biber
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{xcolor}
+\usepackage{nameref}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{float}
+%\usepackage[margin=2.5cm]{geometry}
+\usepackage[brazilian]{babel}
+\usepackage[
+backend=biber,
+style=authoryear,
+natbib=true
+]{biblatex}
+\addbibresource{../bibliography.bib}
+\newtheorem{definition}{Definição}
+\newtheorem{lemma}{Lema}
+\newtheorem{proposition}{Proposição}
+\newtheorem{fact}{Fato}
+\title{Sobre o erro de linearização no CLT}
+\author{ Professor Luís Antonio Fantozzi Alvarez}
+
+%\date{21 de fevereiro de 2025}
+\begin{document}
+	\maketitle
+	Seja $Y_1,Y_2,\ldots, Y_n$ um conjunto de $n$ variáveis aleatórias independentes e identicamente distribuídas, definidas num espaço de probabilidade $(\Omega, \Sigma,\mathbb{P})$. Suponha que $\mathbb{E}[Y_1]=0$ e $\mathbb{E}[Y_1^2]=\sigma^2<\infty$. Seja $S_n \coloneqq \frac{1}{\sqrt{n}}\sum_{i=1}^n Y_i$.  Nossa demonstração do Teorema Central do Limite envolveu mostrar, para todo $x  \in \mathbb{R}$, que:
+	
+	$$\lim_{n \to \infty}\phi_{S_n}(x) = \exp\left(-\frac{1}{2} \sigma^2 x^2\right)\, .$$
+
+Para isso, tomamos $x \neq 0$ (recorde-se que, para $x=0$, não há o que se provar) e, usando uma expansão de Taylor de segunda ordem de $\phi_{Y_1}$ em torno do zero:
+
+$$\phi_{S_n}(x) = \left(\phi_{Y_1}\left(\frac{x}{\sqrt{n}}\right)\right)^n = \left(1 - \frac{1}{2n}\sigma^2 x^2 + \operatorname{Err}_n \right)^n\, ,$$
+onde, como vimos em aula, pelas propriedades da expansão de Taylor:
+$$\lim_{n \to \infty}n|\text{Err}_n| = 0\, .$$
+
+Para concluir, observamos que, se pudéssemos mostrar que:
+
+\begin{equation}
+	\label{err_vanish}	
+	\lim_{n\to \infty}\left|\left(1 - \frac{1}{2n}\sigma^2 x^2 + \operatorname{Err}_n \right)^n - \left(1 - \frac{1}{2n}\sigma^2 x^2\right)^n\right| = 0\, ,
+\end{equation}
+então a conclusão seria imediata, visto que, de cálculo, sabemos que:
+
+$$\lim_{n\to \infty} \left(1 - \frac{1}{2n}\sigma^2 x^2\right)^n = \exp\left(-\frac{1}{2} \sigma^2 x^2\right)\, .$$
+
+O objetivo deste material consiste em demonstrar \eqref{err_vanish}. Para isso, vamos mostrar o seguinte lema, cuja demonstração é bastante simples:
+
+\begin{lemma}
+Seja $s_1,\ldots, s_m$ e $v_1,\ldots, v_m$ duas sequências de $m$ números complexos tais que $\max\{|s_j|,|v_j|\}\leq 1$ para $j=1,\ldots m $. Então:
+
+$$\left|\prod_{j=1}^m s_j - \prod_{j=1}^m v_j\right|\leq \sum_{j=1}^m |s_j-v_j|\, .$$
+\begin{proof}
+	O caso $m=1$ é trivialmente verdadeiro. Suponha que a propriedade é satisfeita para duas sequências com $l \in \mathbb{N}$ elementos. Vamos mostrar que ela é satisfeita para duas sequências de $l+1$ elementos. Observe que:
+	
+	$$\prod_{j=1}^{l+1} s_j - \prod_{j=1}^{l+1} v_j = s_{l+1}\left(\prod_{j=1}^{l} s_j - \prod_{j=1}^{l} v_j\right) + \prod_{j=1}^{l} v_j\left(s_{l+1} - v_{l+1}\right)\, , $$
+	Mas então, da desigualdade triangular e das propriedades do valor absoluto que:
+	
+	$$\left|\prod_{j=1}^{l+1} s_j - \prod_{j=1}^{l+1} v_j\right|\leq \underbrace{|s_{l+1}|}_{\leq 1}\underbrace{\left|\prod_{j=1}^{l} s_j - \prod_{j=1}^{l} v_j \right|}_{\leq \sum_{j=1}^{l}|s_j-v_j| } + \prod_{j=1}^{l} \underbrace{|v_j|}_{\leq 1}\left|s_{l+1} - v_{l+1}\right| \leq \sum_{j=1}^{l+1}|s_j-v_j|\, ,$$
+	demonstrando que a propriedade vale para duas sequências de $l+1$ alimentos. Por indução, concluímos que a propriedade vale para qualquer $m \in \mathbb{N}$.
+	
+\end{proof}
+\end{lemma}
+
+Vamos usar a proposição a seguir na demonstração de \eqref{err_vanish}. Observe que, como $\lim_{n \to \infty}|\operatorname{Err}_n|=0$, é possível encontrar $n^* \in \mathbb{N}$ tal que, para todo $n \geq n^*$:
+
+$$\left|\operatorname{Err}_n\right| \leq 1\, ,$$
+e
+$$\left|1 - \frac{1}{2n}\sigma^2 x^2\right|\leq 1\, .$$
+
+Para $n\geq n^*$, podemos então aplicar o lema anterior para obter que:
+
+$$\left|\left(1 - \frac{1}{2n}\sigma^2 x^2 + \operatorname{Err}_n \right)^n - \left(1 - \frac{1}{2n}\sigma^2 x^2\right)^n\right| \leq n |\operatorname{Err}_n|\, ,$$
+de onde concluímos, do lema do sanduíche, que \eqref{err_vanish} vale.
+\end{document}

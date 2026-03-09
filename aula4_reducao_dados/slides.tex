@@ -24,7 +24,7 @@
 %\usepackage{appendixnumberbeamer}
 
 \newenvironment{transitionframe}{
-	\setbeamercolor{background canvas}{bg=yellow}
+	\setbeamercolor{background canvas}{bg=lightblue}
 	\begin{frame}}{
 	\end{frame}
 }
@@ -222,8 +222,13 @@ natbib=true
 			\begin{halfwideitemize}
 				\item Para cada $A \in \Sigma$, $\omega \mapsto {P}_{\theta}[\boldsymbol{X}\in A|T(\boldsymbol{X}) = T(\omega)]$ é uma versão da probabilidade condicional ${P}_{\theta}[A|\sigma({T}(\boldsymbol{X}))]$; e para cada $\omega \in \Omega$, $A \mapsto {P}_{\theta}[A|T(\boldsymbol{X}) = T(\omega)]$ é uma medida de probabilidade sobre $\Sigma$.
 				\item Essa condição limita a complexidade de $(\Omega, \Sigma)$.
+				\begin{itemize}
+					\item Satisfeita para $(\Omega,\Sigma) = (\prod_{i=1}^n (\mathbb{R}^k), \otimes_{i=1}^n \mathcal{B}(\mathbb{R}^k))$.
+				\end{itemize}
 				\item Na maior parte dos casos práticos é satisfeita.
-				\item Condições suficientes em \citet{Durrett2019} (fora do escopo do curso).
+				\begin{itemize}
+						\item Condições suficientes fora do escopo do curso.
+				\end{itemize}
 			\end{halfwideitemize}
 			\item Exemplo: no caso discreto, podemos tomar
 			${P}_{\theta}[\boldsymbol{X} \in A|T(\boldsymbol{X}) = t] = \sum_{a \in A} {P}_{\theta}[\{a\}|T(\boldsymbol{X}) = t]$, onde 
@@ -266,7 +271,7 @@ natbib=true
 		\begin{equation*}
 			\begin{aligned}         
 				P_\theta[X_1 = x, X_2 = y| X_1 +  X_2 =  2 t] = \frac{P_\theta[X_1 = x, X_2 = y, X_1 +  X_2 =  2 t]}{P_\theta[X_1 +  X_2 =  2 t]} = \\
-				= \frac{\theta^{x+y} (1-\theta)^{2-x-y}\mathbf{1}\{x+y = 2t\}}{\binom{2}{2t} \theta^{2t}(1-\theta)^{w-2t}}= \frac{1}{\binom{2}{2t} } \mathbf{1}\{x+y = 2t\} \, ,
+				= \frac{\theta^{x+y} (1-\theta)^{2-x-y}\mathbf{1}_{\{x+y = 2t\}}}{\binom{2}{2t} \theta^{2t}(1-\theta)^{w-2t}}= \frac{1}{\binom{2}{2t} } \mathbf{1}_{\{x+y = 2t\}} \, ,
 			\end{aligned}
 		\end{equation*}
 		de onde concluímos que $(X_1+X_2)/2$ é suficiente.
@@ -303,7 +308,7 @@ natbib=true
 			  \mathbb{E}_\theta[P_\theta[\{x\}|T(\boldsymbol{X})] \mathbf{1}_{\{T(\boldsymbol{X}) = T(x)\}}] =\\ \sum_{\omega \in \Omega}  P_\theta[\{x\}|T(\boldsymbol{X}) = T(\omega)] \mathbf{1}_{\{T(\boldsymbol{X}) = T(x)\}}(\omega) p_\theta(\{\omega\}) = \\
 			  	 \underbrace{P_\theta[\{x\}|T(\boldsymbol{X})=T(x)]}_{c(x)} \underbrace{\sum_{\omega \in \Omega: T(\omega)= T(x)} p_\theta(\{\omega\})}_{=P_\theta[\{T(\boldsymbol{X}) = T(x)\}] = h_{\theta}(T(x))}
 			\end{align*}
-			$\impliedby$ Suponha que $p_\theta$ é fatorável. Considere $\tilde{P}[A|T(\boldsymbol{X}) = t] = \frac{\sum_{a\in A}c(a) \mathbf{1}\{T(a) = t\}}{\sum_{\omega \in \Omega : T(\omega) = t} c(\omega)}$ se $\sum_{\omega \in \Omega : T(\omega) = t} c(\omega)>0$ e $S(A)$ do contrário, onde $S$ é uma probabilidade arbitrária sobre $\Omega$. Fácil verificar que $\tilde{P}$ define uma probabilidade condicional regular para todo $\theta$.
+			$\impliedby$ Suponha que $p_\theta$ é fatorável. Considere $\tilde{P}[A|T(\boldsymbol{X}) = t] = \frac{\sum_{a\in A}c(a) \mathbf{1}_{\{T(a) = t\}}}{\sum_{\omega \in \Omega : T(\omega) = t} c(\omega)}$ se $\sum_{\omega \in \Omega : T(\omega) = t} c(\omega)>0$ e $S(A)$ do contrário, onde $S$ é uma probabilidade arbitrária sobre $\Omega$. Fácil verificar que $\tilde{P}$ define uma probabilidade condicional regular para todo $\theta$.
 		\end{proof}
 		
 		
@@ -315,7 +320,7 @@ natbib=true
 		Suponha que o pesquisador observe uma amostra iid $X_1,X_2, \ldots, X_n$ de uma distribuiçao exponencial com parâmetro $\lambda > 0$ desconhecido.  Neste caso, observe que:
 		\begin{equation*}
 			\begin{aligned}
-				p_\lambda(x_1,x_2,\ldots x_n) = \prod_{i=1}^n (\lambda e^{-\lambda x_i} \mathbf{1}\{x_i>0\}) =\\ =  \lambda^n \exp\left(- \lambda \sum_{i=1}^n x_i\right)\mathbf{1}\{\min_i x_i > 0 \} = h_\lambda \left(\sum_{i=1}^n x_i\right) c(\boldsymbol{x}) \, ,
+				p_\lambda(x_1,x_2,\ldots x_n) = \prod_{i=1}^n (\lambda e^{-\lambda x_i} \mathbf{1}_{\{x_i>0\}}) =\\ =  \lambda^n \exp\left(- \lambda \sum_{i=1}^n x_i\right)\mathbf{1}_{\{\min_i x_i > 0 \}} = h_\lambda \left(\sum_{i=1}^n x_i\right) c(\boldsymbol{x}) \, ,
 			\end{aligned}
 		\end{equation*}
 		de onde concluímos que $(X_1+X_2 + \ldots X_n)/n$ é estatística suficiente.
@@ -356,7 +361,7 @@ natbib=true
 	\begin{frame}{Exemplo}
 		Suponha que o espaço amostral é $\mathbb{R}^n_+$. Considere uma amostra aleatória de $U[0,\theta]$, $\theta > 0$.  Neste caso:
 		
-		$$p_\theta(x_1,\ldots, x_n) = \frac{1}{\theta^n} \mathbf{1}\{\max_i x_i < \theta\} \, .  $$
+		$$p_\theta(x_1,\ldots, x_n) = \frac{1}{\theta^n} \mathbf{1}_{\{\max_i x_i < \theta\}} \, .  $$
 		
 		Pelo critério de fatoração, $X_{(n)} : = \max_i X_i$ é suficiente. Vamos mostrar que é minimal suficiente usando o lema anterior. Observe que $D(\boldsymbol{x}) = \{\boldsymbol{y}: y_{(n)} = x_{(n)}\}$. De fato, se $y_{(n)} \neq x_{(n)}$, ao considerar $\theta' = (x_{(n)}+y_{(n)})/2$, teremos que $0 = p_{\theta'}(\boldsymbol{x}) < p_{\theta'}(\boldsymbol{y})$ ou $0 = p_{\theta'}(\boldsymbol{y}) < p_{\theta'}(\boldsymbol{x})$. Segue do lema anterior que $X_{(n)}$ é minimal.
 	\end{frame}
@@ -396,7 +401,7 @@ natbib=true
 			Se $U$ é estatística completa suficiente de dimensão finita, então é suficiente minimal.
 		\end{theorem}
 		\begin{halfwideitemize}
-			\item Recíproca {\color{red}\textbf{não}} é verdadeira: existem estatísticas minimais suficientes de dimensão finita que não são completas (veja \cite{lehmann2006theory}).
+			\item Recíproca {\color{red}\textbf{não}} é verdadeira: existem estatísticas minimais suficientes de dimensão finita que não são completas (veja o Exemplo 6.25 \cite{lehmann2006theory}).
 		\end{halfwideitemize}
 		
 	\end{frame}
@@ -622,13 +627,7 @@ natbib=true
 		\end{itemize}
 	\end{frame}
 	
-	\begin{transitionframe}
-		\centering
-		\Huge{Referências}
-	\end{transitionframe}
-	\begin{frame}{Referências}
-		\printbibliography
-	\end{frame}
+
 	
 \end{document}
 
