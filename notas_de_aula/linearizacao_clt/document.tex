@@ -60,17 +60,17 @@ $$\left|\prod_{j=1}^m s_j - \prod_{j=1}^m v_j\right|\leq \sum_{j=1}^m |s_j-v_j|\
 	O caso $m=1$ é trivialmente verdadeiro. Suponha que a propriedade é satisfeita para duas sequências com $l \in \mathbb{N}$ elementos. Vamos mostrar que ela é satisfeita para duas sequências de $l+1$ elementos. Observe que:
 	
 	$$\prod_{j=1}^{l+1} s_j - \prod_{j=1}^{l+1} v_j = s_{l+1}\left(\prod_{j=1}^{l} s_j - \prod_{j=1}^{l} v_j\right) + \prod_{j=1}^{l} v_j\left(s_{l+1} - v_{l+1}\right)\, , $$
-	Mas então, da desigualdade triangular e das propriedades do valor absoluto que:
+	Mas então, da desigualdade triangular e das propriedades do valor absoluto, segue que:
 	
 	$$\left|\prod_{j=1}^{l+1} s_j - \prod_{j=1}^{l+1} v_j\right|\leq \underbrace{|s_{l+1}|}_{\leq 1}\underbrace{\left|\prod_{j=1}^{l} s_j - \prod_{j=1}^{l} v_j \right|}_{\leq \sum_{j=1}^{l}|s_j-v_j| } + \prod_{j=1}^{l} \underbrace{|v_j|}_{\leq 1}\left|s_{l+1} - v_{l+1}\right| \leq \sum_{j=1}^{l+1}|s_j-v_j|\, ,$$
-	demonstrando que a propriedade vale para duas sequências de $l+1$ alimentos. Por indução, concluímos que a propriedade vale para qualquer $m \in \mathbb{N}$.
+	demonstrando que a propriedade vale para duas sequências de $l+1$ elementos. Por indução, concluímos que a propriedade vale para qualquer $m \in \mathbb{N}$.
 	
 \end{proof}
 \end{lemma}
 
 Vamos usar a proposição a seguir na demonstração de \eqref{err_vanish}. Observe que, como $\lim_{n \to \infty}|\operatorname{Err}_n|=0$, é possível encontrar $n^* \in \mathbb{N}$ tal que, para todo $n \geq n^*$:
 
-$$\left|1 - \frac{1}{2n}\sigma^2 x^2\operatorname{Err}_n\right| \leq 1\, ,$$
+$$\left|1 - \frac{1}{2n}\sigma^2 x^2 + \operatorname{Err}_n\right| \leq 1\, ,$$
 e
 $$\left|1 - \frac{1}{2n}\sigma^2 x^2\right|\leq 1\, .$$
 
