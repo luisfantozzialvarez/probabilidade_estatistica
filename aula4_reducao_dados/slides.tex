@@ -546,9 +546,9 @@ natbib=true
 		\begin{frame}{Caracterizando estimadores NVVUM}
 		Um estimador $\delta$ é dito de variância finita em $\mathcal{P}$ se $\mathbb{V}_\theta[\delta(\boldsymbol{X})] < \infty$ para todo $\theta \in \Theta$. 
 		\begin{theorem}
-			Um estimador $\delta$ de variância finita e não viciado para  $\psi(\theta)$ em $\mathcal{P}$ é não viciado de variância uniformemente mínima em $\mathcal{P}$ se, e somente se, para qualquer estimador $U$  de variância finita e não viciado para zero em $\mathcal{P}$:
+			Um estimador $\delta$ de variância finita e não viciado para  $\psi(\theta)$ em $\mathcal{P}$ é não viciado de variância uniformemente mínima em $\mathcal{P}$ se, e somente se, para qualquer estimador $U$ não viciado para zero em $\mathcal{P}$:
 			
-			$$\mathbb{E}_\theta[\delta(\boldsymbol{X}) U(\boldsymbol{X})] = 0\, , \quad \forall \theta \in \Theta\, .$$
+			$$\forall \theta \in \Theta\, , \mathbb{V}_\theta[U]<\infty \implies  \mathbb{E}_\theta[\delta(\boldsymbol{X}) U(\boldsymbol{X})] = 0\, .$$
 		\end{theorem}
 		\begin{corollary}
 			Se um estimador $\delta$ de $\psi(\theta)$ com variância finita é não viciado com variância uniformemente mínima em $\mathcal{P}$, então ele é único.
@@ -599,8 +599,8 @@ natbib=true
 			\item Tome um ponto $\theta \in \operatorname{int}(\Theta)$.
 			
 			\item Considere uma direção $\boldsymbol{e} \in \mathbb{R}^s$, $\boldsymbol{e} \neq \boldsymbol{0}$.
-			\item Defina a variável aleatória $S_{\theta,\boldsymbol{e}}(x) = \frac{\nabla_{\tau} p_{\theta_0}(x) \cdot \boldsymbol{e}}{p_{\theta}(x)}$.
-				\item Observe que, como $\int p_{\tau}(x)\mu(dx)=1$ para todo $\tau$, se pudermos diferenciar em $\tau$ por dentro da integral, segue que $\mathbb{E}_{\theta}[S_{\theta,\boldsymbol{e}}(x)] = 0$ e que $\operatorname{cov}_{\theta}(\delta, S_{\theta,\boldsymbol{e}}) = \int\delta(x)  (\nabla_{\tau} p_{\theta}(x) \cdot \boldsymbol{e})  \mu(dx)$.
+			\item Defina a variável aleatória $S_{\theta,\boldsymbol{e}} = \nabla_\tau \log p_{\theta}(\boldsymbol{X})\cdot \boldsymbol{e} =  \frac{\nabla_{\tau} p_{\theta}(\boldsymbol{X}) \cdot \boldsymbol{e}}{p_{\theta}(\boldsymbol{X})}$.
+				\item Observe que, como $\int p_{\tau}(x)\mu(dx)=1$ para todo $\tau$, se pudermos diferenciar em $\tau$ por dentro da integral, segue que $\mathbb{E}_{\theta}[S_{\theta,\boldsymbol{e}}] = 0$ e que $\operatorname{cov}_{\theta}(\delta, S_{\theta,\boldsymbol{e}}) = \int\delta(x)  (\nabla_{\tau} p_{\theta}(x) \cdot \boldsymbol{e})  \mu(dx)$.
 				\item Ademais, como $\int \delta(x) p_\tau(x) \mu(dx) =\psi(\tau) $ para todo $\tau$, se pudermos diferenciar por debaixo da integral, segue que $   \operatorname{cov}_{\theta}(\delta, S_{\theta,\boldsymbol{e}}) =\nabla_{\tau}\psi(\theta) \cdot \boldsymbol{e}$
 			
 		\end{itemize}
