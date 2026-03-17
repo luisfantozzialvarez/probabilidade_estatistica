@@ -452,19 +452,19 @@ natbib=true
 			\item Por outro lado, se a família paramétrica fosse $\{\mathcal{N}( \theta \lor 0, 1): \theta \in \mathbb{R}\}$, $\theta$ não é identificável.
 		\end{halfwideitemize}
 	\end{frame}
-	\begin{frame}{Parametrização natural de família exponencial}
+	\begin{frame}{Reparametrização natural}
 		Note que, da definição de família exponencial:
 		
 		$$p_\theta(\boldsymbol{x}) = \exp(\eta(\theta)'T(\boldsymbol{x}) -B(\theta)) h(\boldsymbol{x}) \, , \quad  \theta \in \Theta \, ,$$
 		segue uma reparametrização {\color{blue}natural}
-		$$p_{\boldsymbol{\eta}}(\boldsymbol{x}) = \exp(\eta'T(\boldsymbol{x}) -B^*(\boldsymbol{\eta})) h(\boldsymbol{x}) \, , \quad \boldsymbol{\eta} \in \Xi \, ,$$
+		$$p_{\boldsymbol{\eta}}(\boldsymbol{x}) = \exp(\boldsymbol{\eta}'T(\boldsymbol{x}) -B^*(\boldsymbol{\eta})) h(\boldsymbol{x}) \, , \quad \boldsymbol{\eta} \in \Xi \, ,$$
 		onde $\Xi := \{ \eta(\theta): \theta \in \Theta\} \subseteq \mathbb{R}^s$ é o {\color{blue}espaço paramétrico natural}; e $B^*(\boldsymbol{\eta}) = B(\theta)$ para algum (qualquer) $\theta \in \Theta$ tal que $\eta(\theta) = \boldsymbol{\eta}$
 		
 		\begin{block}{Definição}
-			Uma família exponencial $\{P_\theta: \theta \in \Theta\}$ é dita uma família de posto cheio se sua reparametrização natural é tal que $\eta$ é identificável e $\Xi$ contém uma bola aberta de $\mathbb{R}^s$.
+			Uma família exponencial $\{P_\theta: \theta \in \Theta\}$ é dita uma família de posto cheio se sua reparametrização natural é tal que $\boldsymbol{\eta}$ é identificável e $\Xi$ contém uma bola aberta de $\mathbb{R}^s$.
 		\end{block}
 		\begin{halfwideitemize}
-			\item No exemplo de amostra aleatória normal, $\Theta = (-\infty,0) \times \mathbb{R}$, logo a família tem posto cheio.
+			\item No exemplo de amostra aleatória de população normal, $\Xi = (-\infty,0) \times \mathbb{R}$, e, como $\theta$ é identificável, $\boldsymbol{\eta}$ também o é, logo a família tem posto cheio.
 			\item $\{N(\mu, \mu^2): \mu \in \mathbb{R}\}$ não tem posto cheio (família curvada).
 		\end{halfwideitemize}
 	\end{frame}
