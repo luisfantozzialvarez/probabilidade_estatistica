@@ -487,7 +487,7 @@ natbib=true
 	
 	\begin{frame}{O problema de decisão estatística}
 	\begin{itemize}
-		\item Considere um experimento estatístico $(\Omega,\Sigma, P)$, e um modelo de leis de probabilidade candidatas para $P$, $\mathcal{P} = \{P:\theta \in \Theta\}$, com $P=P_{\theta_0}$ para algum $\theta_0 \in \Theta$.
+		\item Considere um experimento estatístico $(\Omega,\Sigma, P)$, e um modelo de leis de probabilidade candidatas para $P$, $\mathcal{P} = \{P_\theta:\theta \in \Theta\}$, com $P=P_{\theta_0}$ para algum $\theta_0 \in \Theta$.
 		\item Suponha que o pesquisador esteja interessado em realizar inferência sobre um parâmetro  escalar $\psi(\theta_0) \in \mathbb{R}$.
 		\begin{itemize}
 					\item Após observar $\boldsymbol{X} =\operatorname{Id}_\Omega$, pesquisador deve produzir  estimativa para $\psi(\theta_0)$.
@@ -580,7 +580,7 @@ natbib=true
 		\begin{itemize}
 			\item Resultados anteriores nos deram dois métodos para se tentar construir um ENVVUM.
 			\begin{itemize}
-				\item Encontrar $\delta$ resolvendo o ``sistema de equações'': $\mathbb{E}_\theta[\delta(\boldsymbol{X})]=\psi(\theta)$, $\mathbb{E}_\theta[\delta(\boldsymbol{X}) U(\boldsymbol{X})] = 0$ para todo $\theta$ e $U$ não viciado para zero (de variância finita).
+				\item Encontrar $\delta$ resolvendo o ``sistema de equações'': $\mathbb{E}_\theta[\delta(\boldsymbol{X})]=\psi(\theta)$, $\mathbb{E}_\theta[\delta(\boldsymbol{X}) U(\boldsymbol{X})] = 0$ para todo $\theta$ e $U$ não viciado para zero (tais que $\mathbb{V}_\theta[U]<\infty$).
 				\item Encontrar um estimador não viciado, uma estatística completa suficiente e calcular a esperança condicional.
 			\end{itemize}
 			\item Uma pergunta alternativa é: se temos um estimador não viciado, será que existe uma condição {\color{blue}suficiente} simples de ser verificada, que quando garantida implica que estimador é ENVVUM?
