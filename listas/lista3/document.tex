@@ -64,7 +64,7 @@ $$\phi_{\boldsymbol{X}}(s)= \prod_{i=1}^n \phi_{X_i}(s_i)\,, \quad \forall s \in
 
 \paragraph{Exercício 6} Sejam $\boldsymbol{X} = (X_1,X_2,\ldots,X_n)'$ um vetor de variáveis aleatórias definidas no mesmo espaço de probabilidade. Dizemos que $\boldsymbol{X}$ segue distribuição normal com média $\boldsymbol{\mu} \in \mathbb{R}^{n}$ e matriz de variância-covariância $\Sigma \in \{A \in \mathbb{R}^{n \times n}: A \text{ positiva semidefinida}\}$, denotado por $\boldsymbol{X}\sim \mathcal{N}(\mathbb{\mu},\boldsymbol{\Sigma})$ se a medida induzida $\mathbb{P}_{\boldsymbol{X}}$ admite densidade (com respeito à medida de Lebesgue em $\mathbb{R}^n$) dada por:
 
-$$f(\boldsymbol{s}) =\frac{1}{(2\pi)^{n/2} \sqrt{\operatorname{det}(\Sigma)}}\exp\left(-\frac{1}{2}(\boldsymbol{s}-\boldsymbol{\mu})'\Sigma (\boldsymbol{s}-\boldsymbol{\mu})\right)\, .$$
+$$f(\boldsymbol{s}) =\frac{1}{(2\pi)^{n/2} \sqrt{\operatorname{det}(\Sigma)}}\exp\left(-\frac{1}{2}(\boldsymbol{s}-\boldsymbol{\mu})'\Sigma^{-1} (\boldsymbol{s}-\boldsymbol{\mu})\right)\, .$$
 
 Nesse caso, é possível mostrar que $\mathbb{E}[X_j] =\boldsymbol{\mu}_j$ e $\Sigma_{i,j} = \mathbb{C}(\boldsymbol{X}_i,\boldsymbol{X}_j)$ para todo $i,j=1,\ldots, n$.
 \begin{itemize}
